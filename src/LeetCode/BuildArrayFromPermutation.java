@@ -9,6 +9,8 @@ public class BuildArrayFromPermutation {
     }
 
 
+    // Time complexity: O(n)
+    // Space complexity: O(n)
     public int[] solution() {
         int[] ans = new int[nums.length];
 
