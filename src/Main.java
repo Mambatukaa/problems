@@ -1,18 +1,14 @@
-import AlgoExpert.array.TwoNumberSum1;
-import AlgoExpert.easy.SortedSquaredArray;
-import AlgoExpert.easy.TournamentWinner;
+import LeetCode.BuildArrayFromPermutation;
 
 import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] array = {3, 5, 1};
-        int target = 6;
+        int[] nums = {0, 2, 1, 5, 3, 4};
 
-        TwoNumberSum1 twoNumberSum1 = new TwoNumberSum1(array, target);
+        BuildArrayFromPermutation buildArrayFromPermutation = new BuildArrayFromPermutation(nums);
 
-
-        System.out.println(Arrays.toString(twoNumberSum1.solution()));
+        System.out.println(Arrays.toString(buildArrayFromPermutation.solution()));
 
     }
 
