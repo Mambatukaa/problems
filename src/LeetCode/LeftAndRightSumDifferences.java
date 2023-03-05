@@ -8,6 +8,9 @@ public class LeftAndRightSumDifferences {
         this.nums = nums;
     }
 
+
+    // Time complexity: O(n)
+    // Space complexity: O(n)
     private int[] calculateLeftSum(int[] nums) {
         int[] leftSum = new int[nums.length];
         int sumTracker = 0;
@@ -22,6 +25,8 @@ public class LeftAndRightSumDifferences {
         return leftSum;
     }
 
+    // Time complexity: O(n)
+    // Space complexity: O(n)
     private int[] calculateRightSum(int[] nums) {
         int[] rightSum = new int[nums.length];
         int sumTracker = 0;
@@ -36,6 +41,8 @@ public class LeftAndRightSumDifferences {
         return rightSum;
     }
 
+    // Time complexity: O(n)
+    // Space complexity: O(n)
     public int[] naive() {
         System.out.println("Starting...");
 
