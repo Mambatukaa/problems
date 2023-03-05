@@ -11,7 +11,7 @@ class Main {
 
         ShuffleTheArray shuffleTheArray = new ShuffleTheArray(nums, n);
 
-        System.out.println(Arrays.toString(shuffleTheArray.naiveArraylistSolution()));
+        System.out.println(Arrays.toString(shuffleTheArray.solution()));
     }
 
 }
