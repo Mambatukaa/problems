@@ -1,17 +1,14 @@
-import LeetCode.BuildArrayFromPermutation;
-import LeetCode.ConcatenationOfArray;
-import LeetCode.LeftAndRightSumDifferences;
-import LeetCode.ShuffleTheArray;
+import LeetCode.*;
 
 import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {10, 4, 8, 3};
+        String[] operations = {"--X", "X++", "X++"};
 
-        LeftAndRightSumDifferences leftAndRightSumDifferences = new LeftAndRightSumDifferences(nums);
+        FinalValueOfVariableAfterPerformingOperations finalValueOfVariableAfterPerformingOperations = new FinalValueOfVariableAfterPerformingOperations(operations);
 
-        System.out.println(Arrays.toString(leftAndRightSumDifferences.naive()));
+        System.out.println(finalValueOfVariableAfterPerformingOperations.naive());
     }
 
 }
