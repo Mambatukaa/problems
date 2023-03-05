@@ -1,7 +1,5 @@
 package LeetCode;
 
-import java.util.Arrays;
-
 public class LeftAndRightSumDifferences {
     private final int[] nums;
 
@@ -10,7 +8,7 @@ public class LeftAndRightSumDifferences {
         this.nums = nums;
     }
 
-    private int[] leftSum(int[] nums) {
+    private int[] calculateLeftSum(int[] nums) {
         int[] leftSum = new int[nums.length];
         int sumTracker = 0;
         int currentIndex = 1;
@@ -24,7 +22,7 @@ public class LeftAndRightSumDifferences {
         return leftSum;
     }
 
-    private int[] rightSum(int[] nums) {
+    private int[] calculateRightSum(int[] nums) {
         int[] rightSum = new int[nums.length];
         int sumTracker = 0;
         int currentIndex = nums.length - 2;
@@ -41,8 +39,8 @@ public class LeftAndRightSumDifferences {
     public int[] naive() {
         System.out.println("Starting...");
 
-        int[] leftSum = this.leftSum(nums);
-        int[] rightSum = this.rightSum(nums);
+        int[] leftSum = this.calculateLeftSum(nums);
+        int[] rightSum = this.calculateRightSum(nums);
 
 
         int[] ans = new int[nums.length];
