@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        String[] operations = {"--X", "X++", "X++"};
+        int[] nums = {1, 1, 2, 2};
 
-        FinalValueOfVariableAfterPerformingOperations finalValueOfVariableAfterPerformingOperations = new FinalValueOfVariableAfterPerformingOperations(operations);
+        NumberOfGoodPairs numberOfGoodPairs = new NumberOfGoodPairs(nums);
 
-        System.out.println(finalValueOfVariableAfterPerformingOperations.naive());
+        System.out.println(numberOfGoodPairs.naive());
     }
 
 }
