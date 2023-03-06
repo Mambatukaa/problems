@@ -9,13 +9,13 @@ public class RichestCustomerWealth {
 
 
     // Space complexity: O(1)
-    // Time complexity: O(n)
+    // Time complexity: O(n x m)
     public int naive() {
         int max = 0;
         int count = 0;
 
-        for (int[] account : accounts) {
-            for (int a : account) {
+        for (int[] customer : accounts) {
+            for (int a : customer) {
                 count += a;
             }
 
