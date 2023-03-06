@@ -8,6 +8,8 @@ public class RichestCustomerWealth {
     }
 
 
+    // Space complexity: O(1)
+    // Time complexity: O(n)
     public int naive() {
         int max = 0;
         int count = 0;
