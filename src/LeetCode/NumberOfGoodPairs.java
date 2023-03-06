@@ -1,5 +1,8 @@
 package LeetCode;
 
+import java.util.Collection;
+import java.util.Hashtable;
+
 public class NumberOfGoodPairs {
     final private int[] nums;
 
@@ -26,6 +29,35 @@ public class NumberOfGoodPairs {
         }
 
         return count;
+    }
+
+
+    public int solution() {
+//        Hashtable<Integer, Integer> hashtable = new Hashtable<>();
+//
+//        for (int num : nums) {
+//            if (hashtable.containsKey(num)) {
+//                int count = hashtable.get(num);
+//                hashtable.replace(num, ++count);
+//            } else {
+//                hashtable.put(num, 0);
+//            }
+//        }
+//
+//        System.out.println(hashtable);
+//
+//        int counter = 0;
+//
+//        Collection<Integer> values = hashtable.values();
+//
+//        for (int value : values) {
+//            counter += value;
+//        }
+//        System.out.println("hahah");
+//
+//        return counter;
+
+        return 1;
     }
 
 }

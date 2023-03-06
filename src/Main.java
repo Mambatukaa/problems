@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {1, 1, 2, 2};
+        int[] nums = {1, 2, 3, 1, 1, 3};
 
         NumberOfGoodPairs numberOfGoodPairs = new NumberOfGoodPairs(nums);
 
-        System.out.println(numberOfGoodPairs.naive());
+        System.out.println(numberOfGoodPairs.solution());
     }
 
 }
