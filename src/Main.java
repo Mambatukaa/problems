@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {1, 1, 1, 1, 1};
+        String[] sentences = {"A", "A B", "A B C"};
 
-        RunningSumOfArray runningSumOfArray = new RunningSumOfArray(nums);
+        MaxNumberWordsFoundInSentence maxNumberWordsFoundInSentence = new MaxNumberWordsFoundInSentence(sentences);
 
-        System.out.println(Arrays.toString(runningSumOfArray.solution()));
+        System.out.println(maxNumberWordsFoundInSentence.naive());
     }
 
 }
