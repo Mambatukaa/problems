@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        String[] sentences = {"A", "A B", "A B C"};
+        int[] candies = {2, 3, 5, 1, 3};
 
-        MaxNumberWordsFoundInSentence maxNumberWordsFoundInSentence = new MaxNumberWordsFoundInSentence(sentences);
+        KidsWithGreatestNumCandies kidsWithGreatestNumCandies = new KidsWithGreatestNumCandies(candies, 3);
 
-        System.out.println(maxNumberWordsFoundInSentence.naive());
+        System.out.println(kidsWithGreatestNumCandies.naive());
     }
 
 }
