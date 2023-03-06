@@ -4,12 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[][] accounts = {{1, 2, 3}, {1, 2, 5}};
+        int[] nums = {1, 1, 1, 1, 1};
 
-        RichestCustomerWealth richestCustomerWealth = new RichestCustomerWealth(accounts);
+        RunningSumOfArray runningSumOfArray = new RunningSumOfArray(nums);
 
-
-        System.out.println(richestCustomerWealth.naive());
+        System.out.println(Arrays.toString(runningSumOfArray.solution()));
     }
 
 }
