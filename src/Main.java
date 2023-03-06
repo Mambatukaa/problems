@@ -4,11 +4,12 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {1, 2, 3, 1, 1, 3};
+        int[][] accounts = {{1, 2, 3}, {1, 2, 5}};
 
-        NumberOfGoodPairs numberOfGoodPairs = new NumberOfGoodPairs(nums);
+        RichestCustomerWealth richestCustomerWealth = new RichestCustomerWealth(accounts);
 
-        System.out.println(numberOfGoodPairs.solution());
+
+        System.out.println(richestCustomerWealth.naive());
     }
 
 }
