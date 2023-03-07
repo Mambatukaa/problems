@@ -25,5 +25,27 @@ public class FindEvenNumbersDigit {
         return counter;
     }
 
+    // Time complexity: O(nxm)
+    // Space complexity: O(n)
+    public int solution() {
+        int counter = 0;
+
+        for (int num : nums) {
+            int count = 0;
+
+            while (num > 0) {
+                num /= 10;
+                count++;
+            }
+
+            if (count % 2 == 0) {
+                counter++;
+            }
+        }
+
+        return counter;
+
+    }
+
 
 }
