@@ -4,11 +4,13 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {8, 1, 2, 2, 3};
+        int[] encoded = {6, 2, 7, 3};
+        int first = 4;
 
-        SmallerThanCurrentNums smallerThanCurrentNums = new SmallerThanCurrentNums(nums);
+        DecodeXorArray decodeXorArray = new DecodeXorArray(encoded, first);
 
-        System.out.println(Arrays.toString(smallerThanCurrentNums.mapSolution()));
+        System.out.println(Arrays.toString(decodeXorArray.naive()));
+
     }
 
 }
