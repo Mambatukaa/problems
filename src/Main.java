@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] candies = {2, 3, 5, 1, 3};
+        int[] nums = {8, 1, 2, 2, 3};
 
-        KidsWithGreatestNumCandies kidsWithGreatestNumCandies = new KidsWithGreatestNumCandies(candies, 3);
+        SmallerThanCurrentNums smallerThanCurrentNums = new SmallerThanCurrentNums(nums);
 
-        System.out.println(kidsWithGreatestNumCandies.naive());
+        System.out.println(Arrays.toString(smallerThanCurrentNums.naive()));
     }
 
 }
