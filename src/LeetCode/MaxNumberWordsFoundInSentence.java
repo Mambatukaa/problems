@@ -9,7 +9,8 @@ public class MaxNumberWordsFoundInSentence {
         this.sentences = sentences;
     }
 
-
+    // Time complexity: O(n)
+    // Space complexity: O(n)
     public int naive() {
         int max = 0;
 

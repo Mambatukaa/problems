@@ -13,7 +13,7 @@ public class KidsWithGreatestNumCandies {
         this.extraCandies = extraCandies;
     }
 
-    // Space complexity: O(1)
+    // Space complexity: O(n)
     // Time complexity: O(2n) ~ O(n): remove constant
     public List<Boolean> naive() {
         int max = Integer.MIN_VALUE;
