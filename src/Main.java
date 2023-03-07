@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {12, 3331, 5512};
+        int[] nums = {-4, 3, 4, 5};
 
-        FindEvenNumbersDigit findEvenNumbersDigit = new FindEvenNumbersDigit(nums);
+        SquaresOfSortedArray squaresOfSortedArray = new SquaresOfSortedArray(nums);
 
-        System.out.println(findEvenNumbersDigit.solution());
+        System.out.println(Arrays.toString(squaresOfSortedArray.naive()));
 
     }
 
