@@ -8,7 +8,7 @@ public class FindEvenNumbersDigit {
         this.nums = nums;
     }
 
-    // Time complexity: O(n)
+    // Time complexity: O(n) maybe O(n^2) because of an integer convert
     // Space complexity: O(1)
     public int naive() {
         int counter = 0;
