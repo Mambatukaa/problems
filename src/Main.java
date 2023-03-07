@@ -4,12 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] encoded = {6, 2, 7, 3};
-        int first = 4;
+        int[] nums = {1, 0, 1, 1, 0, 1, 1, 1, 1};
 
-        DecodeXorArray decodeXorArray = new DecodeXorArray(encoded, first);
+        MaxConsecutiveOnes maxConsecutiveOnes = new MaxConsecutiveOnes(nums);
 
-        System.out.println(Arrays.toString(decodeXorArray.naive()));
+        System.out.println(maxConsecutiveOnes.naive());
 
     }
 
