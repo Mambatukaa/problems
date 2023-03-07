@@ -1,5 +1,8 @@
 package LeetCode;
 
+import java.util.Arrays;
+import java.util.HashMap;
+
 // 1365
 public class SmallerThanCurrentNums {
     final private int[] nums;
@@ -26,6 +29,26 @@ public class SmallerThanCurrentNums {
         }
 
         return ans;
+    }
+
+
+    // Time complexity: O(n)
+    // Space complexity: O(n)
+    public int[] mapSolution() {
+        HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+        int[] duplicated = nums.clone();
+
+        Arrays.sort(duplicated);
+
+        for (int i = 0; i < duplicated.length; i++) {
+            hashMap.putIfAbsent(duplicated[i], i);
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = hashMap.get(nums[i]);
+        }
+
+        return nums;
     }
 
 }

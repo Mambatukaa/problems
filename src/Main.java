@@ -8,7 +8,7 @@ class Main {
 
         SmallerThanCurrentNums smallerThanCurrentNums = new SmallerThanCurrentNums(nums);
 
-        System.out.println(Arrays.toString(smallerThanCurrentNums.naive()));
+        System.out.println(Arrays.toString(smallerThanCurrentNums.mapSolution()));
     }
 
 }
