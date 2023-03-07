@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {1, 0, 1, 1, 0, 1, 1, 1, 1};
+        int[] nums = {12, 3331, 551};
 
-        MaxConsecutiveOnes maxConsecutiveOnes = new MaxConsecutiveOnes(nums);
+        FindEvenNumbersDigit findEvenNumbersDigit = new FindEvenNumbersDigit(nums);
 
-        System.out.println(maxConsecutiveOnes.naive());
+        System.out.println(findEvenNumbersDigit.naive());
 
     }
 
