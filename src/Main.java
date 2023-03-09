@@ -4,12 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {0, 1, 2, 2, 3, 0, 4, 2};
-        int value = 2;
+        int[] nums = {1, 1, 2};
 
-        RemoveElement removeElement = new RemoveElement(nums, value);
+        RemoveDuplicatesFromSortedArray removeDuplicatesFromSortedArray = new RemoveDuplicatesFromSortedArray(nums);
 
-        System.out.println(removeElement.solution());
+        System.out.println(removeDuplicatesFromSortedArray.naive());
 
 
     }
