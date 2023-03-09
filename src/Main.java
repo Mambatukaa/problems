@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {-4, -1, 0, 3, 10};
+        int[] arr = {1, 0, 2, 3, 0, 4, 5, 0};
 
-        SquaresOfSortedArray squaresOfSortedArray = new SquaresOfSortedArray(nums);
+        DuplicateZeros duplicateZeros = new DuplicateZeros(arr);
 
-        System.out.println(Arrays.toString(squaresOfSortedArray.solution()));
+        System.out.println(Arrays.toString(duplicateZeros.naive()));
 
     }
 
