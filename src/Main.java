@@ -4,11 +4,15 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+        int[] arr = {-2, 0, 10, -19, 4, 6, -8};
+//        int[] arr = {10, 2, 5, 3};
+//        int[] arr = {0, 0};
 
-        RemoveDuplicatesFromSortedArray removeDuplicatesFromSortedArray = new RemoveDuplicatesFromSortedArray(nums);
+// [-2,0,10,-19,4,6,-8]
 
-        System.out.println(removeDuplicatesFromSortedArray.solution());
+        CheckNDoubleExist checkNDoubleExist = new CheckNDoubleExist(arr);
+
+        System.out.println(checkNDoubleExist.naive());
 
 
     }
