@@ -30,5 +30,23 @@ public class RemoveElement {
         return i;
     }
 
+    // Time complexity: O(n)
+    // Space complexity: O(1)
+    // When remove element is rare
+    public int solution() {
+        int p1 = 0;
+        int p2 = nums.length - 1;
+
+        while (p1 <= p2) {
+            if (nums[p1] == val) {
+                nums[p1] = nums[p2];
+                p2--;
+            } else {
+                p1++;
+            }
+        }
+
+        return p1;
+    }
 
 }

@@ -9,7 +9,7 @@ class Main {
 
         RemoveElement removeElement = new RemoveElement(nums, value);
 
-        System.out.println(removeElement.naive());
+        System.out.println(removeElement.solution());
 
 
     }
