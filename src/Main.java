@@ -4,11 +4,15 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] arr = {1, 0, 2, 3, 0, 4, 5, 0};
+        int[] nums1 = {1, 2, 0};
+        int[] nums2 = {1};
+        int m = 2;
+        int n = 1;
 
-        DuplicateZeros duplicateZeros = new DuplicateZeros(arr);
+        MergeSortedArray mergeSortedArray = new MergeSortedArray(nums1, nums2, m, n);
 
-        System.out.println(Arrays.toString(duplicateZeros.naive()));
+        mergeSortedArray.naive();
+
 
     }
 
