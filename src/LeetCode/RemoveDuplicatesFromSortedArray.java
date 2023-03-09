@@ -33,6 +33,8 @@ public class RemoveDuplicatesFromSortedArray {
     }
 
 
+    // Time complexity: O(n)
+    // Space complexity: O(1)
     public int solution() {
         int insertIndex = 1;
 
