@@ -12,7 +12,7 @@ class Main {
 
         CheckNDoubleExist checkNDoubleExist = new CheckNDoubleExist(arr);
 
-        System.out.println(checkNDoubleExist.naive());
+        System.out.println(checkNDoubleExist.bruteForceSolution());
 
 
     }
