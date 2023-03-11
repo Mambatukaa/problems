@@ -8,6 +8,8 @@ public class ValidMountainArray {
     }
 
 
+    // Time complexity: O(n)
+    // Space complexity: O(1)
     public boolean solution() {
         int i = 0;
         int n = arr.length;
