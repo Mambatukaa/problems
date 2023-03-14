@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] arr = {17, 18, 5, 4, 6, 1};
+        int[] nums = {1, 1, 1, 2, 2, 2, 2, 3, 4, 4, 5};
 
-        ReplaceWithGreatestRightSide replaceWithGreatestRightSide = new ReplaceWithGreatestRightSide(arr);
+        RemoveDuplicatesFromSortedArr removeDuplicatesFromSortedArr = new RemoveDuplicatesFromSortedArr(nums);
 
-        System.out.println(Arrays.toString(replaceWithGreatestRightSide.naive()));
+        System.out.println(removeDuplicatesFromSortedArr.solution());
     }
 
 }
