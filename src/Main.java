@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] arr = {3, 6, 5, 6, 7, 6, 5, 3, 0};
+        int[] arr = {17, 18, 5, 4, 6, 1};
 
-        ValidMountainArray validMountainArray = new ValidMountainArray(arr);
+        ReplaceWithGreatestRightSide replaceWithGreatestRightSide = new ReplaceWithGreatestRightSide(arr);
 
-        System.out.println(validMountainArray.solution());
+        System.out.println(Arrays.toString(replaceWithGreatestRightSide.naive()));
     }
 
 }
