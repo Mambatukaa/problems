@@ -13,6 +13,8 @@ public class MoveZeroes {
         nums[rightIndex] = tmp;
     }
 
+    // Time complexity: O(n)
+    // Space complexity: O(1)
     public int[] naive() {
         int leftIndex = 0;
         int rightIndex = 1;
