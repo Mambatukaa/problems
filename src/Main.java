@@ -4,11 +4,12 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {2, 1};
+        int[] nums = {3, 4, 0, 0, 0, 0};
 
-        MoveZeroes moveZeroes = new MoveZeroes(nums);
+        SortArrayByPriority sortArrayByPriority = new SortArrayByPriority(nums);
 
-        System.out.println(Arrays.toString(moveZeroes.naive()));
+
+        System.out.println(Arrays.toString(sortArrayByPriority.naive()));
     }
 
 }
