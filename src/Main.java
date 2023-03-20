@@ -4,12 +4,12 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {3, 4, 0, 0, 0, 0};
+        int[] nums = {0, 1, 2, 2, 3, 0, 4, 2};
+        int val = 2;
 
-        SortArrayByPriority sortArrayByPriority = new SortArrayByPriority(nums);
+        RemoveElementInOrder removeElementInOrder = new RemoveElementInOrder(nums, val);
 
-
-        System.out.println(Arrays.toString(sortArrayByPriority.naive()));
+        System.out.println(removeElementInOrder.naive());
     }
 
 }
