@@ -4,12 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {0, 1, 2, 2, 3, 0, 4, 2};
-        int val = 2;
+        int[] heights = {5, 1, 2, 3, 4};
 
-        RemoveElementInOrder removeElementInOrder = new RemoveElementInOrder(nums, val);
+        HeightsChecker heightsChecker = new HeightsChecker(heights);
 
-        System.out.println(removeElementInOrder.naive());
+        System.out.println(heightsChecker.naive());
     }
 
 }

@@ -16,8 +16,8 @@ public class RemoveElementInOrder {
     }
 
 
-    //
-    //
+    // Time complexity: O(n)
+    // Space complexity: O(1)
     public int naive() {
         int n = nums.length;
         int leftIndex = 0;
@@ -46,4 +46,25 @@ public class RemoveElementInOrder {
 
         return rightIndex + 1;
     }
+
+    // Time complexity: O(n)
+    // Space complexity: O(1)
+
+    public int solution() {
+        int writer = 0;
+        int reader = 0;
+        int n = nums.length;
+
+        while (reader < n) {
+            if (nums[reader] == val) {
+                reader++;
+                continue;
+            }
+            nums[writer++] = nums[reader++];
+
+        }
+
+        return writer;
+    }
+
 }
