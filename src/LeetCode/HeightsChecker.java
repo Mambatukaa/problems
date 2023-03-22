@@ -24,7 +24,35 @@ public class HeightsChecker {
         }
 
         return counter;
-
-
     }
+
+
+    // Space complexity: O(1)
+    // Time complexity: O(n)
+    public int solution() {
+        int[] heightToFreq = new int[101];
+
+        for (int height : heights) {
+            heightToFreq[height]++;
+        }
+
+        int result = 0;
+        int curHeight = 0;
+
+        for (int height : heights) {
+            while (heightToFreq[curHeight] == 0) {
+                curHeight++;
+            }
+
+            if (curHeight != height) {
+                result++;
+            }
+
+            heightToFreq[curHeight]--;
+        }
+
+        return result;
+    }
+
+
 }

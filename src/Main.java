@@ -8,7 +8,7 @@ class Main {
 
         HeightsChecker heightsChecker = new HeightsChecker(heights);
 
-        System.out.println(heightsChecker.naive());
+        System.out.println(heightsChecker.solution());
     }
 
 }
