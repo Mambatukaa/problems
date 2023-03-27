@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] heights = {5, 1, 2, 3, 4};
+        int[] nums = {0, 0, 0, 0, 1, 1};
 
-        HeightsChecker heightsChecker = new HeightsChecker(heights);
+        MaxConesecutiveOnesII maxConesecutiveOnesII = new MaxConesecutiveOnesII(nums);
 
-        System.out.println(heightsChecker.solution());
+        System.out.println(maxConesecutiveOnesII.naive());
     }
 
 }
