@@ -1,37 +1,36 @@
 package LeetCode;
 
-public class MaxConesecutiveOnesII {
+public class MaxConsecutiveOnesII {
     private int[] nums;
 
-    public MaxConesecutiveOnesII(int[] nums) {
+    public MaxConsecutiveOnesII(int[] nums) {
         this.nums = nums;
     }
 
-//
-//    public int naive() {
-//        int longestSequence = 0;
-//        int n = nums.length;
-//
-//        for (int i = 0; i < n; i++) {
-//            int numZeroes = 0;
-//
-//            // check every consecutive sequence
-//            for (int j = i; j < n; j++) {
-//                // count how many 0's
-//                if (nums[j] == 0) {
-//                    numZeroes += 1;
-//                }
-//
-//
-//                // # update answer if it's valid
-//                if (numZeroes <= 1) {
-//                    longestSequence = Math.max(longestSequence, i - j + 1);
-//                }
-//            }
-//        }
-//
-//        return longestSequence;
-//    }
+
+    public int naiveLC() {
+        int longestSequence = 0;
+
+        for (int left = 0; left < nums.length; left++) {
+            int numZeroes = 0;
+
+            // check every consecutive sequence
+            for (int right = left; right < nums.length; right++) {
+
+                // count how many 0's
+                if (nums[right] == 0) {
+                    numZeroes += 1;
+                }
+
+                // # update answer if it's valid
+                if (numZeroes <= 1) {
+                    longestSequence = Math.max(longestSequence, right - left + 1);
+                }
+            }
+        }
+
+        return longestSequence;
+    }
 
     public int naive() {
         int max = 0;
