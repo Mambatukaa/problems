@@ -8,6 +8,8 @@ public class MaxConsecutiveOnesII {
     }
 
 
+    // Space complexity: O(1)
+    // Time complexity: O(n^2)
     public int naiveLC() {
         int longestSequence = 0;
 
@@ -32,6 +34,8 @@ public class MaxConsecutiveOnesII {
         return longestSequence;
     }
 
+    // Space complexity: O(1)
+    // Time complexity: O(n^2)
     public int naive() {
         int max = 0;
         int lastZeroIndex = 0;
