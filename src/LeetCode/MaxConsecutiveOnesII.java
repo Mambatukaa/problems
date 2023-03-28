@@ -36,34 +36,34 @@ public class MaxConsecutiveOnesII {
 
     // Space complexity: O(1)
     // Time complexity: O(n^2)
-    public int naive() {
-        int max = 0;
-        int lastZeroIndex = 0;
-        int n = nums.length;
-
-        for (int i = 0; i < n; i++) {
-            boolean zeroFound = false;
-            int counter = 0;
-
-            for (int j = lastZeroIndex; j < nums.length; j++) {
-                if (nums[j] == 0) {
-                    if (zeroFound) {
-                        continue;
-                    }
-
-                    zeroFound = true;
-                    lastZeroIndex = j;
-                }
-
-                counter++;
-            }
-
-            max = Math.max(counter, max);
-
-        }
-
-        return max;
-    }
+//    public int naive() {
+//        int max = 0;
+//        int lastZeroIndex = 0;
+//        int n = nums.length;
+//
+//        for (int i = 0; i < n; i++) {
+//            boolean zeroFound = false;
+//            int counter = 0;
+//
+//            for (int j = lastZeroIndex; j < nums.length; j++) {
+//                if (nums[j] == 0) {
+//                    if (zeroFound) {
+//                        continue;
+//                    }
+//
+//                    zeroFound = true;
+//                    lastZeroIndex = j;
+//                }
+//
+//                counter++;
+//            }
+//
+//            max = Math.max(counter, max);
+//
+//        }
+//
+//        return max;
+//    }
 
 
     // Time complexity: O(n)
