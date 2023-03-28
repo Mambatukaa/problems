@@ -65,4 +65,36 @@ public class MaxConsecutiveOnesII {
         return max;
     }
 
+
+    // Time complexity: O(n)
+    // Space complexity: O(1)
+    public int solution() {
+        int max = 0;
+        int r = 0;
+        int l = 0;
+        int numZeroes = 0;
+        int n = nums.length;
+
+        while (r < n) {
+            if (nums[r] == 0) {
+                numZeroes++;
+            }
+
+            while (numZeroes == 2) {
+                if (nums[l] == 0) {
+                    numZeroes--;
+                }
+
+                l++;
+            }
+
+            max = Math.max(max, r - l + 1);
+
+            r++;
+        }
+
+        return max;
+
+    }
+
 }
