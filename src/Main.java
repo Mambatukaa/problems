@@ -1,11 +1,14 @@
 import LeetCode.*;
 
+import java.util.Arrays;
+
 class Main {
     public static void main(String[] args) {
-        int[] nums = {1, 0, 0, 1, 1, 1, 1};
-        MaxConsecutiveOnesII maxConsecutiveOnesII = new MaxConsecutiveOnesII(nums);
+        int[] nums = {4, 3, 2, 7, 8, 2, 3, 1};
 
-        System.out.println(maxConsecutiveOnesII.solution());
+        FindAllNumbersDisappeared findAllNumbersDisappeared = new FindAllNumbersDisappeared(nums);
+
+        System.out.println(findAllNumbersDisappeared.solution());
     }
 
 }
