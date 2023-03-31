@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {3, -1, 1, 2};
+        int[] nums = {1, 2, 3, 4};
 
-        PivotIndex pivotIndex = new PivotIndex(nums);
+        DominantIndex dominantIndex = new DominantIndex(nums);
 
-        System.out.println(pivotIndex.solution());
+        System.out.println(dominantIndex.naive());
 
 
     }
