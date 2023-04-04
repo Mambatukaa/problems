@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] nums = {1, 0};
+        int[] digits = {5, 6, 2, 0, 0, 4, 6, 2, 4, 9};
 
-        DominantIndex dominantIndex = new DominantIndex(nums);
+        PlusOne plusOne = new PlusOne(digits);
 
-        System.out.println(dominantIndex.solution());
+        System.out.println(Arrays.toString(plusOne.naive()));
 
 
     }
