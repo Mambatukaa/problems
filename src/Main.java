@@ -1,7 +1,4 @@
-import LeetCode.*;
-import LeetCode.String.StrStr;
-
-import java.util.Arrays;
+import LeetCode.ArrayAndString.StrStr;
 
 class Main {
     public static void main(String[] args) {

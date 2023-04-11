@@ -1,4 +1,4 @@
-package LeetCode.String;
+package LeetCode.ArrayAndString;
 
 public class StrStr {
     private final String haystack;
@@ -15,12 +15,12 @@ public class StrStr {
     public int naive() {
         int needleLength = needle.length();
         // TC: O(n)
-        String firstLetter = needle.substring(0, 1);
+        char firstLetter = needle.charAt(0);
 
         for (int i = 0; i <= haystack.length() - needleLength; i++) {
 
             // TC: O(n)
-            if (haystack.substring(i, i + 1).equals(firstLetter)) {
+            if (haystack.charAt(i) == firstLetter) {
                 // TC: O(n)
                 String word = haystack.substring(i, i + needleLength);
 
