@@ -1,14 +1,17 @@
 import LeetCode.*;
+import LeetCode.String.StrStr;
 
 import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        int[] digits = {5, 6, 2, 0, 0, 4, 6, 2, 4, 9};
+        String haystack = "aaiiileeaetcode";
+        String needle = "leeaet";
 
-        PlusOne plusOne = new PlusOne(digits);
+        StrStr strStr = new StrStr(haystack, needle);
 
-        System.out.println(Arrays.toString(plusOne.naive()));
+
+        System.out.println(strStr.naive());
 
 
     }
