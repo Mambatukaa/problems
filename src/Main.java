@@ -1,16 +1,16 @@
+import LeetCode.ArrayAndString.DiagonalIterationReversal;
+import LeetCode.ArrayAndString.LongestCommonPrefix;
 import LeetCode.ArrayAndString.StrStr;
+
+import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
-        String haystack = "aaiiileeaetcode";
-        String needle = "leeaet";
+        int[][] mat = {{2, 3}};
 
-        StrStr strStr = new StrStr(haystack, needle);
+        DiagonalIterationReversal diagonalIterationReversal = new DiagonalIterationReversal(mat);
 
-
-        System.out.println(strStr.naive());
-
-
+        System.out.println(Arrays.toString(diagonalIterationReversal.naive()));
     }
 
 }
