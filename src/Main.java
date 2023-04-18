@@ -10,7 +10,7 @@ class Main {
 
         DiagonalIterationReversal diagonalIterationReversal = new DiagonalIterationReversal(mat);
 
-        System.out.println(Arrays.toString(diagonalIterationReversal.naive()));
+        System.out.println(Arrays.toString(diagonalIterationReversal.solution()));
     }
 
 }
