@@ -1,17 +1,16 @@
-import LeetCode.ArrayAndString.DiagonalIterationReversal;
-import LeetCode.ArrayAndString.LongestCommonPrefix;
-import LeetCode.ArrayAndString.SpiralMatrix;
-import LeetCode.ArrayAndString.StrStr;
+import LeetCode.ArrayAndString.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 class Main {
     public static void main(String[] args) {
-        int[][] matrix = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
 
-        SpiralMatrix spiralMatrix = new SpiralMatrix(matrix);
+        PascalsTriangle pascalsTriangle = new PascalsTriangle(5);
 
-        System.out.println(spiralMatrix.naive());
+
+        System.out.println(pascalsTriangle.naive());
+
     }
 
 }
