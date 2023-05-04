@@ -6,10 +6,10 @@ import java.util.List;
 class Main {
     public static void main(String[] args) {
 
-        PascalsTriangle pascalsTriangle = new PascalsTriangle(5);
+        AddBinary addBinary = new AddBinary("1101", "11");
 
 
-        System.out.println(pascalsTriangle.naive());
+        System.out.println(addBinary.naive());
 
     }
 
