@@ -10,23 +10,23 @@ public class LongestCommonPrefix {
 
 
     public String naive() {
-        StringBuilder ans = new StringBuilder();
-        int i = 0;
-        String firstEl = strs[0];
-
-        while (i <= firstEl.length()) {
-            char curr = firstEl.charAt(i);
-
-            for (int j = 0; j < strs.length; j++) {
-                if (ans.length() > strs[j].length() - 1 || curr != strs[j].charAt(i)) {
-                    return ans.toString();
-                }
-            }
-
-            ans.append(curr);
-            i++;
+        if (strs.length == 0) {
+            return "";
         }
 
-        return ans.toString();
+        String prefix = strs[0];
+
+        for (int i = 1; i < strs.length; i++) {
+            while (strs[i].indexOf(prefix) != 0) {
+                prefix = prefix.substring(0, prefix.length() - 1);
+
+                if (prefix.isEmpty()) {
+                    return "";
+                }
+            }
+        }
+
+
+        return prefix;
     }
 }

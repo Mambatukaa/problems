@@ -6,10 +6,10 @@ import java.util.List;
 class Main {
     public static void main(String[] args) {
 
-        AddBinary addBinary = new AddBinary("1101", "11");
+        LongestCommonPrefix longestCommonPrefix = new LongestCommonPrefix(new String[]{"lower", "flow", "flight"});
 
 
-        System.out.println(addBinary.naive());
+        System.out.println(longestCommonPrefix.naive());
 
     }
 
