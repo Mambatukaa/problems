@@ -9,6 +9,8 @@ public class LongestCommonPrefix {
     }
 
 
+    // Time complexity: O(n)
+    // Space complexity: O(1)
     public String naive() {
         if (strs.length == 0) {
             return "";
