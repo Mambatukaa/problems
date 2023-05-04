@@ -6,10 +6,10 @@ import java.util.List;
 class Main {
     public static void main(String[] args) {
 
-        LongestCommonPrefix longestCommonPrefix = new LongestCommonPrefix(new String[]{"lower", "flow", "flight"});
+        ReverseString reverseString = new ReverseString(new char[]{'h', 'e', 'l', 'l', 'o'});
 
 
-        System.out.println(longestCommonPrefix.naive());
+        reverseString.naive();
 
     }
 
