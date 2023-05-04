@@ -12,7 +12,7 @@ public class ArrayPartitionOne {
 
 
     // Time complexity: O(n * log n)
-    // Space complexity: O(1)
+    // Space complexity: O(n) sorting
 
     public int naive() {
         int counter = 0;
