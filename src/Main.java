@@ -6,10 +6,11 @@ import java.util.List;
 class Main {
     public static void main(String[] args) {
 
-        ReverseString reverseString = new ReverseString(new char[]{'h', 'e', 'l', 'l', 'o'});
 
+        ArrayPartitionOne arrayPartitionOne = new ArrayPartitionOne(new int[]{1, 2, 2, 5, 6, 6});
 
-        reverseString.naive();
+        System.out.println(arrayPartitionOne.naive());
+
 
     }
 
