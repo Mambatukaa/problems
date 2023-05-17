@@ -134,16 +134,37 @@ public class BinaryTreeLL {
 
     }
 
+    // Space complexity: O(n)
+    // Time complexity: O(n)
     public void delete(String value) {
-        if (!search(value)) {
-            System.out.println("Cannot found this value!");
-            return;
-        }
-
-        // find the node
-        // find deepest node
         // set deepest node's value to current node
-        // delete deepest node
+        Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            BinaryNode present = queue.remove();
+
+            if (present.value.equals(value)) {
+                // find deepest node
+                present.value = getDeepestNode().value;
+                // delete deepest node
+                deleteDeepestNode();
+
+                System.out.println("The node " + present.value + " is deleted!");
+
+                return;
+            }
+
+            if (present.left != null) {
+                queue.add(present.left);
+            }
+
+            if (present.right != null) {
+                queue.add(present.right);
+            }
+
+        }
+        System.out.println("The node doesn't exist in binary tree.");
 
     }
 
@@ -185,20 +206,27 @@ public class BinaryTreeLL {
             previousNode = presentNode;
             presentNode = queue.remove();
 
-            System.out.println(presentNode.value);
-
             if (presentNode.left == null) {
                 previousNode.right = null;
                 return;
             } else if (presentNode.right == null) {
                 previousNode.left = null;
                 return;
-            } else {
-                queue.add(presentNode.left);
-                queue.add(presentNode.right);
             }
+
+            queue.add(presentNode.left);
+            queue.add(presentNode.right);
 
         }
 
+    }
+
+
+    // Time complexity: O(1)
+    // Space complexity: O(1)
+    public void deleteBT() {
+        root = null;
+
+        System.out.println("Binary tree has been successfully deleted.");
     }
 }
