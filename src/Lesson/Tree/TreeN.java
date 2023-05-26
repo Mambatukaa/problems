@@ -1,8 +1,8 @@
-package LeetCode.Tree;
+package Lesson.Tree;
 
 import java.util.ArrayList;
 
-public class TreeN{
+public class TreeN {
     String data;
     ArrayList<TreeN> children;
 

@@ -1,4 +1,4 @@
-package LeetCode.BinaryTree;
+package Lesson.Tree.BinaryTree;
 
 public class BinaryNode {
     public String value;

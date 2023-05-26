@@ -1,9 +1,7 @@
-package LeetCode.BinaryTree;
+package Lesson.Tree.BinaryTree;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 public class BinaryTreeLL {
     public BinaryNode root;

@@ -1,4 +1,4 @@
-package LeetCode.LinkedList.Design;
+package Lesson.LinkedList;
 
 public class SinglyLinkedList {
     public Node head;

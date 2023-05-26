@@ -1,6 +1,4 @@
-package LeetCode.BinaryTree;
-
-import java.util.Arrays;
+package Lesson.Tree.BinaryTree;
 
 public class BinaryTree {
     String[] arr;

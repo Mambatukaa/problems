@@ -1,4 +1,4 @@
-package LeetCode.BinarySearchTree;
+package Lesson.Tree.BinarySearchTree;
 
 public class BinaryNode {
     public int value;
