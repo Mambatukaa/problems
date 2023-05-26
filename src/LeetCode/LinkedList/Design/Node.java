@@ -1,4 +1,4 @@
-package LeetCode.LinkedList;
+package LeetCode.LinkedList.Design;
 
 public class Node {
     public int value;

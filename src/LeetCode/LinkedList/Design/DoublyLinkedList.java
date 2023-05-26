@@ -1,4 +1,4 @@
-package LeetCode.LinkedList;
+package LeetCode.LinkedList.Design;
 
 public class DoublyLinkedList {
     public DoublyNode head;

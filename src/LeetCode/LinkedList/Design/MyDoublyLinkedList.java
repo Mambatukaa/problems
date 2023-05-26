@@ -1,6 +1,4 @@
-package LeetCode.LinkedList;
-
-import org.w3c.dom.ls.LSOutput;
+package LeetCode.LinkedList.Design;
 
 public class MyDoublyLinkedList {
     public int size;
