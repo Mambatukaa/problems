@@ -2,7 +2,7 @@ package LeetCode.LinkedList.Problems;
 
 public class MergeTwoSortedLists {
 
-    // Time complexity: O(n)
+    // Time complexity: O(n + m)
     // Space complexity: O(1)
     // use 3 pointers
 
