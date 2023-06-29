@@ -1,4 +1,8 @@
+import LeetCode.LinkedList.Design.DoublyLinkedList;
 import LeetCode.LinkedList.Design.MyDoublyLinkedList;
+import LeetCode.QueueAndStack.MyCircularQueue;
+
+import java.util.Arrays;
 
 class Main {
     public static void main(String[] args) {
@@ -33,17 +37,56 @@ class Main {
 //        System.out.println("recursive: " + newBST.searchRecursive(newBST.root, 12));
 
 
-        MyDoublyLinkedList mDLL = new MyDoublyLinkedList();
+//        MyDoublyLinkedList mDLL = new MyDoublyLinkedList();
+//
+//        mDLL.addAtHead(1);
+//        mDLL.addAtIndex(1, 2);
+//        mDLL.addAtTail(3);
+//
+//        mDLL.delete(2);
+//
+//        System.out.println("size: " + mDLL.size);
+//
+//        mDLL.traversal();
+//
 
-        mDLL.addAtHead(1);
-        mDLL.addAtIndex(1, 2);
-        mDLL.addAtTail(3);
 
-        mDLL.delete(2);
+//        DoublyLinkedList myDLL = new DoublyLinkedList();
+//
+//        System.out.println(myDLL.size);
+//
+//        myDLL.addAtIndex(0, 1);
+//        myDLL.addAtIndex(1, 2);
+//
+//        System.out.println(myDLL.size);
+//
+//        myDLL.traversal();
 
-        System.out.println("size: " + mDLL.size);
+        MyCircularQueue myCircularQueue = new MyCircularQueue(4);
+        System.out.println("is empty: " + myCircularQueue.isEmpty());
 
-        mDLL.traversal();
+        myCircularQueue.enQueue(1);
+
+        System.out.println("is empty: " + myCircularQueue.isEmpty());
+
+        myCircularQueue.enQueue(2);
+        myCircularQueue.enQueue(3);
+        myCircularQueue.enQueue(4);
+
+        System.out.println("head index: " + myCircularQueue.headIndex);
+        System.out.println("tail index: " + myCircularQueue.tailIndex);
+
+        System.out.println(Arrays.toString(myCircularQueue.data));
+        System.out.println("is full: " + myCircularQueue.isFull());
+
+        myCircularQueue.deQueue();
+        myCircularQueue.deQueue();
+
+        myCircularQueue.deQueue();
+
+        System.out.println("head index: " + myCircularQueue.headIndex);
+        System.out.println("tail index: " + myCircularQueue.tailIndex);
+
 
     }
 
