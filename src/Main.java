@@ -1,6 +1,7 @@
 import LeetCode.LinkedList.Design.DoublyLinkedList;
 import LeetCode.LinkedList.Design.MyDoublyLinkedList;
 import LeetCode.QueueAndStack.MyCircularQueue;
+import LeetCode.QueueAndStack.Problems.MovingAverageFromDataStream;
 
 import java.util.Arrays;
 
@@ -61,31 +62,42 @@ class Main {
 //        System.out.println(myDLL.size);
 //
 //        myDLL.traversal();
+//
+//        MyCircularQueue myCircularQueue = new MyCircularQueue(4);
+//        System.out.println("is empty: " + myCircularQueue.isEmpty());
+//
+//        myCircularQueue.enQueue(1);
+//
+//        System.out.println("is empty: " + myCircularQueue.isEmpty());
+//
+//        myCircularQueue.enQueue(2);
+//        myCircularQueue.enQueue(3);
+//        myCircularQueue.enQueue(4);
+//
+//        System.out.println("head index: " + myCircularQueue.headIndex);
+//        System.out.println("tail index: " + myCircularQueue.tailIndex);
+//
+//        System.out.println(Arrays.toString(myCircularQueue.data));
+//        System.out.println("is full: " + myCircularQueue.isFull());
+//
+//        myCircularQueue.deQueue();
+//        myCircularQueue.deQueue();
+//
+//        myCircularQueue.deQueue();
+//
+//        System.out.println("head index: " + myCircularQueue.headIndex);
+//        System.out.println("tail index: " + myCircularQueue.tailIndex);
 
-        MyCircularQueue myCircularQueue = new MyCircularQueue(4);
-        System.out.println("is empty: " + myCircularQueue.isEmpty());
 
-        myCircularQueue.enQueue(1);
+        MovingAverageFromDataStream movingAverage = new MovingAverageFromDataStream(3);
 
-        System.out.println("is empty: " + myCircularQueue.isEmpty());
-
-        myCircularQueue.enQueue(2);
-        myCircularQueue.enQueue(3);
-        myCircularQueue.enQueue(4);
-
-        System.out.println("head index: " + myCircularQueue.headIndex);
-        System.out.println("tail index: " + myCircularQueue.tailIndex);
-
-        System.out.println(Arrays.toString(myCircularQueue.data));
-        System.out.println("is full: " + myCircularQueue.isFull());
-
-        myCircularQueue.deQueue();
-        myCircularQueue.deQueue();
-
-        myCircularQueue.deQueue();
-
-        System.out.println("head index: " + myCircularQueue.headIndex);
-        System.out.println("tail index: " + myCircularQueue.tailIndex);
+        System.out.println(movingAverage.next(1));
+        System.out.println(movingAverage.next(2));
+        System.out.println(movingAverage.next(3));
+        System.out.println(movingAverage.next(4));
+        System.out.println(movingAverage.next(5));
+        System.out.println(movingAverage.next(6));
+        System.out.println(movingAverage.next(7));
 
 
     }
