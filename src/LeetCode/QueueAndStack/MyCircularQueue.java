@@ -1,7 +1,5 @@
 package LeetCode.QueueAndStack;
 
-import java.util.Arrays;
-
 public class MyCircularQueue {
     public int[] data;
     public int headIndex;
@@ -19,6 +17,8 @@ public class MyCircularQueue {
 
     public boolean enQueue(int value) {
         if (isFull()) {
+            System.out.println("Queue is full");
+
             return false;
         }
 
@@ -35,6 +35,7 @@ public class MyCircularQueue {
 
     public boolean deQueue() {
         if (isEmpty()) {
+            System.out.println("Queue is empty");
             return false;
         }
 
@@ -73,6 +74,25 @@ public class MyCircularQueue {
 
     public boolean isFull() {
         return ((tailIndex + 1) % size) == headIndex;
+    }
+
+    public void traversal() {
+        if(isEmpty()) {
+            System.out.println("Queue is empty");
+            return;
+        }
+
+        int i = headIndex;
+
+        while(i != tailIndex) {
+            System.out.print(data[i] + " -> ");
+
+            i = (i + 1) % size;
+        }
+
+        System.out.print(data[tailIndex]);
+        System.out.println();
+
     }
 
 /**
