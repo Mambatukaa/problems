@@ -1,4 +1,4 @@
-class CircularQueue<T> {
+export default class CircularQueue<T> {
   private storage: number[] = [];
   private size: number;
 
