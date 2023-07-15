@@ -1,6 +1,6 @@
-export default class CircularQueue<T> {
-  private storage: number[] = [];
-  private size: number;
+export class CircularQueue<T> {
+  storage: number[] = [];
+  size: number;
 
   private headIndex: number;
   private tailIndex: number;
@@ -95,27 +95,18 @@ export default class CircularQueue<T> {
     return this.storage[this.tailIndex];
   }
 
+  // delete head and return
+  poll(): number {
+    if(this.isEmpty()) {
+      return -1;
+    }
+
+
+    const head = this.storage[this.headIndex]; 
+
+    this.dequeue()
+
+    return head;
+  }
+
 }
-
-
-const queue = new CircularQueue(5);
-
-console.log("is empty ",  queue.isEmpty());
-console.log("is full ", queue.isFull());
-
-
-
-queue.enqueue(1);
-queue.enqueue(2);
-queue.enqueue(3);
-queue.enqueue(4);
-queue.enqueue(5);
-queue.traversal();
-
-queue.dequeue();
-queue.enqueue(6);
-
-
-console.log(queue.rear(), " last element");
-console.log(queue.front(), " first element");
-
