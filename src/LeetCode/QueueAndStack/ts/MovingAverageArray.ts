@@ -1,7 +1,7 @@
 // Time complexity: O(n)
 // Space complexity: O(n)
 //
-class MovingAverageCircular {
+class MovingAverageArray {
   private queue: number[];
   private size: number;
   private windowSum: number;
@@ -38,13 +38,13 @@ class MovingAverageCircular {
 
 }
 
-const movingAverageCircular = new MovingAverageCircular(3);
+const movingAverageArray = new MovingAverageArray(3);
 
 
-movingAverageCircular.next(1)
-movingAverageCircular.next(2)
-movingAverageCircular.next(3)
-movingAverageCircular.next(4)
-movingAverageCircular.next(5)
-movingAverageCircular.next(6)
+movingAverageArray.next(1)
+movingAverageArray.next(2)
+movingAverageArray.next(3)
+movingAverageArray.next(4)
+movingAverageArray.next(5)
+movingAverageArray.next(6)
 
