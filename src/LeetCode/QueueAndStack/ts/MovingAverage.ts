@@ -1,5 +1,9 @@
 import { CircularQueue } from './CircularQueue';
 
+// next()
+// Time Complexity: O(1)
+// Space Complexity: O(n)
+
 class MovingAverage {
   private size: number;
   private count: number;
