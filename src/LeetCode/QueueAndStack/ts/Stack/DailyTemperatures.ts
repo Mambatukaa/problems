@@ -35,4 +35,40 @@ function dailyTemperatures(temperatures: number[]) {
 }
 
 
-console.log(dailyTemperatures([73,74,75,71,69,72,76,73]));
+// 1. compare next day temperatures
+// 2. if next day's temperature warmer set one
+// else compare next warmer day using next days value
+//
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+function dailyTemperaturesBest(temperatures: number[]) {
+  const answer: number[] = [];
+  let hottest: number = 0;
+
+
+  for(let currDay = temperatures.length - 1; currDay >= 0; currDay--) {
+    const currentTemp = temperatures[currDay];
+
+    if(currentTemp >= hottest) {
+      hottest = currentTemp;
+
+      answer[currDay] = 0
+
+      continue;
+    }
+
+    let days: number = 1;
+
+    while(temperatures[currDay + days] <= currentTemp) {
+      days += answer[currDay + days];
+    }
+
+    answer[currDay] = days;
+
+  }
+
+  return answer;
+}
+
+
+console.log(dailyTemperaturesBest([73,74,75,71,69,72,76,73]));
