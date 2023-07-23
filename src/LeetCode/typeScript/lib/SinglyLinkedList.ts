@@ -13,7 +13,7 @@ class MyNode {
 
 }
 
-class LinkedList {
+export class LinkedList {
   public head: MyNode
   public size: number;
 
@@ -74,6 +74,10 @@ class LinkedList {
     this.size++;
   }
 
+  append(value: number): void {
+    this.addAtIndex(this.size - 1, value);
+  }
+
 
   removeAtIndex(index: number): void {
     if(this.head === null) {
@@ -102,6 +106,23 @@ class LinkedList {
     }
   }
 
+  remove(value: number): void {
+    const index = this.search(value);
+
+    if(index === -1) {
+      console.log("The value not found.");
+
+      return;
+    }
+
+    this.removeAtIndex(index);
+  }
+
+  deleteLL(): void {
+    //@ts-ignore
+    this.head = null;
+  }
+
   search(value: number): number {
     if(this.head === null) {
       console.log("LinkedList is empty!")
@@ -115,7 +136,7 @@ class LinkedList {
       if(pred.value === value) {
         console.log("The value found at index of: ", i);
 
-        return pred.value;
+        return i;
       }
 
       pred = pred.next;
@@ -137,21 +158,3 @@ class LinkedList {
 
 
 }
-
-
-const ll = new LinkedList();
-
-ll.addAtIndex(0, 1);
-ll.addAtIndex(1, 2);
-ll.addAtIndex(2, 3);
-ll.traversal();
-
-console.log("--------------------------------------------------------");
-ll.traversal();
-
-ll.removeAtIndex(3);
-console.log("--------------------------------------------------------");
-ll.traversal();
-
-console.log("--------------------------------------------------------");
-console.log(ll.search(5));
