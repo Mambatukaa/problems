@@ -3,7 +3,7 @@ type LinkedListNode = {
   value: number;
 }
 
-class MyHashSet {
+export class MyHashSet {
   public bucket: Array<LinkedListNode | null>;
   public bucketsNumber: number;
 

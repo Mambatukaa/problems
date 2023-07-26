@@ -20,7 +20,7 @@ class HashSet {
     const index = this._hash(value);
 
     if(this.data[index]) {
-      this.data[index].addAtIndex(3, value);
+      this.data[index].append(value);
 
     } else {
       this.data[index] = new LinkedList();
@@ -35,13 +35,26 @@ class HashSet {
   remove(value: number): void {
     const index = this._hash(value);
 
-    if(!this.data[index]) {
-      console.log("Value not found!");
+    if(!this.contains(value)) {
+      console.log("The value not found!");
 
       return;
-    }
+    };
+
 
     this.data[index].remove(value);
+  }
+
+  contains(value: number): boolean {
+    const index = this._hash(value);
+
+    if(!this.data[index]) {
+      return false;
+    }
+
+    const exist = this.data[index].search(value);
+
+    return exist !== -1;
   }
 
 }
@@ -53,8 +66,11 @@ hashSet.add(2);
 
 console.log(hashSet.data);
 
+console.log("contains: ", hashSet.contains(2));
 
 hashSet.remove(2);
 
 console.log(hashSet.data);
+
+console.log("contains: ", hashSet.contains(2));
 
