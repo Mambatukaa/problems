@@ -87,6 +87,38 @@ function isValidSudokuArr(board: string[][]) {
 }
 
 
+// LeetCode clean code solution
+function isValidSudokuLC(board: string[][]): boolean {
+  const set = new Set();
+
+  for (let r = 0; r < board.length; r++) {
+    for (let c = 0; c < board.length; c++) {
+      const cell = board[r][c]
+
+      if (cell === '.') {
+        continue
+      } 
+
+      const row = `row:${r},${cell}`
+      const col = `col:${c},${cell}`
+
+      const boxNum = 3 * Math.floor(r / 3) + Math.floor(c / 3)
+      const box = `box:${boxNum},${cell}`
+
+      if (set.has(row) || set.has(col) || set.has(box)) {
+        return false
+      }
+
+      set.add(row).add(col).add(box)
+    }
+  }
+
+  console.log(set);
+
+  return true;
+}
+
+
 const board = 
 [["5","3",".",".","7",".",".",".","."]
 ,["6",".",".","1","9","5",".",".","."]
@@ -99,4 +131,4 @@ const board =
 ,[".",".",".",".","8",".",".","7","9"]]
 
 
-console.log(isValidSudokuArr(board));
+console.log(isValidSudokuLC(board));
