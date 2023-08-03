@@ -1,11 +1,17 @@
+interface ITreeNode {
+  val: number;
+  left: TreeNode | null;
+  right: TreeNode | null;
+}
+
 // Time complexity: O(n)
 // Space complexity: O(n)
-function preOrderTraversal(root: any) {
+function preOrderTraversal(root: ITreeNode) {
   const answer: number[] = [];
 
   preOrder(root);
 
-  function preOrder(root: any) {
+  function preOrder(root: ITreeNode | null) {
     if(root === null) {
       return [];
     }
@@ -18,8 +24,6 @@ function preOrderTraversal(root: any) {
 
   return answer;
 }
- // [3,1,2];
-
 
 // Definition for a binary tree node.
 class TreeNode {
