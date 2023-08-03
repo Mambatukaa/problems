@@ -28,7 +28,7 @@ function preOrderTraversal(root: ITreeNode) {
 // Time complexity: O(n)
 // Space complexity: O(n)
 function preOrderTraversalIteration(root: ITreeNode | null) {
-  const stack: Array<TreeNode | null> = [];
+  const stack: Array<ITreeNode | null> = [];
   const answer: Array<number> = [];
 
   stack.push(root);
