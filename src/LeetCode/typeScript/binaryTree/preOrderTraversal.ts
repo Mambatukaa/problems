@@ -1,7 +1,9 @@
+import { TreeNode } from './TreeNode';
+
 interface ITreeNode {
   val: number;
-  left: TreeNode | null;
-  right: TreeNode | null;
+  left: ITreeNode | null;
+  right: ITreeNode | null;
 }
 
 // Time complexity: O(n)
@@ -46,19 +48,6 @@ function preOrderTraversalIteration(root: ITreeNode | null) {
 
   return answer;
 }
-
-// Definition for a binary tree node.
-class TreeNode {
-    val: number
-    left: TreeNode | null
-    right: TreeNode | null
-    constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-        this.val = (val===undefined ? 0 : val)
-        this.left = (left===undefined ? null : left)
-        this.right = (right===undefined ? null : right)
-    }
-}
-
 
 const node1 = new TreeNode(1);
 const node2 = new TreeNode(2);
