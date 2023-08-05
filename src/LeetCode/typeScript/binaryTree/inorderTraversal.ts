@@ -36,10 +36,8 @@ function inorderTraversalIteration(root: TreeNode | null): number[] {
     }
 
     curr = stack.pop();
-
     answer.push(curr.val);
     curr = curr.right;
-
   }
 
   return answer;
