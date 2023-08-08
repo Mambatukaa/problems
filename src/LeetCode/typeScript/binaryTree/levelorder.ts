@@ -37,8 +37,12 @@ function levelorderTraversalRecursive(root: TreeNode | null) {
 // Time Complexity: O(n)
 // Space Complexity: O(n)
 function levelorderIteration(root: TreeNode | null) {
-
   const levels: number[][] = [];
+
+  if(!root) {
+    return levels;
+  }
+
   const queue: any[] = [];
   queue.push(root);
 
