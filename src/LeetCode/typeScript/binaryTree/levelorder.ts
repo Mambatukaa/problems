@@ -30,9 +30,39 @@ function levelorderTraversalRecursive(root: TreeNode | null) {
 
   }
 
-  console.log(levels);
-
    return levels;
+}
+
+
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+function levelorderIteration(root: TreeNode | null) {
+
+  const levels: number[][] = [];
+  const queue: any[] = [];
+  queue.push(root);
+
+  let level: number = 0;
+
+  while(queue.length) {
+    levels.push([]);
+
+    const levelLength = queue.length;
+
+    for(let i = 0; i < levelLength; i++) {
+      const node = queue.shift();
+
+      levels[level].push(node.val);
+
+
+      if(node.left) queue.push(node.left);
+      if(node.right) queue.push(node.right);
+    }
+
+    level++;
+  }
+
+  return levels;
 }
 
 const node1 = new TreeNode(1);
@@ -62,7 +92,7 @@ node2.left = node4;
 node2.right = node5
 
 node3.left = node6;
-node3.left = node7;
+node3.right = node7;
 
 node4.left = node8;
 node4.right = node9;
@@ -70,11 +100,12 @@ node4.right = node9;
 node5.left = node10;
 node5.right = node11;
 
-
 node6.left = node12;
 node6.right = node13;
 
 node7.left = node14;
 node7.right = node15;
 
-levelorderTraversalRecursive(node1);
+console.log(levelorderTraversalRecursive(node1));
+console.log(levelorderIteration(node1));
+
