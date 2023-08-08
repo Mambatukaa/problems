@@ -2,9 +2,9 @@
 import { TreeNode } from './TreeNode';
 
 
-// Top --> Down solution
+// Top --> Bottom solution
 function findMaxDepth(root: TreeNode | null): number {
-  let depth: number = 0;
+  let depth: number = 1;
   let max: number = 0;
 
   find(root, depth);
@@ -26,6 +26,21 @@ function findMaxDepth(root: TreeNode | null): number {
   return max;
 }
 
+
+// Bottom --> Up solution
+function maxDepth(root: TreeNode | null): number {
+  if(!root) {
+    return 0;
+  }
+
+  const leftDepth = maxDepth(root.left);
+  const rightDepth = maxDepth(root.right);
+
+  console.log(root.val, leftDepth, rightDepth);
+
+  return Math.max(leftDepth, rightDepth) + 1;
+}
+
 const node1 = new TreeNode(1);
 const node2 = new TreeNode(2);
 const node3 = new TreeNode(3);
@@ -43,4 +58,4 @@ node2.right = node5
 node4.left = node6;
 
 
-console.log(findMaxDepth(node1));
+console.log(maxDepth(node1));
