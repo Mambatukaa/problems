@@ -1,0 +1,27 @@
+function happyNumber(num: number): boolean {
+
+  const set = new Set();
+  let answer = digitSum(num);
+
+  while(answer != 1 && !set.has(answer)) {
+    set.add(answer);
+    answer = digitSum(answer);
+  }
+
+  console.log(answer, '------------');
+
+  return answer === 1;
+
+}
+
+function digitSum(num: number): number {
+  if(num < 1) {
+    return 0;
+  } 
+
+  const digitSquare = Math.pow(num % 10, 2)
+
+  return digitSquare + digitSum(Math.floor(num / 10));
+}
+
+happyNumber(19);

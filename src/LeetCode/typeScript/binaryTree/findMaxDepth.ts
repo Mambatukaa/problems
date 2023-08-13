@@ -41,6 +41,25 @@ function maxDepth(root: TreeNode | null): number {
   return Math.max(leftDepth, rightDepth) + 1;
 }
 
+// iteration
+function max(root: TreeNode | null): number {
+  const stack: any[] = [[root, 1]];
+  let res = 0;
+
+  while(stack.length) {
+    const [node, depth] = stack.pop();
+
+    if(node) {
+      res = Math.max(res, depth);
+
+      stack.push([node.left, depth + 1]);
+      stack.push([node.right, depth + 1]);
+    }
+  }
+
+  return res;
+}
+
 const node1 = new TreeNode(1);
 const node2 = new TreeNode(2);
 const node3 = new TreeNode(3);
@@ -59,3 +78,4 @@ node4.left = node6;
 
 
 console.log(maxDepth(node1));
+console.log(max(node1));
