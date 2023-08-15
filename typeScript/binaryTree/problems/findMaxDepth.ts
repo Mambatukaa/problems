@@ -1,5 +1,4 @@
-
-import { TreeNode } from './TreeNode';
+import { TreeNode } from '../lib/TreeNode';
 
 
 // Top --> Bottom solution
