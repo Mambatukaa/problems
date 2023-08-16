@@ -21,7 +21,7 @@ const isUnival = (root: TreeNode | null): boolean => {
 }
 
 // Solution from youtube that is google interview 
-// Time Complexity: O(n)
+// Time Complexity: O(n^2)
 // Space Complexity: O(n)
 const countUnivals = (root: TreeNode | null): number => {
   if(!root) {
