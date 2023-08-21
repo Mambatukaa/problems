@@ -1,4 +1,4 @@
-class MyNode {
+export class MyNode {
   public value: number | null;
   public next: any;
 
@@ -75,7 +75,7 @@ export class LinkedList {
   }
 
   append(value: number): void {
-    this.addAtIndex(this.size - 1, value);
+    this.addAtIndex(this.size, value);
   }
 
 
