@@ -1,5 +1,5 @@
 // Definition for singly-linked list.
- class ListNode {
+ export class ListNode {
      val: number
      next: ListNode | null
      constructor(val?: number, next?: ListNode | null) {
@@ -60,14 +60,11 @@ node2.next = node3;
 node3.next = node4;
 
 traversal(head);
-console.log('-------------------')
 traversal(swapPairsIteration(head));
 
 
 function traversal(head: ListNode | null) {
   while(head && head.val) {
-    console.log(head.val, '-->');
-
     head = head.next;
   }
 
