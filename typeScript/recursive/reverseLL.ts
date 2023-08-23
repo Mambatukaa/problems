@@ -11,7 +11,7 @@ const head = new ListNode(1, node2);
 
 // Time Complexity: O(n)
 // Space Complexity: O(1)
-const reverse = (head: ListNode | null) => {
+const reverse = (head: ListNode | null): ListNode | null => {
   let prev: ListNode | null = null;
   let curr = head;
 
@@ -28,7 +28,7 @@ const reverse = (head: ListNode | null) => {
 
 // Time Complexity: O(n)
 // Space Complexity: O(n)
-const reverseRecursion = (head: ListNode | null): any => {
+const reverseRecursion = (head: ListNode | null): ListNode | null => {
   if(!head || !head.next) {
     return head;
   }
