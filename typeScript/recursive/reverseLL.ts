@@ -11,8 +11,8 @@ const head = new ListNode(1, node2);
 
 // Time Complexity: O(n)
 // Space Complexity: O(1)
-const reverse = (head: any) => {
-  let prev = null;
+const reverse = (head: ListNode | null) => {
+  let prev: ListNode | null = null;
   let curr = head;
 
   while(curr) {
@@ -26,7 +26,28 @@ const reverse = (head: any) => {
   return prev;
 }
 
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+const reverseRecursion = (head: ListNode | null): any => {
+  if(!head || !head.next) {
+    return head;
+  }
 
-reverse(head);
+  const newHead = reverseRecursion(head.next);
+
+  head.next.next = head;
+  head.next = null;
+
+  return newHead;
+}
+
+let reversed = reverseRecursion(head);
+
+while(reversed) {
+  console.log(reversed.val);
+
+  // @ts-ignore
+  reversed = reversed.next;
+}
 
 
