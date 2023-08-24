@@ -43,6 +43,35 @@ function inorderTraversalIteration(root: TreeNode | null): number[] {
   return answer;
 }
 
+
+// Morris inorderTraversal
+// Time Complexity: O(n);
+// Space Complexity: O(1)
+const inorderMorris = (root: TreeNode | null) => {
+  let curr = root;
+  let rightMost;
+
+  while (curr) {
+    if (!curr.left) {
+      console.log(curr.val);
+      curr = curr.right;
+    } else {
+      rightMost = curr.left;
+
+      while (rightMost.right) {
+        rightMost = rightMost.right;
+      }
+
+      rightMost.right = curr;
+
+      const temp = curr.left;
+      curr.left = null;
+      curr = temp;
+    }
+  }
+};
+
+
 const node1 = new TreeNode(1);
 const node2 = new TreeNode(2);
 const node3 = new TreeNode(3);
@@ -58,3 +87,4 @@ node2.right = node5
 
 console.log(inorderTraversal(node1));
 console.log(inorderTraversalIteration(node1));
+console.log(inorderMorris(node1));
