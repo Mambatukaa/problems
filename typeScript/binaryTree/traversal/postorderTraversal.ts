@@ -20,6 +20,37 @@ function postorderTraversalRecursive(root: TreeNode | null) {
   return answer;
 }
 
+// Space Complexity: O(n)
+// Time Complexity: O(n)
+const postorderIteration = (root: TreeNode | null) => {
+  const stack: any = [];
+  const visited: boolean[] = [];
+  const answer: number[] = [];
+
+  stack.push(root);
+
+  while(stack.length) {
+    const curr = stack.pop();
+    const isVisited = visited.pop();
+
+    if(curr) {
+      if(isVisited) {
+        answer.push(curr.val);
+      } else {
+        stack.push(curr);
+        visited.push(true);
+        stack.push(curr.right);
+        visited.push(false);
+        stack.push(curr.left);
+        visited.push(false);
+      }
+      }
+
+  }
+
+  return answer;
+}
+
 const node1 = new TreeNode(1);
 const node2 = new TreeNode(2);
 const node3 = new TreeNode(3);
