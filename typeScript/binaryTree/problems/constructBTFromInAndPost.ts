@@ -4,9 +4,8 @@ const construct = (inorder: TreeNode, postorder: TreeNode) => {
   console.log(inorder, postorder);
 }
 
+const inorderRoot = new TreeNode(1);
+const postorderRoot  = new TreeNode(1);
 
-const node1 = new TreeNode(1);
-const node2 = new TreeNode(1);
-
-construct(node1, node2);
+construct(inorderRoot, postorderRoot);
 
