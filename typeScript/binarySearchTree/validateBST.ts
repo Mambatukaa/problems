@@ -71,7 +71,7 @@ const isValidBSTII = (root: TreeNode | null) => {
 
 
 // Time Complexity: O(n)
-// Space Complexity: O(1)
+// Space Complexity: O(n) // stack
 const isValidBSTIterative = (root: TreeNode | null): boolean => {
   const stack: Array<TreeNode> = [];
   let curr: any = root;
