@@ -1,17 +1,17 @@
 import { TreeNode } from '../binaryTree/lib/TreeNode';
-
-const root = new TreeNode(0);
-const node1 = new TreeNode(1);
-const node2 = new TreeNode(-1);
-const node3 = new TreeNode(3);
+// [4,2,5,1,3,6,7];
 
 
-const node5 = new TreeNode(5);
-const node6 = new TreeNode(6);
-const node7 = new TreeNode(7);
+const node1 = new TreeNode(0);
 
-root.right = node2;
+const node2 = new TreeNode(2);
+const node3 = new TreeNode(6);
 
+const node4 = new TreeNode(1);
+const node5 = new TreeNode(3);
+
+const node6 = new TreeNode(5);
+const node7 = new TreeNode(0);
 
 
 // in order traversal
@@ -48,6 +48,8 @@ const isValidBST = (root: TreeNode | null) => {
   return isValid(root);
 }
 
+// Time Complexity: O(n)
+// Space Complexity: O(n)
 const isValidBSTII = (root: TreeNode | null) => {
   const isValid = (root: TreeNode | null, low: number | null, high: number | null): boolean => {
     if(!root) {
@@ -67,4 +69,33 @@ const isValidBSTII = (root: TreeNode | null) => {
   return isValid(root, null, null);
 }
 
-console.log(isValidBSTII(root));
+
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+const isValidBSTIterative = (root: TreeNode | null): boolean => {
+  const stack: Array<TreeNode> = [];
+  let curr: any = root;
+  let prev: any = null;
+
+  while(curr || stack.length) {
+    while(curr) {
+      stack.push(curr);
+
+      curr = curr.left;
+    }
+
+    curr = stack.pop();
+
+    if(prev !== null && prev >= curr.val) {
+      return false;
+    }
+
+    prev = curr.val;
+
+    curr = curr.right;
+  }
+
+  return true;
+}
+
+console.log(isValidBSTIterative(node1));
