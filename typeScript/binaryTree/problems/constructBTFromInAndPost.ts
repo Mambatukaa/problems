@@ -26,18 +26,18 @@ const buildTreeII = (inorder: number[], postorder: number[]) => {
   for(let i = 0; i < inorder.length; i++) {
     hash[inorder[i]] = i;
   }
-  console.log(hash);
 
   const recurs = (start: number, end: number) => {
+    console.log(start, '-=========', end);
     if(start > end) {
       return null;
     }
 
     const root: any = new TreeNode(postorder.pop());
+    console.log("root: ---------- ", root.val);
     const index = hash[root.val];
 
     root.right = recurs(index + 1, end);
-    console.log(start, '----', index)
     root.left = recurs(start, index - 1);
 
     return root;
@@ -48,5 +48,8 @@ const buildTreeII = (inorder: number[], postorder: number[]) => {
 
 const inorderRoot = [4,2,5,1];
 const postorderRoot = [4,5,2,1];
+
+console.log('inorder: ', inorderRoot);
+console.log('postorder: ', postorderRoot);
 
 console.log(buildTreeII(inorderRoot, postorderRoot));
