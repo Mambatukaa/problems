@@ -8,6 +8,7 @@ function isPrime(n) {
   // Check whether n is divisible by 2 or 3
   if (n % 2 == 0 || n % 3 == 0)
       return false;
+  console.log(n, 'hehehehhe');
   // Check from 5 to square root of n
   // Iterate i by (i+6)
   for (var i = 5; i <= Math.sqrt(n); i = i + 6)
