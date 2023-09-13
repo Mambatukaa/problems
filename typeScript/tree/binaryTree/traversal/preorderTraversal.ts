@@ -1,4 +1,4 @@
-import { TreeNode } from '../lib/TreeNode';
+import { TreeNode } from '../../lib/TreeNode';
 
 interface ITreeNode {
   val: number;

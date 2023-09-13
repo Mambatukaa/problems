@@ -11,7 +11,7 @@
  */
 
 
-import { TreeNode } from './lib/TreeNode';
+import { TreeNode } from '../lib/TreeNode';
 
 const root = new TreeNode(1);
 const node2 = new TreeNode(2);

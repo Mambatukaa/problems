@@ -1,4 +1,4 @@
-import { TreeNode } from '../lib/TreeNode';
+import { TreeNode } from '../../lib/TreeNode';
 
 const isUnival = (root: TreeNode | null): boolean => {
   if(!root) {

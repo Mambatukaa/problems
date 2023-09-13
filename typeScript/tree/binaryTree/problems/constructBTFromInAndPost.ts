@@ -1,4 +1,4 @@
-import { TreeNode } from '../lib/TreeNode';
+import { TreeNode } from '../../lib/TreeNode';
 
 // Space Complexity: O(n)
 // Time Complexity: O(n ^ 2)

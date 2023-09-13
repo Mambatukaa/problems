@@ -1,4 +1,4 @@
-import { TreeNode } from '../binaryTree/lib/TreeNode';
+import { TreeNode } from '../lib/TreeNode';
 // [4,2,5,1,3,6,7];
 
 
