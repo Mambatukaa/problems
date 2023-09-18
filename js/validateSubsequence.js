@@ -3,8 +3,13 @@
 // Space Complexity: O(1)
 function isValidSubsequence(array, sequence) {
   let index = 0;
+  const n = sequence.length;
 
   for(let i = 0; i < array.length; i++) {
+    if(index === n) {
+      break;
+    }
+
     const currNum = array[i];
     const sequenceNum = sequence[index];
 
@@ -13,7 +18,7 @@ function isValidSubsequence(array, sequence) {
     }
   }
 
-  return index === sequence.length;
+  return index === n;
 }
 
 // Time Complexity: O(n)
@@ -31,4 +36,22 @@ function isValidSubsequenceII(array, sequence) {
   return !sequence.length;
 }
 
-console.log(isValidSubsequenceII([1,1,1,1,1], [1,1,1]));
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+function isValidSubsequenceIII(array, sequence) { 
+  let arrIdx = 0;
+  let seqIdx = 0; 
+
+  while(arrIdx < array.length && seqIdx < sequence.length) {
+    if(array[arrIdx] === sequence[seqIdx]) {
+      seqIdx++;
+    }
+
+    arrIdx++;
+  }
+
+  return seqIdx === sequence.length;
+}
+
+
+console.log(isValidSubsequenceIII([1,1,1,1,1], [1,1,1]));
