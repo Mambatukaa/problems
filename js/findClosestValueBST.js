@@ -7,7 +7,6 @@ const findClosestValueBST = (tree, target) => {
     return null;
   }
 
-  let diff = Math.abs(target - tree.value);
   let closest = tree.value;
   let curr = tree;
 
@@ -19,7 +18,7 @@ const findClosestValueBST = (tree, target) => {
       return target;
     }
 
-    if(Math.abs(value - target) < diff) {
+    if(Math.abs(value - target) < Math.abs(closest - target)) {
       diff = Math.abs(value - target);
 
       closest = value;
