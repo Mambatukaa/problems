@@ -48,6 +48,25 @@ const solutionII = (root) => {
   return sum;
 }
 
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+// Solution from Algo Expert
+const solutionIII = (root) => {
+
+  const helper = (root, level) => {
+    if(!root) {
+      return 0;
+    };
+
+    console.log(root.value, level);
+
+    return level + helper(root.left, level + 1) + helper(root.right, level + 1);
+  }
+
+
+  helper(root, 0);
+}
+
 
 class BinaryTree {
   constructor(value) {
@@ -84,4 +103,4 @@ node3.right = node7;
 node4.left = node8;
 node5.right = node9;
 
-solutionII(root);
+solutionIII(root);
