@@ -19,6 +19,36 @@ const solution = (root) => {
   return sum;
 }
 
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+const solutionII = (root) => {
+  const queue = [];
+
+  queue.push([root, 0]);
+
+  let sum = 0;
+
+  while(queue.length) {
+    [curr, level] = queue.shift(); 
+
+    sum += level;
+
+    if(curr.left) {
+      queue.push([curr.left, level + 1]);
+    }
+
+    if(curr.right) {
+      queue.push([curr.right, level + 1]);
+    }
+
+  }
+
+  console.log(sum);
+
+  return sum;
+}
+
+
 class BinaryTree {
   constructor(value) {
     this.value = value;
@@ -54,4 +84,4 @@ node3.right = node7;
 node4.left = node8;
 node5.right = node9;
 
-solution(root);
+solutionII(root);
