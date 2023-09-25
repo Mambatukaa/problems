@@ -1,5 +1,5 @@
 // Time Complexity: O(n)
-// Space Complexity: O(n)
+// Space Complexity: O(h)
 const solution = (root) => {
   let sum = 0;
 
@@ -20,7 +20,7 @@ const solution = (root) => {
 }
 
 // Time Complexity: O(n)
-// Space Complexity: O(n)
+// Space Complexity: O(h)
 const solutionII = (root) => {
   const queue = [];
 
@@ -49,7 +49,7 @@ const solutionII = (root) => {
 }
 
 // Time Complexity: O(n)
-// Space Complexity: O(n)
+// Space Complexity: O(h)
 // Solution from Algo Expert
 const solutionIII = (root) => {
 
