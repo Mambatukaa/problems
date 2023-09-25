@@ -1,0 +1,13 @@
+const solution = () => {
+
+}
+
+class BinaryTree {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+solution(tree);
