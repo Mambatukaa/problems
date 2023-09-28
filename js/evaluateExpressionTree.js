@@ -27,12 +27,22 @@ const solution = (tree) => {
     return leftValue - rightValue;
   }
 
-  if(tree.vlaue === -3) {
+  if(tree.value === -3) {
     return Math.trunc(leftValue / rightValue);
   }
 
   return leftValue * rightValue;
 }
+
+function evaluateExpressionTree({value, left, right}){ 
+  if(value === -1) return evaluateExpressionTree(left) + evaluateExpressionTree(right);
+  if(value === -2) return evaluateExpressionTree(left) - evaluateExpressionTree(right);
+  if(value === -3) return Math.trunc(evaluateExpressionTree(left) / evaluateExpressionTree(right));
+  if(value === -4) return evaluateExpressionTree(left) * evaluateExpressionTree(right);
+
+  return value;
+}
+
 
 
 class BinaryTree {
@@ -104,4 +114,4 @@ testNode3.right = testNode8;
 testNode4.left = testNode9;
 testNode4.right = testNode10;
 
-console.log(solution(root));
+console.log(solution({left: root.left, right: root.right, value: root.value}));
