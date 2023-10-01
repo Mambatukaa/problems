@@ -20,13 +20,12 @@ const minWaitingTime = (queries) => {
 // Space Complexity: O(1)
 const minWaitingTimeII = (queries) => {
   queries.sort((a, b) => a - b);
-
+  
   let waitingTime = 0;
 
   for(let i = 0; i < queries.length; i++) {
+    // the total waiting queries
     let queriesLeft = queries.length - (i + 1);
-
-    console.log(queries[i], queriesLeft, waitingTime);
 
     waitingTime += queries[i] * queriesLeft;
 
