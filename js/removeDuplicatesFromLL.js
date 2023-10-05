@@ -38,6 +38,55 @@ const removeDuplicatesII = (head) => {
   return head;
 }
 
+// Sorted linked list
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+const removeDuplicatesIII = (head) => {
+  let curr = head;
+
+  while(curr) {
+    let next = curr.next;
+
+    while(next && curr.value === next.value) {
+      next = next.next;
+    }
+
+    curr.next = next;
+    curr = next;
+  }
+
+  return head;
+}
+
+// UnSorted linked list
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+const removeDuplicatesIV = (head) => {
+  let curr = head;
+  let set = new Set();
+
+  set.add(curr.value);
+
+  while(curr.next) {
+    if(!set.has(curr.next.value)) {
+      set.add(curr.next.value);
+      curr = curr.next;
+    } else {
+      curr.next = curr.next.next;
+    }
+  }
+
+  let temp = head;
+
+  while(temp) {
+    console.log(temp.value);
+
+    temp = temp.next;
+  }
+
+  return head;
+}
+
 class LinkedList {
   constructor(value) {
     this.value = value;
@@ -72,4 +121,4 @@ node7.next = node8;
 
 node8.next = node9;
 
-removeDuplicatesII(head);
+removeDuplicatesIV(head);
