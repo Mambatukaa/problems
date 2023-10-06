@@ -20,6 +20,23 @@ const middleNode = (head) => {
   return head;
 }
 
+// Fast and Slow
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+const middleNodeII = (head) => {
+  let slow = head;
+  let fast = head;
+
+  while(fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+
+  console.log(slow);
+
+  return slow;
+}
+
 
 class LinkedList {
   constructor(value) {
@@ -39,5 +56,6 @@ const node4 = new LinkedList(4);
 head.next = node1;
 node1.next = node2;
 node2.next = node3;
+node3.next = node4;
 
-middleNode(head);
+middleNodeII(head);
