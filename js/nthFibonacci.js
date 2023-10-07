@@ -1,4 +1,4 @@
-// Time Complexity: O(n)
+// Time Complexity: O(2^n)
 // Space Complexity: O(n)
 const fib = (n) => {
   if(n === 2) {
@@ -39,4 +39,23 @@ const fibII = (n) => {
   return first;
 }
 
-console.log(fibII(5));
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+const fibIII = (n) => {
+  const answer = [0, 1];
+  let counter = 3;
+
+  while(counter <= n) {
+    const nextFib = answer[0] + answer[1];
+
+    answer[0] = answer[1];
+    answer[1] = nextFib;
+
+    counter++;
+  }
+
+  return n > 1 ? answer[1] : answer[0];
+}
+
+
+console.log(fibII(2));
