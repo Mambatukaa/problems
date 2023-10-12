@@ -22,5 +22,36 @@ const findThreeLargets = (arr) => {
   return [third, second, first];
 }
 
+const findThreeLargetsII = (arr) => {
+  let threeLargest = [null, null, null];
 
-console.log(findThreeLargets([-100,-10, -1]));
+  for(let num of arr) {
+
+    if(threeLargest[2] === null || num > threeLargest[2]) {
+      shiftAndUpdate(threeLargest, 2, num);
+    } else if(threeLargest[1] === null || num > threeLargest[1]) {
+      shiftAndUpdate(threeLargest, 1, num);
+    } else if(threeLargest[0] === null || num > threeLargest[0]) {
+      shiftAndUpdate(threeLargest, 0, num);
+    }
+
+  }
+
+  return threeLargest;
+};
+
+const shiftAndUpdate = (arr, idx, num) => {
+  for(let i = 0; i < arr.length; i++) {
+    if(idx === i) {
+      arr[i] = num;
+    } else {
+      arr[i] = arr[i + 1];
+    }
+  }
+
+};
+
+
+
+
+console.log(findThreeLargetsII([1,2,3,4,5,6,7]));
