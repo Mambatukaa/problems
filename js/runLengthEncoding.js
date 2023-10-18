@@ -25,5 +25,29 @@ const runLengthEncoding = (string) => {
   return answer.join("");
 }
 
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+const runLengthEncodingII = (string) => {
+  const answer = [];
+  let count = 1;
 
-console.log(runLengthEncoding("AAAAAAAAAAAAAAAAABBCCC")); //3A2B3C
+  for(let i = 1; i < string.length; i++) {
+    const prev = string[i-1];
+    const curr = string[i];
+
+    if(prev !== curr || count === 9) {
+      answer.push(count + prev);
+
+      count = 0;
+    } 
+
+     count++;
+  };
+
+  answer.push(string[string.length - 1] + count);
+
+  return answer.join("");
+}
+
+
+console.log(runLengthEncodingII("AAAAAAAAAAAAAABBCCC")); //3A2B3C
