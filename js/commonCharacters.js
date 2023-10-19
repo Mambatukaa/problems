@@ -27,6 +27,33 @@ const commonCharacters = (strings) => {
   return finalCharacters;
 }
 
+const commonCharactersII = (strings) => {
+  let smallestString = strings[0];
+
+  // find smallest string
+  for(const string of strings) {
+    if(string.length < smallestString) {
+      smallestString = string;
+    }
+  }
+
+  // "abc"
+  const potentialCommonString = new Set(smallestString);
+
+  for(const string of strings) {
+    const uniqueCharacters = new Set(string);
+
+    for(const character of Array.from(potentialCommonString)) {
+      if(!uniqueCharacters.has(character)) {
+        potentialCommonString.delete(character);
+      }
+    }
+
+  }
+
+  return Array.from(potentialCommonString);
+}
 
 
-console.log(commonCharacters(["abc", "bcd", "cbaccd"])); // => "bc"
+
+console.log(commonCharactersII(["abc", "bcd", "cbaccd"])); // => "bc"
