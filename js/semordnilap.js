@@ -42,6 +42,28 @@ const semordnilapII = (words) => {
 
   return answer;
 }
+//
+// Time Complexity: O(n * m) // where n is the number of words
+// Space Complexity: O(n * m) // m is the length of the longest word
+const semordnilapIII = (words) => {
+  const answer = [];
 
-console.log(semordnilapII(["diaper", "abc", "test", "cba", "repaid"]));
+  const set = new Set(words);
+
+  for(const word of words) {
+    const reversedWord = word.split("").reverse().join("");
+
+    if(set.has(reversedWord) && reversedWord !== word) { 
+      answer.push([word, reversedWord]);
+
+      set.delete(word);
+      set.delete(reversedWord);
+    }
+  }
+
+  return answer;
+}
+
+
+console.log(semordnilapIII(["aaa", "aaa"]));
 
