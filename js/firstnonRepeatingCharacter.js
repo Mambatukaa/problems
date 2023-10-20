@@ -11,7 +11,7 @@ const firstNonRepeatingCharacter = (string) => {
     map[letter]++;
   }
 
-  for(const [key, value] of Object.entries(map)) {
+  for(let i = 0; i < string.length; i++) {
     if(value === 1) {
       return string.indexOf(key);
     }
@@ -20,5 +20,25 @@ const firstNonRepeatingCharacter = (string) => {
   return -1;
 }
 
+// Brute force
+// Time Complexity: O(n^2)
+// Space Complexity: O(1)
+const firstNonRepeatingCharacterII = (string) => {
+  for(let i = 0; i < string.length; i++) {
+    let foundDuplication = false;
 
-console.log(firstNonRepeatingCharacter("abcddbcaf")); // 1 index of b
+    for(let j = 0; j < string.length; j++) {
+      if(string[j] === string[i] && i !== j) {
+        foundDuplication = true;
+      }
+    }
+
+    if(!foundDuplication) {
+      return i;
+    }
+  }
+  
+  return -1;
+}
+
+console.log(firstNonRepeatingCharacterII("abcddbcaf")); // 1 index of b
