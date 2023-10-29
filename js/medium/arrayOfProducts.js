@@ -28,6 +28,7 @@ const arrayOfProducts = (array) => {
 
 // Space Complexity: O(1)
 // Time Complexity: O(n)
+// Used division
 const arrayOfProductsII = (array) => {
   let zeroCounter = 0;
   let total = 1;
@@ -58,6 +59,10 @@ const arrayOfProductsII = (array) => {
   }
 
   return array;
+}
+
+const arrayOfProductsIII = () => {
+
 }
 
 
