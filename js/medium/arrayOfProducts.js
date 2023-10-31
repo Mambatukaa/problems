@@ -61,11 +61,59 @@ const arrayOfProductsII = (array) => {
   return array;
 }
 
-const arrayOfProductsIII = () => {
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+const arrayOfProductsIII = (array) => {
+  const products = new Array(array.length).fill(1);
 
+  const leftProducts = new Array(array.length).fill(1);
+  const rightProducts = new Array(array.length).fill(1);
+
+
+  let leftRunningProduct = 1;
+
+  for(let i = 0; i < array.length; i++) {
+    leftProducts[i] = leftRunningProduct;
+    leftRunningProduct *= array[i];
+  }
+
+  let rightRunningProduct = 1;
+
+  for(let i = array.length - 1; i >= 0 ; i--) {
+    rightProducts[i] = rightRunningProduct;
+    rightRunningProduct *= array[i];
+  }
+
+  for(let i = 0; i < array.length; i++) {
+    products[i] = leftProducts[i] * rightProducts[i];
+  }
+
+  return products;
 }
 
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+const arrayOfProductsIV = (array) => {
+  const result = new Array(array.length).fill(1);
 
-const array = [2,1,2,3];
+  let leftRunningProduct = 1;
 
-console.log(arrayOfProductsII(array));
+  for(let i = 0; i < array.length; i++) {
+    result[i] = leftRunningProduct;
+
+    leftRunningProduct *= array[i];
+  }
+
+  let rightRunningProduct = 1;
+
+  for(let i = array.length - 1; i >= 0 ; i--) {
+    result[i] = result[i] * rightRunningProduct;
+    rightRunningProduct *= array[i];
+  }
+
+  return result;
+}
+
+const array = [1,2,3,4];
+
+console.log(arrayOfProductsIV(array));
