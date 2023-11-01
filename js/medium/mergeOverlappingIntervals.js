@@ -1,4 +1,4 @@
-// Time Complexity: O(n*logn)
+// Time Complexity: O(nLog(n))
 // Space Complexity: O(n)
 const mergeOverlappingIntervals = (array) => {
   const sortedIntervals = array.sort((a,b) => a[0] - b[0]);
