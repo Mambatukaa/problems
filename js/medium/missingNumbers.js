@@ -19,7 +19,7 @@ const missingNumbers = (nums) => {
 }
 
 // Time Complexity: O(n)
-// Space Complexity: O(1)
+// Space Complexity: O(n)
 const missingNumbersII = (nums) => {
   const output = [];
   const set = new Set(nums);
@@ -33,6 +33,8 @@ const missingNumbersII = (nums) => {
   return output;
 }
 
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 const missingNumbersIII = (nums) => {
   let total = sum(1, nums.length + 3);
 
@@ -72,6 +74,40 @@ const sum = (a, b) => {
   return total;
 }
 
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+const missingNumbersIV = () => {
+  let solutionXOR = 0;
+  for (let i = 0; i < nums.length + 3; i++) {
+    solutionXOR ^= i;
+    if (i < nums.length) {
+      solutionXOR ^= nums[i];
+    }
+  }
+
+  const solution = [0, 0];
+  const setBit = solutionXOR & -solutionXOR;
+  for (let i = 0; i < nums.length + 3; i++) {
+    if ((i & setBit) === 0) {
+      solution[0] ^= i;
+    } else {
+      solution[1] ^= i;
+    }
+
+    if (i < nums.length) {
+      if ((nums[i] & setBit) === 0) {
+        solution[0] ^= nums[i];
+      } else {
+        solution[1] ^= nums[i];
+      }
+    }
+  }
+
+  solution.sort((a,b) => a-b);
+
+  return solution;
+}
+
 const nums = [1,3,4];
 
-console.log(missingNumbersIII(nums));
+console.log(missingNumbersIV(nums));
