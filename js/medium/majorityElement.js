@@ -1,3 +1,4 @@
+// You can assume that the input array will always have a majority element
 // Time complexity: O(n^2)
 // Space complexity: O(1)
 const majorityElement = (array) => {
@@ -23,6 +24,25 @@ const majorityElement = (array) => {
   return array.length / 2 < count ? item : -1;
 }
 
+const majorityElementII = (array) => {
+  let count = 0;
+  let answer = null;
+
+  for(const num of array) {
+    if(count === 0) answer = num;
+
+    if(num === answer) {
+      count++;
+    } else {
+      count--;
+    }
+  }
+
+  console.log(answer);
+
+  return answer;
+}
+
 const array = [1,2,3,2,2,1,2];
 
-console.log(majorityElement(array));
+console.log(majorityElementII(array));
