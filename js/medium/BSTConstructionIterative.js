@@ -1,6 +1,4 @@
 class BST {
-  // Worst Case: TC: O(n) SC: O(1)
-  // Average Case: TC: O(log(n)) SC: O(1)
   constructor(value) {
     this.value = value;
     this.left = null;
