@@ -5,6 +5,8 @@ class BST {
     this.right = null;
   }
 
+  // Worst Case: TC: O(n) SC: O(1)
+  // Average Case: TC: O(log(n)) SC: O(1)
   insert(value) {
     const newNode = new BST(value);
 
@@ -63,6 +65,8 @@ class BST {
 
   }
 
+  // Worst Case: TC: O(n) SC: O(1)
+  // Average Case: TC: O(log(n)) SC: O(1)
   contains(value) {
     let curr = this;
 
@@ -92,6 +96,8 @@ class BST {
     return curr;
   }
 
+  // Worst Case: TC: O(n) SC: O(1)
+  // Average Case: TC: O(log(n)) SC: O(1)
   remove(value, parentNode = null) {
     let currentNode = this;
 
