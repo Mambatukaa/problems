@@ -6,8 +6,8 @@ class BinaryNode {
   }
 }
 
-// Time Complexity: O(n)
 // Space Complexity: O(n)
+// Time Complexity: O(n)
 const isValidBst = (root, min, max) => {
   if(root === null) {
     return true;
