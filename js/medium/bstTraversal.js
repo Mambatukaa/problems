@@ -46,6 +46,69 @@ class BST {
 }
 
 
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+const inOrderTraverseIteration = (tree, array) => {
+  const answer = [];
+  const stack = [];
+  let curr = tree;
+
+  while(curr || stack.length) {
+    while(curr) {
+      stack.unshift(curr);
+
+      curr = curr.left;
+    }
+
+    curr = stack.shift();
+
+    answer.push(curr.value);
+
+    curr = curr.right;
+  }
+
+  return answer;
+}
+
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+const preOrderTraverseIteration = (tree, array) => { 
+  const answer = [];
+  const stack = [];
+
+  stack.unshift(tree);
+
+  while(stack.length) {
+    let curr = stack.shift();
+
+    answer.push(curr.value);
+ 
+    if(curr.right) {
+      stack.unshift(curr.right);
+    }
+
+    if(curr.left) {
+      stack.unshift(curr.left);
+    }
+
+  }
+
+  return answer;
+}
+
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+const postOrderTraverseIteration = (tree, array) => { 
+  const answer = [];
+  const stack = [];
+
+  while(stack.length) {
+
+  }
+
+  return answer;
+}
+
 const node1 = new BST(10);
 
 const node2 = new BST(5);
@@ -67,5 +130,4 @@ node2.right = node5;
 node3.right = node6;
 node4.left = node7;
 
-console.log(postOrderTraverse(node1, []))
-
+preOrderTraverseIteration(node1, []);
