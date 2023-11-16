@@ -101,9 +101,27 @@ const preOrderTraverseIteration = (tree, array) => {
 const postOrderTraverseIteration = (tree, array) => { 
   const answer = [];
   const stack = [];
+  const isVisited = [];
+
+  stack.push(tree);
 
   while(stack.length) {
+    const curr = stack.pop();
+    const visited = isVisited.pop();
 
+    if(curr) {
+      if(visited) {
+        console.log(curr.value);
+      } else {
+        stack.push(curr);
+        isVisited.push(true);
+
+        stack.push(curr.right);
+        isVisited.push(false);
+        stack.push(curr.left);
+        isVisited.push(false);
+      }
+    }
   }
 
   return answer;
@@ -130,4 +148,4 @@ node2.right = node5;
 node3.right = node6;
 node4.left = node7;
 
-preOrderTraverseIteration(node1, []);
+postOrderTraverseIteration(node1, []);
