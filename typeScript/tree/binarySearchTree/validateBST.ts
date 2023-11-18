@@ -101,6 +101,8 @@ const isValidBSTIterative = (root: TreeNode | null): boolean => {
       return false;
     }
 
+    console.log(prev?.value, curr.value)
+
     prev = curr.val;
 
     curr = curr.right;
