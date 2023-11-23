@@ -3,7 +3,6 @@ const minHeight = (array) => {
 }
 
 
-
 class BST {
   constructor(value) {
     this.value = value;
@@ -35,6 +34,10 @@ class BST {
 const bst = new BST(8);
 
 bst.insert(7);
+bst.insert(9);
+bst.insert(9);
+bst.insert(9);
+bst.insert(9);
 bst.insert(9);
 
 console.log(bst)
