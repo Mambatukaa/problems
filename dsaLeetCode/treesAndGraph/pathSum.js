@@ -23,7 +23,7 @@ const hasPathSum = (root, targetSum) => {
 }
 
 // Iterative
-// Space Complexity: O(1)
+// Space Complexity: O(n)
 // Time Complexity: O(n)
 const hasPathSumII = (root, targetSum) => {
   if(!root) {
