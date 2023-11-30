@@ -23,6 +23,36 @@ const countGoodNodes = (root) => {
   count(root, -Infinity);
 }
 
+// Iterative
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+const countGoodNodesII = (root) => {
+  if(!root) {
+    return 0;
+  }
+
+  let counter = 0;
+
+  const stack = [[root, -Infinity]];
+
+  while(stack.length) {
+    let [curr, currMax] = stack.pop();
+
+    if(curr.val >= currMax) {
+      counter++;
+    };
+
+    if(curr.left) {
+      stack.push([curr.left, Math.max(curr.val, currMax)])
+    }
+
+    if(curr.right) {
+      stack.push([curr.right, Math.max(curr.val, currMax)])
+    }
+  }
+
+  return counter;
+}
 
 class BT {
   constructor(val) {
@@ -47,4 +77,4 @@ root.right = node2;
 node1.left = node3;
 node2.right = node4;
 
-console.log('answer:', countGoodNodes(root));
+console.log('answer:', countGoodNodesII(root));
