@@ -25,7 +25,7 @@ const countGoodNodes = (root) => {
 
 // Iterative
 // Time Complexity: O(n)
-// Space Complexity: O(1)
+// Space Complexity: O(n)
 const countGoodNodesII = (root) => {
   if(!root) {
     return 0;
