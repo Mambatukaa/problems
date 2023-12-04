@@ -12,5 +12,6 @@ class BT {
 }
 
 const root = new BT(1);
+const node1 = new BT(1);
 
 lowestCommonAncestor(root);
