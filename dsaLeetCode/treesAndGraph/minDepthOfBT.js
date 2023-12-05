@@ -6,15 +6,19 @@ const minDepth = (root) => {
 
   function minDepthBT(root, depth) {
     if(!root) {
-      return depth;
+      return;
     }
 
     if(!root.left && !root.right) {
-      return depth;
+      if(depth < min) {
+        min = depth;
+      }
+
+      return;
     }
 
-    const leftDepth = minDepthBT(root.left, depth + 1);
-    const rightDepth = minDepthBT(root.right, depth + 1);
+    minDepthBT(root.left, depth + 1);
+    minDepthBT(root.right, depth + 1);
   }
 
 
@@ -136,4 +140,4 @@ root.right = node2;
 node2.left = node3;
 node2.right = node4;
 
-console.log(minDepthIteration(null), 'hhahha');
+console.log(minDepth(root), 'hhahha');
