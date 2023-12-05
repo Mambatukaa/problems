@@ -23,7 +23,6 @@ const minDepth = (root) => {
   return min === Infinity ? 0 : min;
 }
 
-
 // Time Complexity: O(n)
 // Space Complexity: O(n)
 const minDepthIterative = (root) => {
@@ -58,6 +57,62 @@ const minDepthIterative = (root) => {
   return min;
 }
 
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+// DFS
+const minDepthII = (root) => {
+  if(!root) {
+    return 0;
+  };
+
+  if(!root.left) {
+    return 1 + minDepthII(root.right);
+  } else if(!root.right) {
+    return 1 + minDepthII(root.left);
+  }
+
+  return 1 + Math.min(minDepthII(root.left), minDepthII(root.right));
+};
+
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+// BFS
+const minDepthIteration = (root) => {
+  // base case
+  if(!root) {
+    return 0;
+  }
+
+  const queue = [];
+
+  let depth = 1;
+  queue.push(root);
+
+  while(queue.length) {
+    let size = queue.length;
+
+    while(size > 0) {
+      size--;
+
+      const current = queue.shift();
+
+      if(!current.left && !current.right) {
+        return depth;
+      }
+
+      if(current.left) {
+        queue.push(current.left);
+      }
+
+      if(current.right) {
+        queue.push(current.right);
+      }
+
+    }
+
+    depth++;
+  }
+}
 
 class BT {
   constructor(val) {
@@ -81,4 +136,4 @@ root.right = node2;
 node2.left = node3;
 node2.right = node4;
 
-console.log(minDepthIterative(root), 'hhahha');
+console.log(minDepthIteration(null), 'hhahha');
