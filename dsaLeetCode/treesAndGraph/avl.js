@@ -139,6 +139,10 @@ class AVL {
     this.root = this.insertion(this.root, value);
   };
 
+  delete(value) {
+
+  }
+
 
 
 }
