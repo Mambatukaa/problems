@@ -3,6 +3,7 @@ class GraphNode {
   constructor(name, index) {
     this.name = name;
     this.index = index;
+    this.visited = false;
   };
 }
 
@@ -38,34 +39,91 @@ class Graph {
     return stringBuilder;
   }
 
+  getNeighbors(vertice) {
+    const neighbors = [];
+    const index = vertice.index;
+
+    for(let i = 0; i < this.adjacencyMatrix.length; i++) {
+      if(this.adjacencyMatrix[index][i] === 1) {
+        neighbors.push(this.nodeList[i]);
+      }
+    }
+
+    return neighbors;
+  };
+
+  bfsVisit(vertice) {
+    vertice.visited = true;
+  };
+
+  // BFS internal
+  bfsVisit(node) {
+    const queue = [node];
+
+    while(queue.length) {
+      const currVertice = queue.shift();
+
+      console.log(currVertice.name, '------>');
+
+      currVertice.visited = true;
+
+      const neighbors = this.getNeighbors(currVertice);
+
+      for(const neighbor of neighbors) {
+        if(!neighbor.visited) {
+          queue.push(neighbor);
+          neighbor.visited = true;
+        }
+      }
+
+    }
+
+  }
+
+  bfs() {
+    for(const node of nodeList) {
+      if(!node.visited)
+        this.bfsVisit(node);
+    }
+  }
+
 };
 
 
-const node1 = new GraphNode('A', 0);
-const node2 = new GraphNode('B', 1);
-const node3 = new GraphNode('C', 2);
-const node4 = new GraphNode('D', 3);
-const node5 = new GraphNode('E', 4);
+const vertice1 = new GraphNode('A', 0);
+const vertice2 = new GraphNode('B', 1);
+const vertice3 = new GraphNode('C', 2);
+const vertice4 = new GraphNode('D', 3);
 
-const nodeList = [node1, node2, node3, node4, node5];
+const vertice5 = new GraphNode('E', 4);
+const vertice6 = new GraphNode('F', 5);
+const vertice7 = new GraphNode('G', 6);
+
+const nodeList = [vertice1, vertice2, vertice3, vertice4, vertice5, vertice6, vertice7];
 
 const graph = new Graph(nodeList);
 
-graph.addUndirectedEdge(0,1);
-graph.addUndirectedEdge(0,2);
-graph.addUndirectedEdge(0,3);
-
-graph.addUndirectedEdge(1,0);
-graph.addUndirectedEdge(1,4);
+graph.addUndirectedEdge(0, 1);
+graph.addUndirectedEdge(0, 2);
 
 
-graph.addUndirectedEdge(2,0);
-graph.addUndirectedEdge(2,3);
+graph.addUndirectedEdge(1, 0);
+graph.addUndirectedEdge(1, 3);
+graph.addUndirectedEdge(1, 6);
 
-graph.addUndirectedEdge(3,2);
-graph.addUndirectedEdge(3,0);
-graph.addUndirectedEdge(3,4);
+graph.addUndirectedEdge(2, 0);
+graph.addUndirectedEdge(2, 4);
 
+graph.addUndirectedEdge(3, 1);
+graph.addUndirectedEdge(3, 5);
 
-graph.addUndirectedEdge(4,1);
-graph.addUndirectedEdge(4,3);
+graph.addUndirectedEdge(4, 2);
+graph.addUndirectedEdge(4, 5);
+
+graph.addUndirectedEdge(5, 3);
+graph.addUndirectedEdge(5, 4);
+graph.addUndirectedEdge(5, 6);
+
+console.log(graph.toString())
+
+console.log(graph.bfs())
