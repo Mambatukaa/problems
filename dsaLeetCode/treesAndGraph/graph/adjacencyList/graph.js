@@ -6,6 +6,7 @@ class GraphNode {
   constructor(name, index) {
     this.name = name;
     this.index = index;
+    this.visited = false;
   };
 }
 
@@ -52,7 +53,41 @@ class Graph {
 
     return string;
 
-  }
+  };
+
+
+  // bfs internal
+  bfsVisit(node) {
+    const queue = [node];
+
+    while(queue.length) {
+      const currentNode = queue.shift();
+      console.log(currentNode.name, '->');
+
+      currentNode.visited = true;
+
+      const neighbors = currentNode.neighbors;
+
+      for(const neighbor of neighbors) {
+        if(!neighbor.visited) {
+          queue.push(neighbor);
+
+          neighbor.visited = true;
+        }
+      }
+
+    }
+
+
+  };
+
+  bfs() {
+    for(const node of nodeList) {
+      if(!node.visited) {
+        this.bfsVisit(node);
+      };
+    };
+  };
 
 };
 
@@ -86,4 +121,4 @@ graph.addUndirectedEdge(3,4);
 graph.addUndirectedEdge(4,1);
 graph.addUndirectedEdge(4,3);
 
-console.log(graph.toString())
+console.log(graph.bfs())
