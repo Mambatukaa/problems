@@ -59,7 +59,8 @@ class Graph {
   // BFS internal
   bfsVisit(node) {
     const queue = [node];
-
+    //
+    // O(V)
     while(queue.length) {
       const currVertice = queue.shift();
 
@@ -69,6 +70,7 @@ class Graph {
 
       const neighbors = this.getNeighbors(currVertice);
 
+      // O(Adj) --> unlisted adjacent
       for(const neighbor of neighbors) {
         if(!neighbor.visited) {
           queue.push(neighbor);
@@ -80,9 +82,13 @@ class Graph {
 
   }
 
+  // Time Complexity: O(V + E)
+  // Space Complexity: O(V + E)
   bfs() {
+    // O(V)
     for(const node of nodeList) {
       if(!node.visited)
+        // O(V) + O(Adj) = O(E) // E is and numbers of edge
         this.bfsVisit(node);
     }
   }
