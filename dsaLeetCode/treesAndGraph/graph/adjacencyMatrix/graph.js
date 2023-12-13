@@ -1,5 +1,3 @@
-
-
 // vertice
 class GraphNode {
   constructor(name, index) {
@@ -21,17 +19,23 @@ class Graph {
   }
 
   toString() {
-    const stringBuilder = [];
+    let stringBuilder = "  ";
 
     // rows
     for(let i = 0; i < nodeList.length; i++) {
-      stringBuilder.push(nodeList[i].name + " ");
-    }
-    console.log(stringBuilder)
+      stringBuilder += ` ${nodeList[i].name}`;
+    };
 
-    console.log(stringBuilder.join('\r'));
+    for(let i = 0; i < nodeList.length; i++) {
+      stringBuilder += `\n${nodeList[i].name}:`;
 
-    return 'hhaha';
+      for(const j of this.adjacencyMatrix[i]) {
+        stringBuilder += ` ${j}`;
+      }
+
+    };
+
+    return stringBuilder;
   }
 
 };
@@ -65,6 +69,3 @@ graph.addUndirectedEdge(3,4);
 
 graph.addUndirectedEdge(4,1);
 graph.addUndirectedEdge(4,3);
-
-
-console.log(graph.toString())
