@@ -95,6 +95,41 @@ class Graph {
     };
   };
 
+  // dfs internal
+  dfsVisit(node) {
+    const stack = [node];
+
+    while(stack.length) {
+      const current = stack.pop();
+      current.visited = true;
+
+      console.log(current.name, '=>');
+
+      const neighbors = current.neighbors;
+
+      for(const neighbor of neighbors) {
+        if(!neighbor.visited) {
+          stack.push(neighbor);
+
+          neighbor.visited = true;
+        }
+
+      };
+
+    };
+
+  }
+
+  // Time Complexity: O(V + E)
+  // Space Complexity: O(V + E)
+  dfs() {
+    for(const node of nodeList) {
+      if(!node.visited) {
+        this.dfsVisit(node);
+      }
+    }
+
+  }
 };
 
 
@@ -127,4 +162,4 @@ graph.addUndirectedEdge(3,4);
 graph.addUndirectedEdge(4,1);
 graph.addUndirectedEdge(4,3);
 
-console.log(graph.bfs())
+console.log(graph.dfs())
