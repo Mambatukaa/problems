@@ -80,7 +80,7 @@ class Graph {
 
     }
 
-  }
+  };
 
   // Time Complexity: O(V + E)
   // Space Complexity: O(V + E)
@@ -92,6 +92,40 @@ class Graph {
         this.bfsVisit(node);
     }
   }
+
+  // DFS internal
+  dfsVisit(node) {
+    const stack = [node];
+
+    while(stack.length) {
+      const current = stack.pop();
+
+      console.log(current.name, '->');
+      current.visited = true;
+
+      const neighbors = this.getNeighbors(current);
+
+      for(const neighbor of neighbors) {
+        if(!neighbor.visited) {
+          stack.push(neighbor);
+
+          neighbor.visited = true;
+        };
+      };
+
+    };
+
+  };
+
+  // Time Complexity: O(V + E)
+  // Space Complexity: O(V + E)
+  dfs() {
+    for(const node of nodeList) {
+      if(!node.visited) {
+        this.dfsVisit(node);
+      }
+    }
+  };
 
 };
 
@@ -112,12 +146,12 @@ const graph = new Graph(nodeList);
 graph.addUndirectedEdge(0, 1);
 graph.addUndirectedEdge(0, 2);
 
-
 graph.addUndirectedEdge(1, 0);
 graph.addUndirectedEdge(1, 3);
 graph.addUndirectedEdge(1, 6);
 
 graph.addUndirectedEdge(2, 0);
+graph.addUndirectedEdge(2, 3);
 graph.addUndirectedEdge(2, 4);
 
 graph.addUndirectedEdge(3, 1);
@@ -130,6 +164,5 @@ graph.addUndirectedEdge(5, 3);
 graph.addUndirectedEdge(5, 4);
 graph.addUndirectedEdge(5, 6);
 
-console.log(graph.toString())
 
-console.log(graph.bfs())
+console.log(graph.dfs())
