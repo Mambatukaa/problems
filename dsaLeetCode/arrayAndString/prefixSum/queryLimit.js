@@ -29,3 +29,8 @@ const queries = [ [0, 3], [2, 5], [2, 4] ];
 const limit = 13;
 
 console.log(fn(nums, queries, limit));
+
+/*
+
+ 
+ */
