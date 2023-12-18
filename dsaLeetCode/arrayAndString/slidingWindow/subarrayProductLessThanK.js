@@ -30,6 +30,8 @@ const arrayProduct = (nums, k) => {
   return counter;
 };
 
+// Space Complexity: O(1)
+// Time Complexity: O(n)
 const arrayProductSum = (nums, k) => {
   if(k <= 1) {
     return 0;
