@@ -25,6 +25,25 @@ const fn = (nums) => {
 };
 
 
+// We have improved the space complexity to O(1), which is a great improvement.
+const waysToSplitArray = function(nums) {
+    let ans = 0, leftSection = 0, total = 0;
+    for (const num of nums) {
+        total += num;
+    }
+    
+    for (let i = 0; i < nums.length - 1; i++) {
+        leftSection += nums[i];
+        let rightSection = total - leftSection;
+        if (leftSection >= rightSection) {
+            ans++;
+        }
+    }
+    
+    return ans;
+};
+
+
 const nums = [0, 0];
 
 console.log(fn(nums));
