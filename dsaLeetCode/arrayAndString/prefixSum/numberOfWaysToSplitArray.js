@@ -1,5 +1,5 @@
 // Time Complexity: O(n)
-// Space Complexity: O(1)
+// Space Complexity: O(n)
 const fn = (nums) => {
   let counter = 0;
   const prefix = [nums[0]];
@@ -9,13 +9,11 @@ const fn = (nums) => {
     prefix[i] = nums[i] + prefix[prefix.length - 1];
   };
   
-  // solution
-  const lastNum = prefix[prefix.length - 1];
-
   for(let i = 0; i < prefix.length - 1; i++) {
-    const curr = prefix[i];
+    const leftSection = prefix[i];
+    const rightSection = prefix[prefix.length - 1] - prefix[i];
 
-    if(lastNum - curr <= curr) {
+    if(leftSection >= rightSection) {
       counter++;
     };
 
@@ -26,6 +24,8 @@ const fn = (nums) => {
 
 
 // We have improved the space complexity to O(1), which is a great improvement.
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 const waysToSplitArray = function(nums) {
     let ans = 0, leftSection = 0, total = 0;
     for (const num of nums) {
@@ -44,6 +44,6 @@ const waysToSplitArray = function(nums) {
 };
 
 
-const nums = [0, 0];
+const nums = [1,2,3,4,5];
 
 console.log(fn(nums));
