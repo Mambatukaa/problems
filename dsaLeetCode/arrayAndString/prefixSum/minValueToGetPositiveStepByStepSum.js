@@ -1,22 +1,20 @@
 // Time Complexity: O(n)
 // Space Complexity: O(1)
 const fn = (nums) => {
+  let minValue = 0;
+  let total = 0;
 
-  let minValue = nums[0];
+  for(let i = 0; i < nums.length; i++) {
 
-  for(let i = 1; i < nums.length; i++) {
-    nums[i] = nums[i - 1] + nums[i];
+    total += nums[i];
 
-    if(nums[i] < minValue) {
-      minValue = nums[i];
-    }
+    minValue = Math.min(minValue, total);
+
   };
 
-  console.log(nums)
-
-  return minValue < 0 ? Math.abs(minValue) + 1 : minValue;
+  return -minValue + 1;
 };
 
-const nums = [2,3,4, -5, -1];
+const nums = [1, -2, -3];
 
 console.log(fn(nums));
