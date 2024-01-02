@@ -1,6 +1,11 @@
 // Time Complexity: O(n)
 // Space Complexity: O(1)
 const fn = (nums, k) => {
+
+  if(k === 0) {
+    return nums;
+  };
+
   const n = nums.length;
 
   const answer = new Array(n).fill(-1);
@@ -34,7 +39,45 @@ const fn = (nums, k) => {
   return answer;
 };
 
-const nums = [7,4,3,9,1,86];
-const k = 3;
 
-console.log(fn(nums, k));
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+const prefixSum = (nums, k) => {
+  if(k === 0) {
+    return nums;
+  };
+
+  const n = nums.length;
+  const averages = new Array(n).fill(-1);
+
+  if(k * 2 + 1 > n) {
+    return averages;
+  };
+
+  const prefixSum = new Array(n + 1).fill(0);
+
+  // generate a prefixSum
+  for(let i = 0; i < nums.length; i++) {
+    prefixSum[i + 1] = prefixSum[i] + nums[i];
+  };
+
+  // find averages
+  for(let idx = k; idx < n - k; idx++) {
+    const leftBound = idx - k;
+    const rightBound = idx + k;
+
+    const subArraySum = prefixSum[rightBound + 1] - prefixSum[leftBound];
+    const average = Math.floor(subArraySum / (k * 2 + 1));
+
+    averages[idx] = average; 
+  };
+
+
+  return averages;
+};
+
+
+const nums = [1,2,3,4,5,6];
+const k = 2;
+
+console.log(prefixSum(nums, k));
