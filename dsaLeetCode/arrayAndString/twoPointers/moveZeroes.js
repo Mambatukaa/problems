@@ -23,6 +23,17 @@ const fn = (nums) => {
   return nums;
 };
 
-const nums = [0, 0,0, 0, 0];
+const optimal = (nums) => {
+  for(let curr = 0, lastNonZeroFoundAt = 0; curr < nums.length; curr++) {
+    if(nums[curr] !== 0) {
+      [nums[curr], nums[lastNonZeroFoundAt]] = [nums[lastNonZeroFoundAt], nums[curr]];
+      lastNonZeroFoundAt++;
+    };
+
+  };
+
+};
+
+const nums = [1, 1, 0, 2, 0, 3];
 
 console.log(fn(nums));
