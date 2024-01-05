@@ -46,4 +46,22 @@ var missingNumber = function(nums) {
  };
 
 
-console.log(missingNumber([0,2,3,4]))
+ // Time Complexity: O(n)
+ // Space Complexity: O(1)
+ // Gauss' Formula
+var missingNumberIII = function(nums) {
+  const expectedSum = nums.length * (nums.length + 1) / 2;
+
+  console.log(expectedSum);
+
+  let actualSum = 0;
+
+  for(const num of nums) {
+    actualSum += num;
+  };
+
+  return expectedSum - actualSum;
+};
+
+
+console.log(missingNumberIII([0,1,2,3,4]))
