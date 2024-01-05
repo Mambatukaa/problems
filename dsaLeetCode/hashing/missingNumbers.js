@@ -52,8 +52,6 @@ var missingNumber = function(nums) {
 var missingNumberIII = function(nums) {
   const expectedSum = nums.length * (nums.length + 1) / 2;
 
-  console.log(expectedSum);
-
   let actualSum = 0;
 
   for(const num of nums) {
