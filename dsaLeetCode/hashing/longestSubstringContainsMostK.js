@@ -3,7 +3,7 @@
 // 3. else slide the window
 //
 // Time Complexity: O(n)
-// Space Complexity: O(n)
+// Space Complexity: O(k)
 const fn = (s, k) => {
   let answer = 0;
   const map = new Map();
@@ -40,6 +40,8 @@ const fn = (s, k) => {
   return answer;
 };
 
+// Time Complexity: O(n)
+// Space Complexity: O(k)
 const findLongestSubstring = (s, k) => {
   const counts = new Map();
   let left = 0, ans = 0;
