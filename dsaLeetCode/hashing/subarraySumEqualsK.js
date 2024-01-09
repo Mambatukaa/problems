@@ -22,6 +22,35 @@ var subarraySum = function(nums, k) {
   return ans;
 };
 
+// Brute force
+// Time limit exceeded
+// Time Complexity: O(n^2)
+// Space Complexity: O(1)
+const subarraySumBF = (nums, k) => {
+  let answer = 0;
+  const n = nums.length;
+
+  for(let i = 0; i < n; i++) {
+    let curr = nums[i];
+
+    if(curr === k) {
+      answer++;
+    };
+
+    for(let j = i + 1; j < n; j++) {
+
+      curr += nums[j];
+
+      if(curr === k) {
+        answer++;
+      };
+    };
+
+  };
+
+  return answer;
+};
+
 
 /*
 nums = [1,2,1,2,1] k = 3 =>  [1,2], [2,1], [2,1] total subarrays equal 3;
@@ -41,4 +70,4 @@ prefix:
 
 const nums = [-1, -1, 1]
 
-console.log(subarraySum(nums, 0));
+console.log(subarraySumBF(nums, -1));
