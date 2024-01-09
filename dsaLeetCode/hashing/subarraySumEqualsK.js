@@ -68,6 +68,6 @@ prefix:
 [ -1, -2, -1 ]
 */
 
-const nums = [-1, -1, 1]
+const nums = [2,2,2,1,2,2,1,2,2,2]
 
-console.log(subarraySumBF(nums, -1));
+console.log(subarraySumBF(nums, 2));
