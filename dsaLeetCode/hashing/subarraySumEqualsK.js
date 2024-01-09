@@ -3,6 +3,8 @@
  * @param {number} k
  * @return {number}
  */
+// Space complexity: O(n)
+// Time complexity: O(n)
 var subarraySum = function(nums, k) {
   const map = new Map();
   map.set(0, 1);
@@ -16,8 +18,6 @@ var subarraySum = function(nums, k) {
 
     map.set(curr, (map.get(curr) || 0) + 1);
   };
-
-  console.log(map)
 
   return ans;
 };
