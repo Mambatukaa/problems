@@ -69,6 +69,7 @@ const fnII = (nums, k) => {
     prefix += num;
 
     answer += map.get(prefix - k) || 0;
+    // the reason increasing the prefix value is because we have negative numbers
     map.set(prefix, (map.get(prefix) || 0) + 1);
   };
 
