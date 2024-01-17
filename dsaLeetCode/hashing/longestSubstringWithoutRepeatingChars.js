@@ -18,8 +18,6 @@ var lengthOfLongestSubstring = function(s) {
             l++;
         };
 
-    console.log(map, '-----')
-
         map.set(ch, 1);
 
         answer = Math.max(answer, r - l + 1);
@@ -30,7 +28,33 @@ var lengthOfLongestSubstring = function(s) {
     
 };
 
-console.log(lengthOfLongestSubstring("pwwkew"))
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+// Improved sliding window
+var lengthOfLongestSubstringII = function(s) {
+    const map = new Map();
+    let l = 0;
+    let answer = 0;
+
+    for(let r = 0; r < s.length; r++) {
+        const ch = s[r];
+
+        if(map.get(ch)) {
+          l = Math.max(map.get(ch), l);
+        };
+
+        map.set(ch, r + 1);
+
+        answer = Math.max(answer, r - l + 1);
+    };
+
+
+    return answer;
+    
+};
+
+
+console.log(lengthOfLongestSubstringII("pwwkew"))
 
 
 
