@@ -22,8 +22,27 @@ var destCity = function(paths) {
             return key;
         }
     };
-}
+};
 
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+var destCityII = function(paths) {
+    const seen = new Set();
+
+    for(const path of paths) {
+      seen.add(path[0]);
+    };
+
+    for(const path of paths) {
+      if(!seen.has(path[1])) {
+        return path[1];
+      }
+    };
+    
+  return "";
+};
+
+console.log(destCityII([ ['a','b'], ['b', 'c'], ['c','d']]));
 
 /*
 paths = [ [a,b], [b, c], [c,d]]
