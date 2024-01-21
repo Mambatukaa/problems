@@ -43,7 +43,7 @@ s = "egg", t = "add"
 output true;
 
 explanation: 
-
+e
 {
     e: a,
     g: d
