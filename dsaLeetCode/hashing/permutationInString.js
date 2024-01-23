@@ -105,6 +105,8 @@ const checkInclusionIII = (s1, s2) => {
 };
 
 const arrMatches = (arr1, arr2) => {
+  console.log(arr1, '===', arr2)
+
   for(let i = 0; i < 26; i++) {
     if(arr1[i] !== arr2[i]) {
       return false;
@@ -115,8 +117,36 @@ const arrMatches = (arr1, arr2) => {
 
 };
 
+// Sliding window
+// Space complexity: O(1)
+// Time complexity: O(1)
+const checkInclusionIV = (s1, s2) => {
+  if(s1.length > s2.length) {
+    return false;
+  }
+
+  const s1Arr = new Array(26).fill(0)
+  const s2Arr = new Array(26).fill(0)
+
+  for(let i = 0; i < s1.length; i++) {
+    s1Arr[s1[i].charCodeAt(0) - "a".charCodeAt(0)]++;
+    s2Arr[s2[i].charCodeAt(0) - "a".charCodeAt(0)]++;
+  };
+
+  for(let i = 0; i < s2.length - s1.length; i++) {
+    if(arrMatches(s1Arr, s2Arr)) {
+      return true;
+    };
+
+    s2Arr[s2.charCodeAt(i + s1.length) - "a".charCodeAt(0)]++;
+    s2Arr[s2.charCodeAt(i) - "a".charCodeAt(0)]--;
+  };
+
+  return arrMatches(s1Arr, s2Arr);
+};
+
 
 const s1 = "ba";
 const s2 = "eidbaooo";
 
-console.log(checkInclusionIII(s1, s2));
+console.log(checkInclusionIV(s1, s2));
