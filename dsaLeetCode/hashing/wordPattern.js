@@ -3,6 +3,8 @@
  * @param {string} s
  * @return {boolean}
  */
+// Time Complexity: O(n)
+// Space Complexity: O(n + m)
 var wordPattern = function(pattern, s) {
     const words = s.split(" ");
     const pMap = new Map(); 
@@ -32,10 +34,6 @@ var wordPattern = function(pattern, s) {
 
     return true;
     
-};
-
-
-var wordPatternII = function(pattern, s) {
 };
 
 const pattern = "aaa";
