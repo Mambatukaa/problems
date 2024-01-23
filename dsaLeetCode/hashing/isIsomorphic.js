@@ -3,9 +3,9 @@
  * @param {string} t
  * @return {boolean}
  */
-// TC: O(n)
-// SC: O(2n)
-var isIsomorphic = function(s, t) {
+// Time Complexity: O(n)
+// Space Complexity: O(n + m)
+var isIsomorphicII = function(s, t) {
     const sMap = new Map();
     const tMap = new Map();
 
@@ -34,6 +34,33 @@ var isIsomorphic = function(s, t) {
     return true;
 }
 
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+// ascii characters
+var isIsomorphic = function(s, t) {
+    const sArr = new Array(200).fill(0);
+    const tArr = new Array(200).fill(0);
+
+    if(s.length !== t.length) {
+        return false;
+    };
+
+    for(let i = 0; i < s.length; i++) {
+
+        if(sArr[s[i].charCodeAt(0)] !== tArr[t[i].charCodeAt(0)]) {
+            return false;
+        };
+
+        sArr[s[i].charCodeAt(0)] = i + 1;
+        tArr[t[i].charCodeAt(0)] = i + 1;
+    };
+
+    console.log(sArr, tArr)
+
+
+    return true;
+}
+
 
 /*
 
@@ -43,7 +70,7 @@ s = "egg", t = "add"
 output true;
 
 explanation: 
-e
+
 {
     e: a,
     g: d
