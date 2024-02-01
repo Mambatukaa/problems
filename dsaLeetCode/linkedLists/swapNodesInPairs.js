@@ -6,17 +6,44 @@ class ListNode {
 
 };
 
-const swapNodesInPairs = (head) => {
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+const swapNodesInPairsRecursion = (head) => {
   if(!head || !head.next) return head;
 
   const v1 = head, v2 = head.next, v3 = v2.next;
 
   v2.next = v1;
-  v1.next = swapNodesInPairs(v3);
+  v1.next = swapNodesInPairsRecursion(v3);
 
   return v2;
 };
 
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+const swapNodesInPairs = (head) => {
+  if(!head || !head.next) {
+    return head;
+  };
+
+  let prev = null;
+  const newHead = head.next;
+
+  while(head && head.next) {
+    if(prev) {
+      prev.next = head.next;
+    };
+
+    prev = head;
+    const next = head.next.next;
+
+    head.next.next = head;
+    head.next = next;
+    head = next;
+  };
+
+  return newHead;
+};
 
 const head = new ListNode(1);
 
