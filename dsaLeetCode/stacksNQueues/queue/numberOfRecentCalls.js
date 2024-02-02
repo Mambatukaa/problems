@@ -1,4 +1,4 @@
-// Space Complexity: O(n)
+// Space Complexity: O(1)
 var RecentCounter = function() {
     this.queue = [];
 };
