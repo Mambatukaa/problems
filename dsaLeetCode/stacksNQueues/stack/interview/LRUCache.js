@@ -43,8 +43,8 @@ class LRUCache {
     };
 
     const node = this.cache.get(key);
-    this.remove(node);
-    this.insert(node);
+
+    this.moveToHead(node);
 
     return node.value;
   };
@@ -68,6 +68,11 @@ class LRUCache {
     node.prev.next = node.next;
     node.next.prev = node.prev;
   };
+
+  moveToHead(node) {
+    this.remove(node);
+    this.insert(node);
+  }
 };
 
 const lRUCache = new LRUCache(2);
