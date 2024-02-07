@@ -6,58 +6,86 @@ class TreeNode {
   };
 };
 
-const node1 = new TreeNode(3);
+const node5 = new TreeNode(5);
 
-const node1Left = new TreeNode(9);
-const node1Right = new TreeNode(20);
+const node4 = new TreeNode(4);
+const node8 = new TreeNode(8);
 
-const node1RightLeft = new TreeNode(15);
-const node1RightRight = new TreeNode(7);
+const node11 = new TreeNode(11);
+const node13 = new TreeNode(13);
 
-node1.left = node1Left;
-node1.right = node1Right;
+const node42 = new TreeNode(4);
+const node7 = new TreeNode(7);
 
-node1Right.left = node1RightLeft;
-node1Right.right = node1RightRight;
+const node2 = new TreeNode(2);
+const node1 = new TreeNode(1);
+
+node5.left = node4;
+node5.right = node8
+
+node4.left = node11;
+node11.left = node7;
+
+node11.right = node2;
+
+node8.left = node13;
+node8.right = node42;
+
+node42.right = node1;
 
 
 
-const maxDepth = (root) => {
+const pathSum = (root, targetSum, sum = 0) => {
   if(!root) {
-    return 0;
+    return false;
   };
 
-  const leftLevel = maxDepth(root.left);
-  const rightLevel = maxDepth(root.right);
+  if(!root.left && !root.right) {
 
-  return Math.max(leftLevel, rightLevel) + 1;
+    if(targetSum === sum + root.val) {
+      return true;
+    };
+
+    return false;
+  };
+
+  const leftSum = pathSum(root.left, targetSum, sum + root.val);
+  const rightSum = pathSum(root.right, targetSum, sum + root.val);
+
+  return leftSum || rightSum;
 };
 
-const maxDepthII = (root) => {
+const pathSumII =(root, targetSum) {
   if(!root) {
-    return 0;
-  }
+    return false;
+  };
 
   const stack = [];
-  stack.push([root, 1]);
-  let maxLevel = 0;
+  stack.push([root, root.val]);
 
   while(stack.length) {
-    const [curr, level] = stack.pop();
+    const [node, sum] = stack.pop();
 
-    maxLevel = Math.max(level, maxLevel);
+    if(!node.left && !node.right) {
 
-    if(curr.left) {
-      stack.push([curr.left, level + 1]);
+      if(sum === targetSum) {
+        return true;
+      };
+    }
+
+    if(node.left) {
+      stack.push([node.left, sum + node.left.val]);
     };
 
-    if(curr.right) {
-      stack.push([curr.right, level + 1]);
+    if(node.right) {
+      stack.push([node.right, sum + node.right.val]);
     };
+
+
   };
 
-  return maxLevel;
+  return false;
 };
 
-console.log(maxDepth(node1));
 
+console.log(pathSum(node5, 22));
