@@ -43,76 +43,71 @@ class BinaryTree {
   }
 };
 
-
-const countGoodNodesInBT = (root) => {
-
-  const helper = (root, max) => {
-    if(!root) {
-      return 0;
-    };
-
-    const left = helper(root.left, Math.max(max, root.val)) 
-    const right = helper(root.right, Math.max(max, root.val));
-
-    let counter = left + right;
-
-    if(root.val >= max) {
-      counter++;
-    }
-
-    return counter;
+const sameTree = (p, q) => {
+  if(!p && !q) {
+    return true;
   };
 
-  return helper(root, root.val);
+  if(!p || !q) {
+    return false;
+  }
+
+  if(p.val !== q.val) {
+    return false;
+  };
+
+  return sameTree(p.left, q.left) && sameTree(p.right, q.right); 
 };
 
-const countGoodNodesInBTII = (root) => {
-  if(!root) {
-    return 0;
+
+const isSameTree = (p, q) => {
+  if(!p && !q) {
+    return false;
   };
 
   const stack = [];
-  stack.push([root, root.val]);
 
-  let answer = 0;
+  stack.push([p, q]);
 
   while(stack.length) {
-    const [node, max] = stack.pop();
+    const [pNode, qNode] = stack.pop();
 
-    if(node.val >= max) {
-      answer++;
+    if(!pNode && !qNode) {
+      continue;
     };
 
-    if(node.left) {
-      stack.push([node.left, Math.max(node.val, max)])
+    if(!pNode || !qNode) {
+      return false;
+    }
+
+    if(pNode.val !== qNode.val) {
+      return false;
     };
 
-    if(node.right) {
-      stack.push([node.right, Math.max(node.val, max)])
-    };
+    stack.push([pNode.left, qNode.left]);
+    stack.push([pNode.right, qNode.right]);
   };
 
 
-  return answer;
+  return true
+
 };
 
+const pRoot = new TreeNode(1)
+const pNode2 = new TreeNode(2)
+const pNode3 = new TreeNode(3)
 
-const root = new TreeNode(3)
-const node2 = new TreeNode(1)
-const node3 = new TreeNode(4)
+pRoot.left = pNode2;
+pRoot.right = pNode3;
 
-const node4 = new TreeNode(3)
-const node5 = new TreeNode(1)
-const node6 = new TreeNode(5)
+const qRoot = new TreeNode(1)
+const qNode2 = new TreeNode(2)
+const qNode3 = new TreeNode(3)
 
-root.left = node2;
-root.right = node3;
+qRoot.left = qNode2;
+qRoot.right = qNode3;
 
-node2.left = node4;
-node3.left = node5;
-node3.right = node6;
-
-console.log(countGoodNodesInBT(root));
+console.log(isSameTree(pRoot, qRoot));
 
 // pass max to the children
 // compare current value with max and update
