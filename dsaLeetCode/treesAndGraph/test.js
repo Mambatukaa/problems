@@ -51,12 +51,14 @@ const countGoodNodesInBT = (root) => {
       return 0;
     };
 
-    console.log(root.val, max)
+    const left = helper(root.left, Math.max(max, root.val)) 
+    const right = helper(root.right, Math.max(max, root.val));
 
-    let counter = root.val >= max ? 1 : 0;
+    let counter = left + right;
 
-    counter += helper(root.left, Math.max(max, root.val)) 
-    counter += helper(root.right, Math.max(max, root.val));
+    if(root.val >= max) {
+      counter++;
+    }
 
     return counter;
   };
