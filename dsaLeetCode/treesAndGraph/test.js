@@ -46,52 +46,65 @@ class BinaryTree {
 const root = new TreeNode(1);
 
 const node2 = new TreeNode(2);
-const node3 = new TreeNode(1);
+const node3 = new TreeNode(3);
+const node4 = new TreeNode(4);
+const node5 = new TreeNode(5);
 
-const node4 = new TreeNode(6);
-const node5 = new TreeNode(2);
-const node6 = new TreeNode(0);
-const node7 = new TreeNode(8);
 
-const node8 = new TreeNode(7);
-const node9 = new TreeNode(4);
+root.right = node2;
+node2.right = node3;
+node3.right = node4;
+node4.right = node5;
 
-root.left = node2;
-root.right = node3;
 
-node2.left = node4;
-node2.right = node5;
-
-node3.left = node6;
-node3.right = node7;
-
-node5.left = node8;
-node5.right = node9;
-
-const lowestCommonAncestors = (root, p, q) => {
+const minDepth = (root) => {
   if(!root) {
-    return null;
-  }
-
-  if(root.val === p || root.val === q) {
-    return root.val;
-  }
-  const left = lowestCommonAncestors(root.left, p, q);
-  const right = lowestCommonAncestors(root.right, p, q);
-
-  if(left !== null && right !== null) {
-    return root.val;
+    return 0;
   };
 
-  if(left !== null) {
-    return left;
-  }
+  if(!root.left) {
+    return 1 + minDepth(root.right);
+  } else if(!root.right) {
+    return 1 + minDepth(root.left);
+  };
 
-  return right;
+  const left = 1 + minDepth(root.left);
+  const right = 1 + minDepth(root.right);
+
+  return Math.min(left, right);
+}
+
+const minDepthII = (root) => {
+  if(!root) {
+    return 0;
+  };
+
+
+  const stack = [[root, 1]];
+  let min = Infinity;
+
+  while(stack.length) {
+    const [node, depth] = stack.pop();
+
+    if(!node.left && !node.right) {
+      min = Math.min(depth, min);
+    }
+
+    if(node.left) {
+      stack.push([node.left, depth + 1]);
+    };
+
+    if(node.right) {
+      stack.push([node.right, depth + 1]);
+    };
+
+  };
+
+  return min;
+
 };
 
-
-console.log(lowestCommonAncestors(root, 7, 0));
+console.log(minDepthII(root));
 
 // pass max to the children
 // compare current value with max and update
