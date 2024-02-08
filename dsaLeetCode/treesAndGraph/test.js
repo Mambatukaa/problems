@@ -43,71 +43,55 @@ class BinaryTree {
   }
 };
 
-const sameTree = (p, q) => {
-  if(!p && !q) {
-    return true;
-  };
+const root = new TreeNode(1);
 
-  if(!p || !q) {
-    return false;
+const node2 = new TreeNode(2);
+const node3 = new TreeNode(1);
+
+const node4 = new TreeNode(6);
+const node5 = new TreeNode(2);
+const node6 = new TreeNode(0);
+const node7 = new TreeNode(8);
+
+const node8 = new TreeNode(7);
+const node9 = new TreeNode(4);
+
+root.left = node2;
+root.right = node3;
+
+node2.left = node4;
+node2.right = node5;
+
+node3.left = node6;
+node3.right = node7;
+
+node5.left = node8;
+node5.right = node9;
+
+const lowestCommonAncestors = (root, p, q) => {
+  if(!root) {
+    return null;
   }
 
-  if(p.val !== q.val) {
-    return false;
+  if(root.val === p || root.val === q) {
+    return root.val;
+  }
+  const left = lowestCommonAncestors(root.left, p, q);
+  const right = lowestCommonAncestors(root.right, p, q);
+
+  if(left !== null && right !== null) {
+    return root.val;
   };
 
-  return sameTree(p.left, q.left) && sameTree(p.right, q.right); 
+  if(left !== null) {
+    return left;
+  }
+
+  return right;
 };
 
 
-const isSameTree = (p, q) => {
-  if(!p && !q) {
-    return false;
-  };
-
-  const stack = [];
-
-  stack.push([p, q]);
-
-  while(stack.length) {
-    const [pNode, qNode] = stack.pop();
-
-    if(!pNode && !qNode) {
-      continue;
-    };
-
-    if(!pNode || !qNode) {
-      return false;
-    }
-
-    if(pNode.val !== qNode.val) {
-      return false;
-    };
-
-    stack.push([pNode.left, qNode.left]);
-    stack.push([pNode.right, qNode.right]);
-  };
-
-
-  return true
-
-};
-
-const pRoot = new TreeNode(1)
-const pNode2 = new TreeNode(2)
-const pNode3 = new TreeNode(3)
-
-pRoot.left = pNode2;
-pRoot.right = pNode3;
-
-const qRoot = new TreeNode(1)
-const qNode2 = new TreeNode(2)
-const qNode3 = new TreeNode(3)
-
-qRoot.left = qNode2;
-qRoot.right = qNode3;
-
-console.log(isSameTree(pRoot, qRoot));
+console.log(lowestCommonAncestors(root, 7, 0));
 
 // pass max to the children
 // compare current value with max and update
