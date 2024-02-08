@@ -6,86 +6,112 @@ class TreeNode {
   };
 };
 
-const node5 = new TreeNode(5);
 
-const node4 = new TreeNode(4);
-const node8 = new TreeNode(8);
-
-const node11 = new TreeNode(11);
-const node13 = new TreeNode(13);
-
-const node42 = new TreeNode(4);
-const node7 = new TreeNode(7);
-
-const node2 = new TreeNode(2);
-const node1 = new TreeNode(1);
-
-node5.left = node4;
-node5.right = node8
-
-node4.left = node11;
-node11.left = node7;
-
-node11.right = node2;
-
-node8.left = node13;
-node8.right = node42;
-
-node42.right = node1;
-
-
-
-const pathSum = (root, targetSum, sum = 0) => {
-  if(!root) {
-    return false;
+class BinaryTree {
+  constructor() {
+    this.root = null;
   };
 
-  if(!root.left && !root.right) {
 
-    if(targetSum === sum + root.val) {
-      return true;
+  insert(val) {
+    const newNode = new TreeNode(val);
+
+    if(!this.root) {
+      this.root = newNode;
+    } else {
+      const queue = [this.root];
+
+      while(queue.length) {
+        const curr = queue.shift();
+
+        if(!curr.left) {
+          curr.left = newNode;
+          return;
+        };
+
+        if(!curr.right) {
+          curr.right = newNode;
+          return;
+        };
+
+        queue.push(curr.left);
+        queue.push(curr.right);
+
+      };
+
     };
-
-    return false;
-  };
-
-  const leftSum = pathSum(root.left, targetSum, sum + root.val);
-  const rightSum = pathSum(root.right, targetSum, sum + root.val);
-
-  return leftSum || rightSum;
+  }
 };
 
-const pathSumII =(root, targetSum) {
+
+const countGoodNodesInBT = (root) => {
+
+  const helper = (root, max) => {
+    if(!root) {
+      return 0;
+    };
+
+    console.log(root.val, max)
+
+    let counter = root.val >= max ? 1 : 0;
+
+    counter += helper(root.left, Math.max(max, root.val)) 
+    counter += helper(root.right, Math.max(max, root.val));
+
+    return counter;
+  };
+
+  return helper(root, root.val);
+};
+
+const countGoodNodesInBTII = (root) => {
   if(!root) {
-    return false;
+    return 0;
   };
 
   const stack = [];
   stack.push([root, root.val]);
 
+  let answer = 0;
+
   while(stack.length) {
-    const [node, sum] = stack.pop();
+    const [node, max] = stack.pop();
 
-    if(!node.left && !node.right) {
-
-      if(sum === targetSum) {
-        return true;
-      };
-    }
+    if(node.val >= max) {
+      answer++;
+    };
 
     if(node.left) {
-      stack.push([node.left, sum + node.left.val]);
+      stack.push([node.left, Math.max(node.val, max)])
     };
 
     if(node.right) {
-      stack.push([node.right, sum + node.right.val]);
+      stack.push([node.right, Math.max(node.val, max)])
     };
-
-
   };
 
-  return false;
+
+  return answer;
 };
 
 
-console.log(pathSum(node5, 22));
+const root = new TreeNode(3)
+const node2 = new TreeNode(1)
+const node3 = new TreeNode(4)
+
+const node4 = new TreeNode(3)
+const node5 = new TreeNode(1)
+const node6 = new TreeNode(5)
+
+root.left = node2;
+root.right = node3;
+
+node2.left = node4;
+node3.left = node5;
+node3.right = node6;
+
+console.log(countGoodNodesInBT(root));
+
+// pass max to the children
+// compare current value with max and update
+// if currentValue < max update answer
