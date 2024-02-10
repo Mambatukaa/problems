@@ -57,54 +57,11 @@ node3.right = node4;
 node4.right = node5;
 
 
-const minDepth = (root) => {
-  if(!root) {
-    return 0;
-  };
+const maxDiff = (root) => {
 
-  if(!root.left) {
-    return 1 + minDepth(root.right);
-  } else if(!root.right) {
-    return 1 + minDepth(root.left);
-  };
-
-  const left = 1 + minDepth(root.left);
-  const right = 1 + minDepth(root.right);
-
-  return Math.min(left, right);
 }
 
-const minDepthII = (root) => {
-  if(!root) {
-    return 0;
-  };
-
-
-  const stack = [[root, 1]];
-  let min = Infinity;
-
-  while(stack.length) {
-    const [node, depth] = stack.pop();
-
-    if(!node.left && !node.right) {
-      min = Math.min(depth, min);
-    }
-
-    if(node.left) {
-      stack.push([node.left, depth + 1]);
-    };
-
-    if(node.right) {
-      stack.push([node.right, depth + 1]);
-    };
-
-  };
-
-  return min;
-
-};
-
-console.log(minDepthII(root));
+console.log(maxDiff(root));
 
 // pass max to the children
 // compare current value with max and update
