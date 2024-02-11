@@ -56,13 +56,6 @@ node2.right = node3;
 node3.right = node4;
 node4.right = node5;
 
-
-const maxDiff = (root) => {
-
-}
-
-console.log(maxDiff(root));
-
 // pass max to the children
 // compare current value with max and update
 // if currentValue < max update answer
