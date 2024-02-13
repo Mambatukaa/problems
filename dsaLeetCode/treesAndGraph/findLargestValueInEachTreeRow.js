@@ -12,7 +12,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
- // DFS
+ // BFS
 // Time Complexity: O(n)
 // Space Complexity: O(n)
 var largestValuesII = function(root) {
@@ -40,7 +40,7 @@ var largestValuesII = function(root) {
   return answer;
 };
 
-// DFS
+// BFS
 // Time Complexity: O(n)
 // Space Complexity: O(n)
 const largestValues = (root) => {
