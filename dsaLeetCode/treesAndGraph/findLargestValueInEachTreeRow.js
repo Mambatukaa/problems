@@ -12,7 +12,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
- // BFS
+ // DFS
 // Time Complexity: O(n)
 // Space Complexity: O(n)
 var largestValuesII = function(root) {
@@ -76,9 +76,41 @@ const largestValues = (root) => {
   return answer;
 };
 
+// DFS iterative
+const largestValuesIII = (root) => {
+  if(!root) {
+    return [];
+  };
+
+  const stack = [];
+  const answer = [];
+  stack.push([root, 0]);
+
+  while(stack.length) {
+    const [curr, level] = stack.pop();
+
+    const currAnswer = answer[level] === undefined ? -Infinity : answer[level];
+
+    answer[level] = Math.max(curr.val, currAnswer);
+
+    if(curr.left) {
+      stack.push([curr.left, level + 1]);
+    };
+
+    if(curr.right) {
+      stack.push([curr.right, level + 1]);
+    };
+
+  };
+
+
+  return answer;
+};
+
 /*
 
 DFS
+BFS
 
 find max value on each level then add max value to the answer array
 
