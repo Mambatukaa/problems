@@ -81,6 +81,25 @@ const insertIntoBST = (root, val) => {
 };
 
 
+// Clean code
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+var insertIntoBSTIII = function(root, val) {
+  if(!root) {
+    return new TreeNode(val);
+  };
+
+
+  if(root.val < val) {
+    // go right
+    root.right = insertIntoBST(root.right, val);
+  } else {
+    root.left = insertIntoBST(root.left, val);
+  }
+
+  return root;
+};
+
 /*
 
 
