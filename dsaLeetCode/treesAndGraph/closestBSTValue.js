@@ -11,9 +11,9 @@
  * @param {number} target
  * @return {number}
  */
-// Time Complexity: O(log n) // O(n)
-// Space Complexity: O(log n) // O(n)
-var closestValue = function(root, target) {
+ // Time Complexity: O(h) h - height of tree
+ // Space Complexity: O(h)
+var closestValueII = function(root, target) {
   let answer = null;
   let minDiff = Infinity;
 
@@ -36,16 +36,91 @@ var closestValue = function(root, target) {
 
   helper(root);
 
+  return answer;
+};
+
+// Time Complexity: O(h)
+// Space Complexity: O(h)
+var closestValueIII = function(root, target) {
+  const child = root.val > target ? root.left : root.right;
+
+  if(!child) return root.val;
+
+  const closest = closestValue(child, target);
+
+  const currentDiff = Math.abs(closest - target);
+  const rootDiff = Math.abs(root.val - target);
+  
+  const isEqual = currentDiff === rootDiff;
+  
+  if (isEqual) {
+    return closest > root.val ? root.val : closest;
+  } 
+
+  return currentDiff < rootDiff ? closest : root.val;
+};
+
+
+// Stack
+// Time Complexity: O(h)
+// Space Complexity: O(h)
+const closestValueI = (root, target) => {
+  const stack = [root];
+  let answer = Infinity;
+
+  while(stack.length) {
+    const curr = stack.pop();
+
+    const currDiff = Math.abs(curr.val - target);
+    const minDiff = Math.abs(answer - target);
+
+    if(currDiff < minDiff || currDiff === minDiff && curr.val < answer) {
+      answer = curr.val;
+    };
+
+    if(curr.val > target) {
+      // go left
+
+      if(curr.left) {
+        stack.push(curr.left);
+      }
+
+    } else {
+      // go right
+      if(curr.right) {
+        stack.push(curr.right);
+      }
+
+    }
+
+  };
+
 
   return answer;
 };
 
+// Time Complexity: O(h)
+// Space Complexity: O(1)
+const closestValue = (root, target) => {
+  let closest = root.val;
 
+  while(root) {
+    const rootDiff = Math.abs(root.val - target);
+    const currDiff = Math.abs(closest - target);
 
+    if(currDiff > rootDiff || currDiff === rootDiff && root.val < closest) {
+      closest = root.val;
+    };
 
+    if(root.val === target) break;
+
+    root = root.val > target ? root.left : root.right;
+  };
+
+  return closest;
+};
 
 /*
-
         4
       /   \
     2       5
