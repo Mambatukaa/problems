@@ -46,14 +46,15 @@ class Graph {
   bfsHelper(vertice) {
     const queue = [vertice];
 
-    while(queue.length) {
+    // O(E) ===> O(E) = O(V) + O(adj)
+    while(queue.length) { // O(V)
       const curr = queue.shift();
       curr.isVisited = true;
       const neighbors = curr.neighbors;
 
       console.log(curr.name, '==========');
 
-      for(const neighbor of neighbors) {
+      for(const neighbor of neighbors) { // O(adj)
         if(!neighbor.isVisited) {
           queue.push(neighbor);
           neighbor.isVisited = true;
