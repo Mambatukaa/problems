@@ -64,6 +64,7 @@ class Graph {
   };
 
   // TC: O(V) + O(E) ===> O(E) = O(V) + O(adj)
+  // SC: O(V) + O(E) ===> O(E) = O(V) + O(adj) QUEUE
   bfs() {
     for(const vertice of this.nodeList) {
       // O(E) ===> O(E) = O(V) + O(adj)

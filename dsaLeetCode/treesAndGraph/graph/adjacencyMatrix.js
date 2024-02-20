@@ -58,8 +58,6 @@ class Graph {
     return neighbors;
   };
 
-  // TC: O(n)
-  // SC: O(1)
   bfsHelper(vertice) {
     const queue = [vertice];
 
@@ -86,6 +84,7 @@ class Graph {
   };
 
   // TC: O(V) + O(E) ===> O(E) = O(V) + O(adj)
+  // SC: O(V) + O(E) ===> O(E) = O(V) + O(adj) QUEUE
   bfs() {
     for(const vertice of this.nodeList) {
       // O(E) ===> O(E) = O(V) + O(adj)

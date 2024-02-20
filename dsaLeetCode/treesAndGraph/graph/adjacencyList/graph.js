@@ -162,4 +162,5 @@ graph.addUndirectedEdge(3,4);
 graph.addUndirectedEdge(4,1);
 graph.addUndirectedEdge(4,3);
 
+console.log(graph.toString())
 console.log(graph.dfs())
