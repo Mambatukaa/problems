@@ -93,6 +93,50 @@ class Graph {
       };
     }
   };
+  
+
+  dfsHelper(vertice) {
+    // 1. use stack
+    // 2. push any vertice to the stack
+    // 3. pop the first element + print curr
+    // 4. set element to unvisited
+    // 5. add unvisited popped elements neighbors to the stack
+    // 6. set visited to the neighbor
+    // 7. repeat
+    
+    const stack = [vertice];
+
+    while(stack.length) {
+      const curr = stack.pop();
+      curr.visited = true;
+      console.log(curr.name, '-----------');
+      const neighbors = this.getNeighbors(curr);
+
+      for(const neighbor of neighbors) {
+        if(!neighbor.visited) stack.push(neighbor);
+        neighbor.visited = true;
+      };
+    }
+
+
+  };
+
+  // TC: O(V) + O(E) ===> O(E) = O(V) + O(adj)
+  // SC: O(V) + O(E) ===> O(E) = O(V) + O(adj) QUEUE
+  dfs() {
+    for(const vertice of this.nodeList) {
+      // O(E) ===> O(E) = O(V) + O(adj)
+      if(!vertice.visited) {
+        this.dfsHelper(vertice);
+      };
+    }
+  };
+
+  resetNodes() {
+    for(const vertice of this.nodeList) {
+      vertice.visited = false;
+    };
+  };
 };
 
 const A = new GraphNode("A", 0);
@@ -115,10 +159,11 @@ graph.addUndirectedEdge(2, 3);
 
 graph.addUndirectedEdge(3, 4);
 
-
-
 console.log(graph.toString())
 graph.bfs();
+graph.resetNodes();
+console.log('===================');
+graph.dfs();
 
 
 /*
