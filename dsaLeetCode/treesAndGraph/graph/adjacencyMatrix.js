@@ -84,8 +84,10 @@ class Graph {
 
   };
 
+  // TC: O(V) + O(E) ===> O(E) = O(V) + O(adj)
   bfs() {
     for(const vertice of this.nodeList) {
+      // O(E) ===> O(E) = O(V) + O(adj)
       if(!vertice.visited) {
         this.bfsHelper(vertice);
       };
@@ -144,7 +146,7 @@ graph.bfs();
   // If a graph is complete or almost complete we should use ADJACENCY MATRIX
   // If the number of edges are few then we should use ADJACENCY LIST
   
-  A: -> B -> C
+  A: -> B -> C -> D
   B: -> A -> E
   C: -> A -> D
   D: -> A -> C -> E
