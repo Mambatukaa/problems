@@ -74,6 +74,43 @@ class Graph {
     };
 
   };
+
+  dfsHelper(vertice) {
+    const stack = [vertice];
+
+    while(stack.length) {
+      const curr = stack.pop();
+      console.log(curr.name, '-------------');
+      curr.isVisited = true;
+      const neighbors = curr.neighbors;
+
+      for(const neighbor of neighbors) {
+
+        if(!neighbor.isVisited) {
+          stack.push(neighbor);
+          neighbor.isVisited = true;
+        };
+
+      };
+
+    };
+
+  };
+
+  // TC: O(V) + O(E) ===> O(E) = O(V) + O(adj)
+  // SC: O(V) + O(E) ===> O(E) = O(V) + O(adj) STACK
+  dfs() {
+    for(const vertice of this.nodeList) {
+      if(!vertice.isVisited)
+        this.dfsHelper(vertice);
+    };
+  };
+
+  resetNodes() {
+    for(const vertice of this.nodeList) {
+      vertice.isVisited = false;
+    };
+  };
   
 };
 
@@ -100,6 +137,9 @@ graph.addUndirectedEdge(3, 4);
 
 console.log(graph.toString())
 graph.bfs()
+graph.resetNodes();
+console.log('===================');
+graph.dfs()
 
 /*
 
