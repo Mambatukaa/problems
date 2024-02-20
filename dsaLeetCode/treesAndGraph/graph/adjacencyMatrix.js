@@ -5,6 +5,7 @@ class GraphNode {
   constructor(name, index) {
     this.name = name;
     this.index = index;
+    this.visited = false;
   };
 };
 
@@ -42,6 +43,54 @@ class Graph {
 
     return string;
   };
+
+  getNeighbors(vertice) {
+    const { index } = vertice;
+
+    const neighbors = [];
+
+    for(let i = 0; i < this.adjacencyMatrix.length; i++) {
+      if(this.adjacencyMatrix[index][i] === 1) {
+        neighbors.push(this.nodeList[i]);
+      };
+    };
+
+    return neighbors;
+  };
+
+  // TC: O(n)
+  // SC: O(1)
+  bfsHelper(vertice) {
+    const queue = [vertice];
+
+    while(queue.length) {
+      const curr = queue.shift();
+      curr.visited = true;
+
+      console.log(curr.name);
+
+      const neighbors = this.getNeighbors(curr);
+
+      for(const neighbor of neighbors) {
+        // if neighbor is not visited add to the queue
+        if(!neighbor.visited) {
+          queue.push(neighbor);
+          neighbor.visited = true;
+        };
+
+      };
+
+    };
+
+  };
+
+  bfs() {
+    for(const vertice of this.nodeList) {
+      if(!vertice.visited) {
+        this.bfsHelper(vertice);
+      };
+    }
+  };
 };
 
 const A = new GraphNode("A", 0);
@@ -67,6 +116,7 @@ graph.addUndirectedEdge(3, 4);
 
 
 console.log(graph.toString())
+graph.bfs();
 
 
 /*
