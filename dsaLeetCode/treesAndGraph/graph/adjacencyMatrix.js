@@ -187,6 +187,39 @@ class Graph {
     }
   };
 
+  parentPrint(vertice) {
+    if(vertice.parent) {
+      this.parentPrint(vertice.parent);
+    };
+
+    console.log(vertice.name)
+  };
+
+  // SSSPP
+  // Source and destination
+  // 
+  BFSForSSSPP(vertice) {
+    const queue = [vertice];
+
+    while(queue.length) {
+      const curr = queue.shift();
+      curr.isVisited = true;
+
+      console.log(`Printing for path: ${curr.name}:`)
+
+      this.parentPrint(curr);
+
+      const neighbors = this.getNeighbors(curr);
+
+      for(const neighbor of neighbors) {
+        if(!neighbor.isVisited) {
+          queue.push(neighbor);
+          neighbor.parent = curr;
+          neighbor.isVisited = true;
+        };
+      };
+    }
+  };
 
 };
 
