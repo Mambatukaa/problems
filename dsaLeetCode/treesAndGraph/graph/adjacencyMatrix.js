@@ -21,6 +21,10 @@ class Graph {
     this.adjacencyMatrix[j][i] = 1;
   };
 
+  addDirectedEdge(i, j) {
+    this.adjacencyMatrix[i][j] = 1;
+  };
+
   toString() {
     let string = "   ";
 
@@ -137,6 +141,53 @@ class Graph {
       vertice.visited = false;
     };
   };
+
+  // Time Complexity: O(E)
+  // Space Complexity: O(E)
+  topologicalSortHelper(vertice, stack) {
+    // if vertex depends on the currentVertex
+      // Go to that vertex
+      // then come back to currentVertex
+    // else
+      // Push currentVertex to Stack
+
+    const neighbors = this.getNeighbors(vertice);
+
+    if(neighbors.length) {
+      for(const neighbor of neighbors) {
+        if(neighbor.visited) continue;
+        this.topologicalSortHelper(neighbor, stack);
+        neighbor.visited = true;
+      };
+    } 
+
+    stack.push(vertice);
+
+    vertice.visited = true;
+  };
+
+  // Time Complexity: O(V + E)
+  // Space Complexity: O(V + E)
+  topologicalSort() {
+    const stack = [];
+
+    // Time Complexity: O(V)
+    // Space Complexity: O(V)
+    for(const vertice of this.nodeList) {
+      if(!vertice.visited)
+      // Time Complexity: O(E)
+      // Space Complexity: O(E)
+        this.topologicalSortHelper(vertice, stack);
+    };
+
+    while(stack.length) {
+      const curr = stack.pop();
+
+      console.log(curr.name);
+    }
+  };
+
+
 };
 
 const A = new GraphNode("A", 0);
@@ -144,26 +195,46 @@ const B = new GraphNode("B", 1);
 const C = new GraphNode("C", 2);
 const D = new GraphNode("D", 3);
 const E = new GraphNode("E", 4);
+const F = new GraphNode("F", 5);
+const G = new GraphNode("G", 6);
+const H = new GraphNode("H", 7);
 
-const nodeList = [A, B, C, D, E];
+const nodeList = [A, B, C, D, E, F, G, H];
 
 const graph = new Graph(nodeList);
+console.log(graph.toString())
 
-graph.addUndirectedEdge(0, 1);
-graph.addUndirectedEdge(0, 2);
-graph.addUndirectedEdge(0, 3);
+// A: C
+graph.addDirectedEdge(0, 2);
 
-graph.addUndirectedEdge(1, 4);
+// B: C
+graph.addDirectedEdge(1, 2);
+// B: D
+graph.addDirectedEdge(1, 3);
 
-graph.addUndirectedEdge(2, 3);
+// C: E
+graph.addDirectedEdge(2, 4);
 
-graph.addUndirectedEdge(3, 4);
+// D: F
+graph.addDirectedEdge(3, 5);
+
+// E: F
+graph.addDirectedEdge(4, 5)
+
+// E: H
+graph.addDirectedEdge(4, 7)
+
+
+// F: G
+graph.addDirectedEdge(5, 6)
+
+console.log('===================');
 
 console.log(graph.toString())
-graph.bfs();
-graph.resetNodes();
-console.log('===================');
-graph.dfs();
+graph.topologicalSort()
+
+
+
 
 
 /*
@@ -196,6 +267,14 @@ graph.dfs();
   C: -> A -> D
   D: -> A -> C -> E
   E: -> B -> D
+
+
+
+
+
+
+
+
 
 
  */
