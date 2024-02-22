@@ -8,10 +8,9 @@ var findCircleNum = function(isConnected) {
 
  // Space Complexity: O(E)
  // Time Complexity: O(E)
-  const bfs = (i) => {
+  const dfs = (i) => {
     const stack = [i];
 
-    // BFS
     while(stack.length) {
       const currIdx = stack.pop();
       const neighbors = isConnected[currIdx];
@@ -36,10 +35,9 @@ var findCircleNum = function(isConnected) {
 
  // Space Complexity: O(E)
  // Time Complexity: O(E)
-  const dfs = (i) => {
+  const bfs = (i) => {
     const queue = [i];
 
-    // DFS
     while(queue.length) {
       const currIdx = queue.shift();
       const neighbors = isConnected[currIdx];
