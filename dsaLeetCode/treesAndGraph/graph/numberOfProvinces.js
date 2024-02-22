@@ -64,6 +64,20 @@ var findCircleNum = function(isConnected) {
 
   };
 
+  // Time Complexity: O(E)
+  // Space Complexity: O(E)
+  const dfsRecursive = (vertice) => {
+    const neighbors = graph.get(vertice);
+
+    for(const neighbor of neighbors) {
+      if(!visited.has(neighbor)) {
+        visited.add(neighbor);
+        dfsRecursive(neighbor);
+      };
+    };
+
+  };
+
   // Time Complexity: O(V * E)
   // Space Complexity: O(V * E)
   for(let i = 0; i < n; i++) {
