@@ -3,72 +3,80 @@
  * @return {number}
  */
 var findCircleNum = function(isConnected) {
-  const visited = new Set();
-  let answer = 0;
+  // build graph
+  const n = isConnected.length;
 
- // Space Complexity: O(E)
- // Time Complexity: O(E)
-  const dfs = (i) => {
-    const stack = [i];
+  const graph = new Map();
 
-    while(stack.length) {
-      const currIdx = stack.pop();
-      const neighbors = isConnected[currIdx];
-
-      neighbors.forEach((neighbor, neighborIdx) => {
-        if(currIdx !== neighborIdx) {
-
-        // if neighbor is not visited
-        if(!visited.has(neighborIdx) && neighbor === 1) {
-          stack.push(neighborIdx);
-          visited.add(neighborIdx);
-        };
-
-      }
-
-      })
-
-      
-  
-    };
+  for(let i = 0; i < n; i++) {
+    graph.set(i, []);
   };
 
- // Space Complexity: O(E)
- // Time Complexity: O(E)
-  const bfs = (i) => {
-    const queue = [i];
+  for(let i = 0; i < n; i++) {
+    for(let j = i + 1; j < n; j++) {
+      if(isConnected[i][j] === 1) {
+        graph.get(i).push(j);
+        graph.get(j).push(i);
+      }
+    };
+  };
+  
+  const visited = new Set();
+  let provinces = 0;
+
+  // Time Complexity: O(E)
+  // Space Complexity: O(E)
+  const bfs = (vertice) => {
+    const queue = [vertice];
 
     while(queue.length) {
-      const currIdx = queue.shift();
-      const neighbors = isConnected[currIdx];
+      const currVertice = queue.shift()
+      const neighbors = graph.get(currVertice);
 
-      neighbors.forEach((neighbor, neighborIdx) => {
-        if(currIdx !== neighborIdx) {
+      for(const neighbor of neighbors) {
+        if(!visited.has(neighbor)) {
+          queue.push(neighbor);
+          visited.add(neighbor);
+        }
+      };
 
-        // if neighbor is not visited
-        if(!visited.has(neighborIdx) && neighbor === 1) {
-          queue.push(neighborIdx);
-          visited.add(neighborIdx);
-        };
-
-      }
-
-      })
     };
+
+  };
+
+  // Time Complexity: O(E)
+  // Space Complexity: O(E)
+  const dfs = (vertice) => {
+    const stack = [vertice];
+
+    while(stack.length) {
+      const currVertice = stack.pop()
+      const neighbors = graph.get(currVertice);
+
+      for(const neighbor of neighbors) {
+        if(!visited.has(neighbor)) {
+          stack.push(neighbor);
+          visited.add(neighbor);
+        }
+      };
+
+    };
+
   };
 
   // Time Complexity: O(V * E)
   // Space Complexity: O(V * E)
-  for(let i = 0; i < isConnected.length; i++) {
+  for(let i = 0; i < n; i++) {
     if(!visited.has(i)) {
-      answer++;
+      provinces++;
       dfs(i);
-      //bfs(i);
     };
-  };
-    
 
-  return answer;
+  };
+
+
+
+  return provinces;
 };
 
 
