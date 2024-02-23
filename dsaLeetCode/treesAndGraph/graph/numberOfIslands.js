@@ -2,8 +2,8 @@
  * @param {character[][]} grid
  * @return {number}
  */
-// Time Complexity: 
-// Space Complexity: 
+// Time Complexity: O(nodes + edges) ========> O(n * m)
+// Space Complexity: O(nodes + edges) =======> O(n * m)
 var numIslands = function(grid) {
   let answer = 0;
 
@@ -21,6 +21,8 @@ var numIslands = function(grid) {
   //                   right   left     bottom   top
   const directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
 
+  // Time Complexity: O(edges) 
+  // Space Complexity: O(edges)
   const bfs = (startRow, startColumn) => {
     const queue = [[startRow, startColumn]];
 
@@ -42,8 +44,8 @@ var numIslands = function(grid) {
 
   };
 
-  // Time Complexity: 
-  // Space Complexity: 
+  // Time Complexity:  O(edges)
+  // Space Complexity: O(edges)
   const dfs = (row, column) => {
     if(!isValid(row, column)) return;
 
@@ -63,8 +65,8 @@ var numIslands = function(grid) {
 
   };
 
-  // Time Complexity: 
-  // Space Complexity: 
+  // Time Complexity: O(nodes + edges) ========> O(n * m)
+  // Space Complexity: O(nodes + edges) =======> O(n * m)
   for(let row = 0; row < grid.length; row++) {
     for(let column = 0; column < grid[0].length; column++) {
       if(grid[row][column] === '1' && isValid(row, column)) {
