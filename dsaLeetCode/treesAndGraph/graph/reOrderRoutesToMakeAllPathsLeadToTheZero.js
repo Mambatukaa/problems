@@ -1,7 +1,12 @@
 /* @param {number} n
+// initial
+//
+///**
  * @param {number[][]} connections
  * @return {number}
  */
+// Time Complexity: O(n ^ 2);
+// Space Complexity: O(n);
 var minReordera = function(n, connections) {
 //   // pass curr node = 0;
 //   Search node from unvisited connections
@@ -12,7 +17,6 @@ var minReordera = function(n, connections) {
 //     call the function with neighbor  
 //   b. not found
 //     do nothing
-
 
   let answer = 0;
   const visited = new Set();
@@ -49,6 +53,9 @@ var minReordera = function(n, connections) {
   return answer;
 }
 
+// Visiting each node once
+// Time Complexity: O(n);
+// Space Complexity: O(n);
  var minReorder = function(n, connections) {
   const roads = new Set();
   const graph = new Map();
@@ -94,6 +101,11 @@ var minReordera = function(n, connections) {
 
  return dfs(0);
 };
+
+const connections = [[0,1],[1,3],[2,3],[4,0],[5,4]];
+const n = 6;
+
+console.log(minReorder(n, connections));
 
 /*
 
@@ -241,10 +253,5 @@ Undirected Graph
 5.
 6.
 7.
-
-
-
-
-
 
  */
