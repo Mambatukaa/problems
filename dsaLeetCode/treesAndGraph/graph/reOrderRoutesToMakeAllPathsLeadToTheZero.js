@@ -102,10 +102,64 @@ var minReordera = function(n, connections) {
  return dfs(0);
 };
 
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+const minReorderIterative = (n, connections) => {
+
+  const convertToHash = (from, to) => {
+    return `${from},${to}`;
+  };
+
+  // build undirected graph
+  const graph = new Map();
+  const roads = new Set();
+
+  for(let i = 0; i < n; i++) {
+    graph.set(i, []);
+  };
+
+  for(const [from, to] of connections) {
+    graph.get(from).push(to);
+    graph.get(to).push(from);
+
+    roads.add(convertToHash(from, to));
+  };
+
+  console.log(graph)
+
+  const visited = new Array(n).fill(false);
+  // do the DFS on graph and search (node, neighbor) from roads
+  // if found ? increase the answer
+  // track visited pair
+  
+  let answer = 0;
+  const stack = [0];
+  visited[0] = true;
+
+  while(stack.length) {
+    const currNode = stack.pop();
+    const neighbors = graph.get(currNode);
+
+    for(const neighbor of neighbors) {
+      if(!visited[neighbor]) {
+        if(roads.has(convertToHash(currNode, neighbor))) {
+          answer++;
+        };
+
+        visited[neighbor] = true;
+        stack.push(neighbor);
+      };
+    };
+  };
+
+
+  return answer;
+};
+
 const connections = [[0,1],[1,3],[2,3],[4,0],[5,4]];
 const n = 6;
 
-console.log(minReorder(n, connections));
+console.log(minReorderIterative(n, connections));
 
 /*
 
@@ -246,12 +300,7 @@ Undirected Graph
 
 
 
-1. Create Undirected graph. Add connection to the set
+1. Create Undirected graph. Add connection to the set.
 2. Do the DFS on undirected graph. Check (node, neighbor) from set. If found increase the answer
-3. 
-4.
-5.
-6.
-7.
 
  */
