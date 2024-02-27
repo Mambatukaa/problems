@@ -2,6 +2,8 @@
  * @param {number[][]} grid
  * @return {number}
  */
+// Time Complexity: O(R * C) // R = rows, C = columns
+// Space Complexity: O(R * C)
 var maxAreaOfIslandII = function(grid) {
   // build graph
   const m = grid.length; // row length
@@ -137,6 +139,8 @@ row, col + 1
 */
 
 // Recursive
+// Time Complexity: O(R * C) // R = rows, C = columns
+// Space Complexity: O(R * C)
 var maxAreaOfIslandIII = function(grid) {
   const m = grid.length; // row
   const n = grid[0].length; // column
@@ -164,6 +168,8 @@ var maxAreaOfIslandIII = function(grid) {
 };
 
 // Iterative
+// Time Complexity: O(R * C) // R = rows, C = columns
+// Space Complexity: O(R * C)
 var maxAreaOfIsland = function(grid) { 
   const m = grid.length; // row
   const n = grid[0].length; // column
