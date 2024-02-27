@@ -2,7 +2,7 @@
  * @param {number[][]} rooms
  * @return {boolean}
  */
-// Time Complexity: O(n)
+// Time Complexity: O(n + e)
 // Space Complexity: O(n)
 var canVisitAllRooms = function(rooms) {
   const n = rooms.length;
@@ -33,7 +33,7 @@ var canVisitAllRooms = function(rooms) {
   return !visited.includes(0);
 };
 
-// Time Complexity: O(n)
+// Time Complexity: O(n + e)
 // Space Complexity: O(n)
 var canVisitAllRoomsIterative = function(rooms) {
   const stack = [0];
