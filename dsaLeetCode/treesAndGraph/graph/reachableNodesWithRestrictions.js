@@ -58,21 +58,12 @@ var reachableNodes = function(n, edges, restricted) {
 
   // adjacency list
   const graph = new Map();
-  const restrict = new Set(restricted);
 
   for(let i = 0; i < n; i++) {
-    if(restrict.has(i)) {
-      continue;
-    };
-
     graph.set(i, []);
   };
 
   for(const [from, to] of edges) {
-    if(restrict.has(from) || restrict.has(to)) {
-      continue;
-    };
-
     graph.get(from).push(to)
     graph.get(to).push(from);
   };
@@ -80,6 +71,10 @@ var reachableNodes = function(n, edges, restricted) {
 
   const seen = new Set();
   seen.add(0);
+
+  for(const node of restricted) {
+    seen.add(node);
+  }
 
   const dfs = (node) => {
     const neighbors = graph.get(node);
@@ -98,7 +93,6 @@ var reachableNodes = function(n, edges, restricted) {
 
   return dfs(0);
 };
-
 
 /*
 
