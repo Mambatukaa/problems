@@ -4,8 +4,8 @@
  * @param {number[]} restricted
  * @return {number}
  */
-// Time Complexity: O(V + E)
-// Space Complexity: O(V + E)
+// Time Complexity: O(n) // this problem has n nodes and n - 1 edges
+// Space Complexity: O(n) // Stack
 var reachableNodesII = function(n, edges, restricted) {
 
   // adjacency list
@@ -52,8 +52,8 @@ var reachableNodesII = function(n, edges, restricted) {
   return answer;
 };
 
-// Time Complexity: O(V + E)
-// Space Complexity: O(V + E)
+// Time Complexity: O(n) // this problem has n nodes and n - 1 edges
+// Space Complexity: O(n) // Recursive stack
 var reachableNodes = function(n, edges, restricted) {
 
   // adjacency list
