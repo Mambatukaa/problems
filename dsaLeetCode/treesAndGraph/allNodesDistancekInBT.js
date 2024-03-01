@@ -1,4 +1,4 @@
-/**
+/*/**
  * Definition for a binary tree node.
  * function TreeNode(val) {
  *     this.val = val;
@@ -11,6 +11,8 @@
  * @param {number} k
  * @return {number[]}
  */
+ // Time Complexity: O(n)
+ // Space Complexity: O(n)
 var distanceK = function(root, target, k) {
 
   // add parent to the nodes
