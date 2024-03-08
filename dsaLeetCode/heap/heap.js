@@ -18,8 +18,25 @@ class Heap {
 
   };
 
+  isEmpty() {
+    return this.sizeOfTree === 0;
+  };
+
+  peek() {
+    if(this.isEmpty) {
+      console.log("Head is empty");
+      return
+    }
+
+    return this.heap[1];
+  }
+
+  sizeOfBP() {
+    return this.sizeOfTree;
+  };
+
   levelOrder() {
-    for(let i = 1; i < this.sizeOfTree; i++) {
+    for(let i = 1; i <= this.sizeOfTree; i++) {
       console.log(this.heap[i]);
     }
 
@@ -59,21 +76,106 @@ class Heap {
     this.heapifyBottomToTop(parentIdx) // O(log n)
   };
 
+
+  heapifyTopToBottom(index = 1) {
+    const leftChildIdx = index * 2;
+    const rightChildIdx = index * 2 + 1;
+    let swapChild;
+
+    if(this.sizeOfTree < leftChildIdx) {
+      return;
+    };
+
+    if(this.heapType === "max") {
+      // only one child
+      if(this.sizeOfTree === leftChildIdx) {
+
+        if(this.heap[index] < this.heap[leftChildIdx]) {
+          [this.heap[index], this.heap[leftChildIdx]] = [this.heap[leftChildIdx], this.heap[index]];
+        };
+
+        return;
+      } else {
+        // two children
+        if(this.heap[leftChildIdx] > this.heap[rightChildIdx]) {
+          swapChild = leftChildIdx;
+        } else {
+          swapChild = rightChildIdx;
+        };
+
+        // swap
+        if(this.heap[swapChild] > this.heap[index]) {
+          [this.heap[index], this.heap[swapChild]] = [this.heap[swapChild], this.heap[index]];
+        };
+
+      };
+
+
+    } else {
+      // min heap
+      // one child
+      if(leftChildIdx === this.sizeOfTree) {
+        if(this.heap[leftChildIdx] < this.heap[index]) {
+          // swap
+          [this.heap[leftChildIdx], [this.heap[index]]] = [this.heap[index], this.heap[leftChildIdx]];
+        };
+
+        return;
+      } else {
+        // two children
+        if(this.heap[leftChildIdx] < this.heap[rightChildIdx]) {
+          swapChild = leftChildIdx;
+        } else {
+          swapChild = rightChildIdx;
+        };
+
+        // swap
+        if(this.heap[swapChild] < this.heap[index]) {
+          [this.heap[index], this.heap[swapChild]] = [this.heap[swapChild], this.heap[index]]
+        }
+      }
+    };
+
+    this.heapifyTopToBottom(swapChild);
+  };
+
+  // only extract root node
+  extract() {
+    if(this.isEmpty()) {
+      console.log("Heap is empty.")
+      return;
+    };
+
+    [this.heap[1], this.heap[this.sizeOfTree]] = [this.heap[this.sizeOfTree], this.heap[1]];
+
+    this.heap[this.sizeOfTree] = -1;
+    this.sizeOfTree--;
+
+    this.heapifyTopToBottom();
+  };
+
+
 };
 
 
 // heap size
-const h = new Heap(8, 'max');
+const h = new Heap(8, 'min');
 
-h.insert(20)
-h.insert(10)
 h.insert(5)
-h.insert(60)
-h.insert(50)
-h.insert(40)
+h.insert(10)
+h.insert(20)
 h.insert(30)
+h.insert(40)
+h.insert(50)
+h.insert(60)
 
 h.levelOrder()
+h.extract();
+h.extract();
+h.extract();
+h.extract();
+console.log('---------------------------')
+h.levelOrder();
 
 /*
 
@@ -89,5 +191,4 @@ h.levelOrder()
 
 
 
- 
- */
+*/
