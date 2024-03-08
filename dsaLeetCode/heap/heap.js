@@ -154,6 +154,34 @@ class Heap {
     this.heapifyTopToBottom();
   };
 
+  deleteHeap() {
+    this.heap = null;
+  };
+
+  // heapify max
+  heapify(arr, index) {
+    // [-1, 50, 10, 30, 70, 20, 40]
+
+    const n = arr.length;
+    const leftChildIdx = index * 2 + 1;
+    const rightChildIdx = index * 2 + 2;
+    let largestIdx = index;
+
+    if(leftChildIdx < n && arr[leftChildIdx] > arr[largestIdx]) {
+      largestIdx = leftChildIdx;
+    };
+
+    if(rightChildIdx < n && arr[rightChildIdx] > arr[largestIdx]) {
+      largestIdx = rightChildIdx;
+    };
+
+    if(index !== largestIdx) {
+      //swap
+      [arr[index], arr[largestIdx]] = [arr[largestIdx], arr[index]];
+      
+      this.heapify(arr, largestIdx);
+    };
+  };
 
 };
 
@@ -161,21 +189,15 @@ class Heap {
 // heap size
 const h = new Heap(8, 'min');
 
-h.insert(5)
-h.insert(10)
-h.insert(20)
-h.insert(30)
-h.insert(40)
-h.insert(50)
-h.insert(60)
+const array = [50, 10, 30, 70, 20, 40]
 
-h.levelOrder()
-h.extract();
-h.extract();
-h.extract();
-h.extract();
-console.log('---------------------------')
-h.levelOrder();
+console.log(array, 'before')
+
+for(let i = Math.floor(array.length / 2) - 1; i >= 0; i--) {
+  h.heapify(array, i)
+}
+
+console.log(array, 'after')
 
 /*
 
