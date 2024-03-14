@@ -1,3 +1,4 @@
+
 var MedianFinder = function() {
   this.minHeap = new MinPriorityQueue();
   this.maxHeap = new MaxPriorityQueue();
@@ -37,6 +38,60 @@ MedianFinder.prototype.findMedian = function() {
 
   return (this.minHeap.front().element + this.maxHeap.front().element) / 2;
 };
+
+
+//  Binary Search ****************
+
+
+var MedianFinder = function() {
+  this.data = [];
+};
+
+/** 
+ * @param {number} num
+ * @return {void}
+ */
+ // Time Complexity: O(n) 
+ // Space Complexity: O(n) 
+MedianFinder.prototype.addNum = function(num) {
+   if(!this.data.length) {
+    this.data.push(num);
+    return;
+  };
+
+  let low = 0;
+  let high = this.data.length - 1;
+
+  while(low <= high) {
+    const midIdx = Math.floor((low + high) / 2);
+
+    if(this.data[midIdx] <= num) {
+      // go right
+      low = midIdx + 1;
+    } else {
+      high = midIdx - 1;
+    }
+  };
+
+  this.data.splice(low, 0, num);
+};
+
+/**
+ * @return {number}
+ */
+MedianFinder.prototype.findMedian = function() {
+  const n = this.data.length;
+
+  const mid = Math.floor(n/2);
+
+  if(n % 2 === 0) {
+    // even
+    return (this.data[mid] + this.data[mid - 1]) / 2
+  }
+
+  return this.data[mid];
+};
+
 
 /** 
  * Your MedianFinder object will be instantiated and called as such:
