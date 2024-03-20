@@ -4,7 +4,7 @@
  * @param {number} success
  * @return {number[]}
  */
-// TC: O(n * log m) || O(m log m)
+// TC: O((m * n) * log m) || O(m log m)
 // SC: O(1)
 var successfulPairs = function(spells, potions, success) {
   potions.sort((a, b) => a - b);
