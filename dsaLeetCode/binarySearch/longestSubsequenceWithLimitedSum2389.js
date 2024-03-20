@@ -3,7 +3,7 @@
  * @param {number[]} queries
  * @return {number[]}
  */
-// TC: O(m * n)
+// TC: O(m * n + n log n)
 // SC: O(1)
 var answerQueriesII = function(nums, queries) {
   nums.sort((a, b) => a - b);
@@ -35,7 +35,7 @@ var answerQueriesII = function(nums, queries) {
 
 
 // Prefix sum and binary search
-// Time Complexity: O(m * log n)
+// Time Complexity: O(m * log n + n log n)
 // Space Complexity: O(1)
 var answerQueries = function(nums,queries) {
     let res = [];
