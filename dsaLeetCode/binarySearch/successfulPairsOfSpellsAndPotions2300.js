@@ -33,7 +33,7 @@ var successfulPairs = function(spells, potions, success) {
 
     console.log(left, 'hahhaha', right)
 
-    answer.push(Math.abs(left - m));
+    answer.push(m - left);
   };
     
   return answer;
