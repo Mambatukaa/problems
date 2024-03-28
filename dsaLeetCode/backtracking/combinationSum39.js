@@ -3,7 +3,7 @@
  * @param {number} target
  * @return {number[][]}
  */
- // Time Complexity: O(n^ M/T ), where n = candidates.length, T = target, and M = min(candidates)
+ // Time Complexity: O(n^ T/M ), where n = candidates.length, T = target, and M = min(candidates)
  // Space Complexity: O(T/M)
 var combinationSum = function(candidates, target) {
   const answer = [];
