@@ -8,6 +8,7 @@
 
 // Bottom up solution
 // Time Complexity: O(n)
+// Space Complexity: O(1)
 const minCostClimbingStairs = (cost) => {
   const n = cost.length;
   
@@ -21,6 +22,7 @@ const minCostClimbingStairs = (cost) => {
 
 // Bottom up solution
 // Time Complexity: O(n)
+// Space Complexity: O(n)
 const minCostClimbingStairsIII = (cost) => {
   const n = cost.length;
   const dp = new Array(n + 1).fill(0);
