@@ -19,6 +19,23 @@ const minCostClimbingStairs = (cost) => {
   return Math.min(cost[n - 1], cost[n-2]);
 };
 
+// Bottom up solution
+// Time Complexity: O(n)
+const minCostClimbingStairsIII = (cost) => {
+  const n = cost.length;
+  const dp = new Array(n + 1).fill(0);
+  
+  for(let i = 2; i <= n; i++) {
+    dp[i] = Math.min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2]);
+  };
+
+  console.log(cost, '-------')
+  console.log(dp, '========')
+
+  return dp[n];
+};
+
+
 // Top-down solution
 // Time Complexity: O(n)
 // Space Complexity: O(n)
@@ -42,6 +59,6 @@ const minCostClimbingStairsII = (cost) => {
   return dp(cost.length);
 };
 
-const cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1008];
+const cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1];
 
-console.log(minCostClimbingStairsII(cost));
+console.log(minCostClimbingStairsIII(cost));
