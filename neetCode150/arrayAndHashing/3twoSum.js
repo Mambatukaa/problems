@@ -3,6 +3,7 @@
  * @param {number} target
  * @return {number[]}
  */
+// 10 minutes
 var twoSum = function(nums, target) {
 
   const map = new Map();
