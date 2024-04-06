@@ -2,7 +2,8 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-
+// Time Complexity: O(n)
+// Space Complexity: O(n)
 var productExceptSelf = function(nums) {
   const n = nums.length;
   const res = new Array(n).fill(0);
@@ -157,7 +158,5 @@ if(zeroesCount === 0) {
 
 return answer;
 
-
-
-
 */
+
