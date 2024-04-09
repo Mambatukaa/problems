@@ -3,6 +3,7 @@ import { MinPriorityQueue } from '@datastructures-js/priority-queue';
  * @param {number[]} nums
  * @return {number}
  */
+// 10 minutes
 // Time Complexity: O(n)
 // Space Complexity: O(n)
 var longestConsecutive = function(nums) {
