@@ -4,9 +4,50 @@
  */
  // Three pointers (SORT & TWO POINTERS)
  // Time Complexity: O(n^2)
- // Space Complexity: O(n)
+ // Space Complexity: O(1)
  // 20 minutes
-var threeSum = function(nums) {
+const threeSum = (nums) => {
+  const res = [];
+
+  if(nums.length < 3) {
+    return res;
+  };
+
+  nums.sort((a, b) => a - b);
+  const target = 0;
+
+  for(let i = 0; i < nums.length; i++) {
+    if(i > 0 && nums[i] === nums[i - 1]) {
+      continue;
+    };
+
+    let leftIdx = i + 1;
+    let rightIdx = nums.length - 1;
+
+    while(leftIdx < rightIdx) {
+      const threeSum = nums[i] + nums[leftIdx] + nums[rightIdx];
+
+
+      if(threeSum > target) {
+        rightIdx--;
+      } else if(threeSum < target) {
+        leftIdx++;
+      } else {
+        res.push([nums[i], nums[leftIdx], nums[rightIdx]])
+        leftIdx++;
+
+        while(nums[leftIdx] === nums[leftIdx - 1] && leftIdx < rightIdx) {
+          leftIdx++;
+        };
+      };
+    };
+  };
+
+  return res;
+}
+
+
+var threeSumII = function(nums) {
   const res = [];
   if(nums.length < 3) {
     return res;
