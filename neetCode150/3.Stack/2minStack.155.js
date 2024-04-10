@@ -1,7 +1,7 @@
 
-// Time Complexity: O(1) GetMin
-// Space Complexity: O(n)
 // 8 Minutes
+// Time Complexity: O(1)
+// Space Complexity: O(1)
 var MinStack = function() {
   this.stack = [];
   this.size = 0;
@@ -11,6 +11,9 @@ var MinStack = function() {
  * @param {number} val
  * @return {void}
  */
+
+// Time Complexity: O(1)
+// Space Complexity: O(1)
 MinStack.prototype.push = function(val) {
   if(!this.size) {
     this.stack.push([val, val]);
@@ -27,6 +30,9 @@ MinStack.prototype.push = function(val) {
 /**
  * @return {void}
  */
+
+// Time Complexity: O(1)
+// Space Complexity: O(1)
 MinStack.prototype.pop = function() {
   this.stack.pop();
   this.size--;
@@ -35,6 +41,8 @@ MinStack.prototype.pop = function() {
 /**
  * @return {number}
  */
+// Time Complexity: O(1)
+// Space Complexity: O(1)
 MinStack.prototype.top = function() {
   if(!this.size) {
     return null; 
@@ -46,6 +54,8 @@ MinStack.prototype.top = function() {
 /**
  * @return {number}
  */
+// Time Complexity: O(1)
+// Space Complexity: O(1)
 MinStack.prototype.getMin = function() {
   if(!this.size) {
     return;
