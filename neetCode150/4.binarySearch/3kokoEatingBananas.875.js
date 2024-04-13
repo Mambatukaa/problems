@@ -4,7 +4,7 @@
  * @return {number}
  */
 // GREEDY
-// Time Complexity: O(log p * h)
+// Time Complexity: O(log (max(p)) * p)
 // Space Complexity: O(1)
 // THE REASON WHY LOWER STARTS FROM 1 is if piles has 1 element the choosing min won't work
 // Gave up
