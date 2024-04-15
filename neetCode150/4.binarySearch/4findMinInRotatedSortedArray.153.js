@@ -31,6 +31,39 @@ var findMin = function(nums) {
 
 };
 
+var findMinII = function(nums) {
+  let res = nums[0];
+  let leftIdx = 0;
+  let rightIdx = nums.length - 1;
+
+  while(leftIdx <= rightIdx) {
+    const midIdx = Math.floor((leftIdx + rightIdx) / 2)
+    const midNum = nums[midIdx];
+
+    const leftNum = nums[leftIdx];
+    const rightNum = nums[rightIdx];
+
+    if(leftNum < rightNum) {
+      res = Math.min(res, leftNum);
+      break;
+    };
+
+    res = Math.min(res, midNum);
+
+    if(midNum >= leftNum) {
+      // to right
+      leftIdx = midIdx + 1;
+      
+    } else {
+      // to left
+      rightIdx = midIdx - 1;
+    };
+
+  };
+
+  return res;
+};
+
 
 //                   L  M  R
 console.log(findMin([3, 4, 2]))
