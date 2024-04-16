@@ -24,6 +24,7 @@ var search = function(nums, target) {
 
     // find midNum's position
     // first half
+    // left sorted portion
     if(nums[leftIdx] <= nums[midIdx]) {
       // check target is in the first half
       if(nums[leftIdx] <= target && target < nums[midIdx]) {
@@ -36,6 +37,7 @@ var search = function(nums, target) {
     } else {
       // second half
       // check target is in the second half
+      // right sorted portion
       if(target > nums[midIdx] && target <= nums[rightIdx]) {
         // go right
         leftIdx = midIdx + 1;
