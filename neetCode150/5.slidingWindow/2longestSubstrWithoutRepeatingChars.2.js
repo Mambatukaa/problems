@@ -6,7 +6,7 @@
 
 // 5 minutes
 // Time Complexity: O(n)
-// Space Complexity: O(1)
+// Space Complexity: O(n)
 
 var lengthOfLongestSubstring = function(s) {
   // iteration will be faster
