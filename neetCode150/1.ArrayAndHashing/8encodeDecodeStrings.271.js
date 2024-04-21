@@ -1,5 +1,5 @@
 // Time Complexity: O(n)
-// Space Complexity: O(n)
+// Space Complexity: O(k)
 // 10 minutes
 const encode = (strs) => {
   return strs.join(" ");
