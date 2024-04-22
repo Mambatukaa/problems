@@ -21,13 +21,23 @@ class Solution:
       return prev
 
 
-        
-
-
-
-
-
-
+# Recursive solution
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+      res = None
+    
+      def recursive(prev, head):
+          if not head:
+              return prev
+  
+          dummy = head.next
+          head.next = prev
+          prev = head
+  
+          return recursive(prev, dummy)
+  
+  
+      return recursive(None, head)
 
 """
 
