@@ -1,4 +1,4 @@
-# Time Complexity: O(n)
+# Time Complexity: O(26 n)
 # Space Complexity: O(n)
 # Gave up
 class Solution:
@@ -22,4 +22,42 @@ class Solution:
         answer = max(answer, right - left + 1)
 
       return answer
+
+
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+# Optimal solution
+
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+      n = len(s)
+
+      answer = 0
+      count = {}
+      left = 0
+      maxFreq = 0
+
+      for right in range(n):
+        count[s[right]] = count.get(s[right], 0) + 1 
+
+        maxFreq = max(count.get(s[right]), maxFreq)
+
+        print(maxFreq, '=========')
+
+        # is invalid SHRINK THE WINDOW
+        # n - count[max] > k
+        while (right - left + 1) - maxFreq > k:
+          count[s[left]] -= 1
+          left += 1
+
+        # update answer
+        answer = max(answer, right - left + 1)
+
+      return answer
+
+
+solution = Solution()
+
+solution.characterReplacement("ABABBAB", 2)
+
 
