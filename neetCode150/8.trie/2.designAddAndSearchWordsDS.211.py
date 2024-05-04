@@ -3,6 +3,8 @@ class TrieNode:
     self.children = {}
     self.endOfString = False
 
+# Time Complexity: O(M)
+# Space Complexity: O(M)
 class WordDictionary:
     def __init__(self):
       self.root = TrieNode()
@@ -28,29 +30,26 @@ class WordDictionary:
 
     def search(self, word: str) -> bool:
 
-      def helper(root, word, idx):
-        if len(word) <= idx:
-          return root.endOfString
+      def dfs(idx, root):
+        curr = root
 
-        ch = word[idx]
+        for i in range(idx, len(word)):
+            ch = word[i]
 
-        if ch == ".":
-          children = root.children
+            if ch == '.':
+                for child in curr.children.values():
+                    if dfs(i + 1, child):
+                        return True
+                return False
+            else:
+                if ch not in curr.children:
+                    return False
+                curr = curr.children[ch]
 
-          for child in children:
-            res = helper(children[child], word, idx + 1)
+        return curr.endOfString
 
-            if res:
-                return True
 
-        node = root.children.get(ch)
-
-        if not node:
-          return False
-
-        return helper(node, word, idx + 1)
-
-      return helper(self.root, word, 0)
+      return dfs(0, self.root)
 
 obj = WordDictionary()
 
