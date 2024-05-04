@@ -5,6 +5,7 @@ class TrieNode:
 
 # Time Complexity: O(M)
 # Space Complexity: O(M)
+# 1 day
 class WordDictionary:
     def __init__(self):
       self.root = TrieNode()
