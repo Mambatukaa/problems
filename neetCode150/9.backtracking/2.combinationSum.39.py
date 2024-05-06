@@ -17,9 +17,8 @@ class Solution:
         for i in range(idx, len(candidates)):
           candidate = candidates[i]
           curr.append(candidate)
-          backtracking(curr, currSum + candidate, idx)
+          backtracking(curr, currSum + candidate, i)
           curr.pop()
-          idx += 1
 
       backtracking([], 0, 0)
         
