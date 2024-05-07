@@ -132,16 +132,10 @@ class Solution:
       for row in range(m):
         
         for col in range(n):
-          seen = []
 
-          for i in range(m):
-            arr = []
+          # fill map 
+          seen = [[False for j in range(n)] for i in range(m)]
 
-            for j in range(n):
-              arr.append(False)
-            
-            seen.append(arr)
-          
           seen[row][col] = True
 
           # Starting point
