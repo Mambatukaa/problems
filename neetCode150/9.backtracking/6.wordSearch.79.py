@@ -1,6 +1,6 @@
 # Use Set to track duplication
-# Time Complexity: O(n * 4^n)
-# Space Complexity: O(n * 4^n)
+# Time Complexity: O(n * m * 4^n)
+# Space Complexity: O(n * m * 4^n)
 # 1 hour 23 minutes
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
@@ -140,6 +140,43 @@ class Solution:
 
           # Starting point
           if board[row][col] == word[0] and dfs(row, col, 1, seen):
+            return True
+
+      return False
+
+
+# Neetcode solution
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+      ROWS, COLS = len(board), len(board[0])
+      path = set()
+
+      def dfs(r, c, i):
+        if i == len(word):
+          return True
+
+        if (r < 0 or r >= ROWS or 
+            c < 0 or c >= COLS or 
+            word[i] != board[r][c] or 
+            (r, c) in path):
+            return False
+
+        path.add((r,c))
+
+        res = (dfs(r + 1, c, i + 1) or
+               dfs(r - 1, c, i + 1) or
+               dfs(r, c + 1, i + 1) or
+               dfs(r, c - 1, i + 1))
+
+        path.remove((r,c))
+
+        return res
+
+      # Find the starting point
+      for row in range(ROWS):
+        for col in range(COLS):
+          if board[row][col] == word[0] and dfs(row, col, 0):
             return True
 
       return False
