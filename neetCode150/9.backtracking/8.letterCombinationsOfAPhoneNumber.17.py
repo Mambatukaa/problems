@@ -1,5 +1,5 @@
-# Time Complexity: O(n * 2^n) n = digits.length
-# Space Complexity: O(n * 2^n)
+# Time Complexity: O(n * 4^n) n = digits.length
+# Space Complexity: O(n * 4^n)
 # 20 minutes
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
