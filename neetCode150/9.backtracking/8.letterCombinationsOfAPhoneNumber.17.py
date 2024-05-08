@@ -22,9 +22,7 @@ class Solution:
           return
 
         for letter in digitsMap[digits[start]]:
-          curr += letter
-          backtracking(curr, start + 1)
-          curr = curr[:-1]
+          backtracking(curr + letter, start + 1)
       
       if digits:
         backtracking("", 0)
