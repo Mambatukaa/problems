@@ -1,23 +1,23 @@
-from heapq import heappush, heappop
+from heapq import heappush, heappop, heapify
 
 # Min heap
 # Time Complexity: O(k)
 # Space Complexity: O(n)
 class Solution:
     def kClosest(self, points, k):
+        minHeap = []
 
-        distances = []
+        for [x, y] in points:
+            dist = x ** 2  + y ** 2
+            minHeap.append([dist, x, y])
+
+        heapify(minHeap)
+
         res = []
 
-        for i in range(len(points)):
-            [x, y] = points[i]
-
-            distance = (x * x + y * y, i)
-
-            heappush(distances, distance)
-
         while k > 0:
-            res.append(points[heappop(distances)[1]])
+            dist, x, y = heappop(minHeap)
+            res.append([x, y])
             k -= 1
 
         return res
@@ -25,7 +25,7 @@ class Solution:
 solution = Solution()
 
 
-solution.kClosest([[1, 3], [-2, 2], [1, 1], [3, 3]], 1)
+print(solution.kClosest([[1, 3], [-2, 2], [1, 1], [3, 3]], 2))
 
 """
 
