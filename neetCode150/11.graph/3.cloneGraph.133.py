@@ -28,20 +28,62 @@ class Solution:
       
       return dfs(node) if node else None
 
+# Using queue
+# BFS
+# Time Complexity: O(n) n = V + E
+# Space Complexity: O(n)
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+      if not node:
+        return None
 
+      oldToNew = {node: Node(node.val)}
 
+      def bfs(node):
+          if not node:
+            return None
+            
+          queue = deque([node])
 
+          while len(queue):
+              curr = queue.popleft()
 
+              for nei in curr.neighbors:
+                if nei not in oldToNew:
+                  oldToNew[nei] = Node(nei.val)
+                  queue.append(nei)
+                
+                oldToNew[curr].neighbors.append(oldToNew[nei])
 
+      bfs(node)
 
-        
+      return oldToNew[node]
 
 
 """
 1: 2 -> 4
 2: 1 -> 3
 3: 2 -> 4
-4: 1 -> 3
+4: 1 -> 3 
+
+
+
+
+queue = [4, 3, 3]
+
+    map = 1:1,
+
+    for nei in neighbors:
+        if map[nei]:
+
+        
+        queue.append(nei)
+    
+
+
+
+
+      
 
 
 """
