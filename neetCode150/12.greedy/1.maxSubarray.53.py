@@ -4,18 +4,19 @@
 # Space Complexity: O(1)
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-      maxSum = nums[0]
+      maxSub = nums[0]
 
-      curSum = 0
+      currSum = 0
 
       for n in nums:
-        currSum += n
-
         if currSum < 0:
           currSum = 0
 
-        maxSum = max(maxSum, currSum)
+        currSum += n
 
-      return maxSum
+        maxSub = max(maxSub, currSum)
+
+      return maxSub
+
 
 
