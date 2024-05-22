@@ -1,4 +1,4 @@
-# Greedy - Do the right step from the starting point once step failed return FALSE
+# Greedy  
 # Time Complexity: O(n)
 # Space Complexity: O(1)
 class Solution:
