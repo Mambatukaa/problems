@@ -1,5 +1,8 @@
 from heapq import heappop, heappush, heapify
 
+# Time Complexity: O(n log n)
+# Space Complexity: O(n)
+# Greedy
 class Solution:
     def largestSumAfterKNegations(self, nums: List[int], k: int) -> int:
       heapify(nums)
