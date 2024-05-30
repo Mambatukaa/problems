@@ -1,7 +1,7 @@
 # Time Complexity: O(m * n^m) m = nums.length
 # Space Complexity: O(m * n^m) m = nums.length
 # Gave up
-class Solution:
+class SolutionI:
     def permute(self, nums):
 
       res = []
@@ -25,20 +25,20 @@ class Solution:
       return res
         
 
-solution = Solution()
-
-solution.permute([1,2,3])
 
 # NeetCode solution
 class Solution:
-    def permute(self, nums: List[int]) -> List[List[int]]:
+    def permute(self, nums):
         res = []
         if(len(nums)==1):
             return [nums[:]]
 
         for i in range (len(nums)):
+            print("Nums:", nums)
             n = nums.pop(0)
             perm = self.permute(nums)
+
+            print(perm, 'hahaha')
 
             for p in perm:
                 p.append(n)
@@ -46,3 +46,7 @@ class Solution:
             nums.append(n)
 
         return res
+
+solution = Solution()
+
+solution.permute([1,2,3])
