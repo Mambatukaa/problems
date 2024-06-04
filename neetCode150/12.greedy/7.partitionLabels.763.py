@@ -6,20 +6,17 @@ class Solution:
 
       dic = {}
 
-      for i in range(len(s)):
-        dic[s[i]] = i
+      for i, val in enumerate(s):
+        dic[val] = i
       
-      
-      size = 0
-      lastIdx = 0
-
       res = []
+      size, end = 0, 0
 
-      for i in range(len(s)):
+      for i, val in enumerate(s):
         size += 1
-        lastIdx = max(lastIdx, dic[s[i]])
+        end = max(end, dic[val])
 
-        if lastIdx == i:
+        if end == i:
           res.append(size)
           size = 0
 
@@ -28,4 +25,4 @@ class Solution:
 
 solution = Solution()
 
-solution.partitionLabels("caedbdedda")
+print(solution.partitionLabels("caedbdedda"))
