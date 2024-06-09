@@ -10,7 +10,7 @@ class Solution:
         ans.append(i)
         f -= i
         i += 2
-
+      
       ans[-1] += f
     
     return ans
