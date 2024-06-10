@@ -92,3 +92,22 @@ def climbingStairsBottomToTopII(n):
   return p2
 
 print(climbingStairsBottomToTopII(100))
+
+# FROM BACK TO FRONT
+# Dynamic programming
+# Bottom to Top
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+def climbingStairsBottomToTopIII(n):
+  one = 1
+  two = 1
+  
+  for i in range(n - 1):
+    temp = two
+    two = one + two
+    one = temp
+
+  return two
+
+print(climbingStairsBottomToTopII(100))
+print(climbingStairsBottomToTopIII(100))
