@@ -1,7 +1,3 @@
-# Top to Bottom
-# Time Complexity: O
-# Space Complexity: O
-
 # Top to Bottom solution
 # Recursive
 # Memo
