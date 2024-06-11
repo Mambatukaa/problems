@@ -1,3 +1,5 @@
+nums = [1, 5, 3, 4, 5, 6, 7] 
+
 # Time Complexity: O(n)
 # Space Complexity: O(1)
 # BOTTOM TO TOP
@@ -17,6 +19,26 @@ def houseRobber(nums):
     nums[i] += max(nums[i - 2], nums[i - 3])
 
   return max(nums[-1], nums[-2])
+
+
+# NeetCode
+# REAL DP
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+def rob(nums):
+  rob1, rob2 = 0, 0
+  #  1, 5, 5, 9, 10, 15, 17
+  # [1, 5, 3, 4, 5, 6, 7]
+  # [rob1, rob2, n, n + 1]
+
+  for num in nums:
+    temp = max(num + rob1, rob2)
+    rob1 = rob2
+    rob2 = temp
+
+  return rob2
+
+print(rob(nums))
 
 # Time Complexity: O(n)
 # Space Complexity: O(n)
@@ -44,8 +66,6 @@ class Solution:
     return max(helper(nums, n - 1), helper(nums, n - 2))
 
 solution = Solution()
-nums = [1, 2, 3, 1, 4, 7, 8, 9, 10] 
-print(solution.houseRobberII(nums))
 
 print("*****************************")
 
@@ -61,9 +81,6 @@ def houseRobberIII(nums):
     if n <= 1:
       return nums[n]
 
-    print(n)
-
-    
     return nums[n] + max(helper(nums, n - 2), helper(nums, n - 3))
 
   n = len(nums)
