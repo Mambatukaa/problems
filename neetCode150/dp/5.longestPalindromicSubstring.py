@@ -6,7 +6,8 @@
 # Start from the center and expand it
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-      res = ''
+      resL = 0 
+      resR = 0
       resLength = 0
 
       
@@ -17,7 +18,8 @@ class Solution:
         while left >= 0 and right < len(s) and s[left] == s[right]:
           if right - left + 1 > resLength:
             resLength = right - left + 1
-            res = s[left:right+1]
+            resL = left
+            resR = right
 
           left -= 1
           right += 1
@@ -32,12 +34,13 @@ class Solution:
 
           if right - left + 1 > resLength:
             resLength = right - left + 1
-            res = s[left:right+1]
+            resL = left
+            resR = right
 
           left -= 1
           right += 1
         
-      return res
+      return s[resL:resR + 1]
 
 
 solution = Solution()
