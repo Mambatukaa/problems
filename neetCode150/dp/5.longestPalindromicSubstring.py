@@ -22,7 +22,7 @@ class Solution:
           left -= 1
           right += 1
       
-      for i in range(len(s)):
+        # even length
         left = i
         right = i + 1
 
