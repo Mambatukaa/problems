@@ -2,7 +2,7 @@ from collections import deque
 
 # Time Complexity: O(n^2)
 # Space Complexity: O(n^2)
-def snakesToLadders(board):
+def snakesAndLadders(board):
   length = len(board)
 
   # reverse the board to make calculation more easier
@@ -14,7 +14,7 @@ def snakesToLadders(board):
 
     # row is odd
     if row % 2:
-      col = length - 1 - c
+      col = length - 1 - col
       
     return [row, col]
 
@@ -28,11 +28,16 @@ def snakesToLadders(board):
 
     # role the dice and add neighbors
 
+    print("square:", square)
+
     for i in range(1, 7):
       nextSquare = square + i
 
+
       # get coordinate
       r, c = intToPos(nextSquare)
+
+      print(nextSquare, '---------------', board[r][c])
 
       if board[r][c] != -1:
         # this value will be our shortcut
@@ -50,14 +55,18 @@ def snakesToLadders(board):
   return -1
 
 board = [
-    [-1,-1,-1,-1,-1,-1], # 6 <-
-    [-1,-1,-1,-1,-1,-1], # 5 ->
-    [-1,-1,-1,-1,-1,-1], # 4 <-
-    [-1,35,-1,-1,13,-1], # 3 -> 
-    [-1,-1,-1,-1,-1,-1], # 2 <-
-    [-1,15,-1,-1,-1,-1]  # 1 ->
+
+[-1,1,2,-1],
+[2,13,15,-1],
+[-1,10,-1,-1],
+[-1,6,2,8]
+
 ] 
 
+print("=======", snakesAndLadders(board))
+
+
+"""
 b = [
 
     [15, 26, 27, 28, 29, 30], 
@@ -73,6 +82,7 @@ print(b)
 b.reverse()
 print(b)
 
+"""
 
 """
 
@@ -106,5 +116,29 @@ starting point = last row first column
 Save the nodes that we can reach each steps height is our response
 
 if there is no answer return -1
+
+
+
+
+
+
+[
+
+[-1,  1,  2, -1],
+[ 2, 13, 15, -1],
+[-1, 10, -1, -1],
+[-1,  6,  2,  8]
+
+
+[
+
+16 15 14 13
+ 9 10 11 12
+ 8  7  6  5
+ 1  2  3  4
+]
+
+
+]
 
 """
