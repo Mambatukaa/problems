@@ -24,7 +24,17 @@ class Solution:
         res *= 10
         res += int(ch)
 
-      return max(-2**31, min(sign * res, 2**31-1))
+      res *= sign
+
+
+      if res > 2**31 - 1:
+        return 2**31 - 1
+      elif res < -2**31 - 1:
+        return -2**31
+      else:
+        return res
+
+    
 
       """
       1. Check edge cases
