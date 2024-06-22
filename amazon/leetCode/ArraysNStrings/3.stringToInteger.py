@@ -29,7 +29,7 @@ class Solution:
 
       if res > 2**31 - 1:
         return 2**31 - 1
-      elif res < -2**31 - 1:
+      elif res < -2**31:
         return -2**31
       else:
         return res
