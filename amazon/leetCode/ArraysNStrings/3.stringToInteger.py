@@ -2,10 +2,12 @@
 # Space Complexity: O(1)
 class Solution:
     def myAtoi(self, s: str) -> int:
+
+      s = s.strip()
+
       if not s:
         return 0
 
-      s = s.strip()
 
       sign = -1 if s[0] == "-" else 1
 
