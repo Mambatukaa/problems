@@ -1,5 +1,7 @@
 from collections import deque
 
+# BFS
+# iterative
 # Time Complexity: O(n)
 # Space Complexity: O(n)
 def jumpGameIII(arr, start):
@@ -30,10 +32,32 @@ def jumpGameIII(arr, start):
 
   return False
 
+# DFS
+# Recursive
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+def canReach(arr, start):
+  n = len(arr)
+  seen = [False] * n
+
+  def helper(idx):
+    if idx < 0 or idx >= n or seen[idx] == True:
+      return False
+    
+    seen[idx] = True
+
+    if arr[idx] == 0:
+      return True
+
+    return helper(idx + arr[idx]) or helper(idx - arr[idx])
+
+  return helper(start)
+
+
 arr = [4, 2, 3, 0, 3, 1, 2]
 start = 0
 
-print('res:', jumpGameIII(arr, start))
+print('res:', canReach(arr, start))
 
 
 """
