@@ -1,7 +1,18 @@
 from collections import deque
 
-# Time Complexity: O(n^2 * A^N + D) A is number of alphabet (10 in our case), D is size of deadends
-# Space Complexity: O(A^N)
+# Time Complexity: O(d) where d = deadends length. for converting deadends into a set. 
+  # This is because everything else is constant. (4 slots, 10 digits)
+
+# However if the lock had a variable number of slots, let's say n, then this changes 
+  #our time complexity to O(10^n * n^2 + d). 
+
+# There are 10^n different states because each slots has 10 options. 
+  # At each state we perform, 
+
+# O(n^2) work because we loop over the n slots while performing string concatenation, 
+  # which is O(n) for immutable string.
+  
+# Space Complexity: O(4(d + 10^4))
 def openTheLock(deadends, target):
   deadSet = set(deadends)
 
