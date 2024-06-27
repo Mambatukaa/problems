@@ -3,10 +3,13 @@
 def threeSum(nums):
   nums.sort()
   n = len(nums)
-  seen = set()
+  res = []
 
   for i in range(n):
     num = nums[i]
+
+    if i > 0 and num == nums[i - 1]:
+      continue
 
     l = i + 1
     r = n - 1
@@ -15,23 +18,23 @@ def threeSum(nums):
       threeSum = num + nums[l] + nums[r]
 
       if threeSum == 0:
-        seen.add((num,nums[l],nums[r]))
-        r -= 1
+        res.append([num, nums[l], nums[r]])
         l += 1
+
+        print(nums[l], nums[l - 1])
+        if nums[l] == nums[l - 1] and l < r:
+          l += 1
+
       elif threeSum > 0:
         r -= 1
       else:
         l += 1
     
-  res = []
-
-  for s in seen:
-    res.append([s[0], s[1], s[2]])
 
   return res
 
 
-nums = [ -1, -1, 0, 1, 2, 4 ]
+nums = [ -1, -1, -1, 0, 1, 2, 4 ]
 print(threeSum(nums), 'ans')
 
 
