@@ -21,8 +21,7 @@ def threeSum(nums):
         res.append([num, nums[l], nums[r]])
         l += 1
 
-        print(nums[l], nums[l - 1])
-        if nums[l] == nums[l - 1] and l < r:
+        while nums[l] == nums[l - 1] and l < r:
           l += 1
 
       elif threeSum > 0:
@@ -34,7 +33,10 @@ def threeSum(nums):
   return res
 
 
-nums = [ -1, -1, -1, 0, 1, 2, 4 ]
+#nums = [ -1, -1, -1, 0, 1, 2, 4 ]
+nums = [-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6]
+
+
 print(threeSum(nums), 'ans')
 
 
