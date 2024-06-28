@@ -12,24 +12,21 @@ class TreeNode:
 # DFS
 class Solution:
     def leafSimilar(self, root1, root2) -> bool:
-      q = collections.deque()
 
-      def dfs(root, isStoring):
+      def dfs(root, res):
         if not root:
-          return True
+          return
 
         # check the node is leaf or not
         if not root.left and not root.right:
-          if isStoring:
-            q.append(root.val)
-          else:
-            if not q or q.popleft() != root.val:
-              return False
-          return True
+          res.append(root.val)
 
-        return dfs(root.left, isStoring) and dfs(root.right, isStoring)
+        dfs(root.left, res)
+        dfs(root.right, res)
 
-      return dfs(root1, True) and dfs(root2, False) and not 
+        return res
+
+      return dfs(root1, []) == dfs(root2, [])
 
 
 """
