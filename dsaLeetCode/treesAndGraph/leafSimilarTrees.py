@@ -1,7 +1,6 @@
 # Definition for a binary tree node.
-import collections
-class TreeNode:
-   def __init__(self, val=0, left=None, right=None):
+class TreeNode: 
+    def __init__(self, val=0, left=None, right=None):
        self.val = val
        self.left = left
        self.right = right
@@ -27,6 +26,29 @@ class Solution:
         return res
 
       return dfs(root1, []) == dfs(root2, [])
+
+    def leafSimilarII(self, root1, root2) -> bool:
+      def dfs(root):
+        res = []
+
+        stack = []
+        curr = root
+
+        while stack or curr:
+          while curr:
+            stack.append(curr)
+            curr = curr.left
+
+          curr = stack.pop()
+
+          if not curr.left and not curr.right:
+            res.append(curr.val)
+
+          curr = curr.right
+
+        return res
+
+      return dfs(root1) == dfs(root2)
 
 
 """
@@ -54,7 +76,7 @@ root2.left = TreeNode(3)
 
 solution = Solution()
 
-print("res:", solution.leafSimilar(root1, root2))
+print("res:", solution.leafSimilarII(root1, root2))
 
 
 
