@@ -1,3 +1,5 @@
+import collections
+
 class TreeNode:
   def __init__(self, val):
     self.val = val
@@ -26,12 +28,44 @@ def pathSum(root, targetSum):
 
   dfs(root, [], 0)
 
+
+  # Iterative
+  def bfs(root):
+    if not root:
+      return []
+
+    q = collections.deque([[root, root.val, [root.val]]])
+
+    while q:
+      node, currSum, path = q.popleft()
+      print(path, currSum)
+
+      if not node.left and not node.right and currSum == targetSum:
+        res.append(path.copy())
+
+      if node.right:
+        val = node.right.val
+        path.append(val)
+        q.append([node.right, currSum + val, path.copy()])
+        path.pop()
+
+      if node.left:
+        val = node.left.val
+        path.append(val)
+        q.append([node.left, currSum + val, path.copy()])
+        path.pop()
+
+
+  bfs(root)
+
   return res
 
 
-root = TreeNode(-2)
-node3 = TreeNode(-3)
+root = TreeNode(1)
+node2 = TreeNode(2)
+node3 = TreeNode(3)
 
+root.left = node2
 root.right = node3
 
 print("res:", pathSum(root, -5))
