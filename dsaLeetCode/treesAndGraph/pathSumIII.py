@@ -36,9 +36,32 @@ def pathSum(root, targetSum):
 
 
 
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+# Optimal solution
+def pathSumII(root, targetSum):
+  self.res = 0
+
+  def dfs(root, currSum, diff):
+    if not root:
+      return
+
+    currSum += root.val
+
+    if currSum - targetSum in diff:
+      self.res += diff.get(currSum - targetSum)
+
+    diff[currSum] = diff.get(currSum, 0) +  1
+
+    dfs(root.left, currSum, diff)
+    dfs(root.right, currSum, diff)
+    diff[currSum] -= 1
 
 
+  dfs(root, 0, {0: 1})
 
+  return self.res
+      
 """
 
 Return the number of paths
