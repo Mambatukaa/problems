@@ -17,6 +17,37 @@ class Solution:
 
     return max(dfs(root.left, 1, True), dfs(root.right, 1, False))
 
+# Solution from discussion
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+  def longestZigZagII(self, root):
+
+    self.res = 0
+
+    def dfs(node, left, right):
+      self.res = max(self.res, left, right)
+
+      if node.left:
+        dfs(node.left, right + 1, 0)
+
+      if node.right:
+        dfs(node.right, 0, left + 1)
+    
+    dfs(root, 0, 0)
+
+    return self.res
+
+  def longestZigZag(self, root: Optional[TreeNode]) -> int:
+    self.res = 0
+
+    def dfs(node, left, right):
+      if not node:
+        return max(left, right) - 1
+
+      return max(dfs(node.left, right + 1, 0), dfs(node.right, 0, left + 1))
+    
+    return dfs(root, 0, 0)
+
 
 root = TreeNode(1)
 node2 = TreeNode(2)
@@ -41,3 +72,4 @@ node5.right = node7
 solution = Solution()
 
 print('res:', solution.longestZigZag(root))
+print('res:', solution.longestZigZagII(root))
