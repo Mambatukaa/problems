@@ -39,7 +39,7 @@ def levelOrder(root):
 def levelOrderII(root):
   res = []
 
-  def dfs(root, depth):
+  def bfs(root, depth):
     if not root:
       return
  
@@ -48,10 +48,10 @@ def levelOrderII(root):
 
     res[depth].append(root.val)
 
-    dfs(root.left, depth + 1)
-    dfs(root.right, depth + 1)
+    bfs(root.left, depth + 1)
+    bfs(root.right, depth + 1)
 
-  dfs(root, 0)
+  bfs(root, 0)
 
   return res
 
