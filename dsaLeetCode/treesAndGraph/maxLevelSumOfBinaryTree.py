@@ -1,0 +1,58 @@
+# Definition for a binary tree node.
+class TreeNode:
+   def __init__(self, val=0, left=None, right=None):
+       self.val = val
+       self.left = left
+       self.right = right
+
+import collections
+
+class Solution:
+    def maxLevelSum(self, root) -> int:
+      resSum = -float('inf')
+      resLevel = 0
+      level = 1
+
+      q = collections.deque([root])
+
+      while q:
+        size = len(q)
+        levelSum = 0
+
+        for _ in range(size):
+          node = q.popleft()
+
+          levelSum += node.val
+
+          if node.left:
+            q.append(node.left)
+          if node.right:
+            q.append(node.right)
+
+        if levelSum > resSum:
+          resSum = levelSum
+          resLevel = level
+
+        level += 1
+
+      return resLevel
+
+solution = Solution()
+
+root = TreeNode(1)
+
+node2 = TreeNode(7)
+node3 = TreeNode(0)
+
+node4 = TreeNode(7)
+node5 = TreeNode(-8)
+
+root.left = node2
+root.right = node3
+
+node2.left = node4
+node2.right = node5
+
+
+# Return the level that has max sum
+print("res:", solution.maxLevelSum(root))
