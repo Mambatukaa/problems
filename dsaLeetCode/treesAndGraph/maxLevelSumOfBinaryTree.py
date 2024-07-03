@@ -8,6 +8,8 @@ class TreeNode:
 import collections
 
 class Solution:
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def maxLevelSum(self, root) -> int:
       resSum = -float('inf')
       resLevel = 0
@@ -37,6 +39,38 @@ class Solution:
 
       return resLevel
 
+    # Recursive BFS
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+    def maxLevelSumII(self, root) -> int:
+      res = []
+
+      def dfs(root, depth):
+        if not root:
+          return
+
+        if len(res) <= depth:
+          res.append(0)
+
+        res[depth] += root.val
+
+
+        dfs(root.left, depth + 1)
+        dfs(root.right, depth + 1)
+
+      dfs(root, 0)
+
+      level = -1
+      maxVal = -float('inf')
+
+      for i, num in enumerate(res):
+        if num > maxVal:
+          level = i + 1
+          maxVal = num
+
+      return level
+
+
 solution = Solution()
 
 root = TreeNode(1)
@@ -55,4 +89,4 @@ node2.right = node5
 
 
 # Return the level that has max sum
-print("res:", solution.maxLevelSum(root))
+print("res:", solution.maxLevelSumII(root))
