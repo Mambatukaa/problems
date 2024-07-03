@@ -45,7 +45,7 @@ class Solution:
     def maxLevelSumII(self, root) -> int:
       res = []
 
-      def dfs(root, depth):
+      def bfs(root, depth):
         if not root:
           return
 
@@ -55,10 +55,10 @@ class Solution:
         res[depth] += root.val
 
 
-        dfs(root.left, depth + 1)
-        dfs(root.right, depth + 1)
+        bfs(root.left, depth + 1)
+        bfs(root.right, depth + 1)
 
-      dfs(root, 0)
+      bfs(root, 0)
 
       level = -1
       maxVal = -float('inf')
