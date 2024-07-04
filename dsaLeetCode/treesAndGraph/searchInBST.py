@@ -22,3 +22,18 @@ class Solution:
           root = root.left
 
       return None
+
+    # recursive
+    def searchBST(self, root, val):
+      if not root:
+        return None
+      
+      if root.val == val:
+        return root
+
+      if root.val < val:
+        return self.searchBST(root.right, val)
+      else:
+        return self.searchBST(root.left, val)
+      
+
