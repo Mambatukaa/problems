@@ -2,7 +2,6 @@
 # Space Complexity: O(n)
 # STACK PROBLEM DS
 def validParenthesis(s):
-  opening = "({["
   pair = {
       "(": ")",
       "[": "]",
@@ -12,7 +11,7 @@ def validParenthesis(s):
   stack = []
 
   for ch in s:
-    if ch in opening:
+    if ch in pair:
       stack.append(ch)
     else:
       # edge case
