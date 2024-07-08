@@ -33,8 +33,26 @@ def removeLeafNodes(root, target):
 
   return root
 
+def removeLeafNodesII(root, target):
+  def dfs(root):
+    if not root:
+      return
 
-root = TreeNode(2)
+    if root.left:
+      root.left = dfs(root.left)
+    if root.right:
+      root.right = dfs(root.right)
+
+    if root.val == target and not root.left and not root.right:
+      return None
+    
+    return root
+
+  return dfs(root)
+
+
+
+root = TreeNode(1)
 
 node2 = TreeNode(2)
 node3 = TreeNode(2)
@@ -42,7 +60,7 @@ node3 = TreeNode(2)
 root.left = node2
 root.right = node3
 
-root = removeLeafNodes(root, 2)
+root = removeLeafNodesII(root, 2)
 print(root.val)
 
 print(root.left, '==', root.right)
@@ -68,8 +86,5 @@ Post order traversal:
       root.left = None
     root.right is a leaf and root.right == target:
       root.right = None
-
-    
-
 
 """
