@@ -43,10 +43,41 @@ class Solution:
 
     return totalLands - self.totalWalkedLands 
 
+  # Time Complexity: O(n + m)
+  # Space Complexity: O(n + m)
+  # NO additional variables needed
+  def numberOfEnclavesII(self, grid):
+    m = len(grid)
+    n = len(grid[0])
+
+    def dfs(row, col):
+      if row < 0 or col < 0 or row > m - 1 or col > n - 1 or grid[row][col] == 0:
+        return
+
+      grid[row][col] = 0
+
+      # top
+      dfs(row - 1, col)
+      # bottom
+      dfs(row + 1, col)
+      # left
+      dfs(row, col - 1)
+      # right
+      dfs(row, col + 1)
+
+    # iterate through bounderies
+    for row in range(m):
+      for col in range(n):
+        if grid[row][col] == 1:
+          # starting from bounderies
+          if row == 0 or row == m - 1 or col == 0 or col == n - 1:
+            dfs(row, col)
+
+    return sum((sum(row) for row in grid))
 
 grid = [[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0], [0,0,0,0]]
 solution = Solution()
-print("res:", solution.numberOfEnclaves(grid))
+print("res:", solution.numberOfEnclavesII(grid))
 
 
 """
