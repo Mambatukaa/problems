@@ -6,34 +6,25 @@ class Solution:
   def numOfMinutes(self, n, headID, manager, informTime):
     graph = defaultdict(list)
 
-    for i in range(n):
-      lead = manager[i]
-
-      if not lead == -1:
-        graph[lead].append(i)
-
-    res = informTime[headID]
+    for i, v in enumerate(manager):
+      graph[v].append(i)
 
       # Do bfs starting from headID
-    q = deque([headID])
+    q = deque([[headID, informTime[headID]]])
 
-    print(graph)
+    res = 0
 
     while q:
       size = len(q)
 
-      maxInformMinute = 0
-
       for _ in range(size):
-        curr = q.popleft()
+        curr, time = q.popleft()
         neighbors = graph[curr]
 
-        for neighbor in neighbors:
-          maxInformMinute = max(maxInformMinute, informTime[neighbor])
-          print(maxInformMinute)
-          q.append(neighbor)
+        res = max(res, time)
 
-      res += maxInformMinute
+        for neighbor in neighbors:
+          q.append([neighbor, time + informTime[neighbor]])
 
     return res
 
@@ -54,10 +45,8 @@ headID = 4
 manager = [5,9,6,10,-1,8,9,1,9,3,4]
 informTime = [0,213,0,253,686,170,975,0,261,309,337]
 
-
 solution = Solution()
 print("res:", solution.numOfMinutes(n, headID, manager, informTime))
-
 
 
 """
@@ -66,10 +55,9 @@ BFS (GRAPH)
 result's initial value is informTime to HeadID
 
 1. Start to add neighbors starting from HEADID
+2. Pass the current value to the neighbors
+3. Save current max as an answer
 
-2. Add maxInform time from each level to the result
-
-3. collectNeighbors using manager
 
 
 
