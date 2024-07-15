@@ -70,10 +70,73 @@ def getAncestorsII(n, edges):
   return ancestors
 
 
+  """
+    Topological Sort (BFS)
+      1. Build graph
+      2. Track indegree on each node
+      3. If there is node that has no indegree nodes. The node is safe to add Topological order.
+
+
+    Time Complexity: O(n^2 + m)
+    Space Complexity: O(n^2 + m)
+
+  """
+
+def getAncestorsIII(n, edges):
+  graph = [[] for _ in range(n)]
+  indegree = [0 for _ in range(n)]
+
+  # NOTE creating adjacency list
+  for fromNode, toNode in edges:
+    graph[fromNode].append(toNode)
+    indegree[toNode] += 1
+
+  # NOTE Queue for nodes with no incoming edges (Starting point of tropological sort)
+  nodesWithZeroIndegree = [i for i in range(n) if indegree[i] == 0]
+
+  # NOTE List to store the topological order of nodes
+  topologicalOrder = []
+
+  while nodesWithZeroIndegree:
+    currentNode = nodesWithZeroIndegree.pop(0)
+    topologicalOrder.append(currentNode)
+
+    # Reduce indegree of neighboring nodes and add them to the queue
+    # if they have no more incoming edges
+    for neighbour in graph[currentNode]:
+      indegree[neighbour] -= 1
+
+      if indegree[neighbour] == 0:
+        nodesWithZeroIndegree.append(neighbour)
+
+  # Initialize the result list and set list for storing ancestors
+  ancestorsList = [[] for _ in range(n)]
+  ancestorsSetList = [set() for _ in range(n)]
+
+  # Fill the set list with ancestors using the topological order
+  for node in topologicalOrder:
+    for neighbour in graph[node]:
+      # add immediate parent and other ancestors 
+      ancestorsSetList[neighbour].add(node)
+      # add parent's parent
+      ancestorsSetList[neighbour].update(ancestorsSetList[node])
+
+  print(ancestorsSetList)
+  # convert set to list and sort
+  for i in range(n):
+    for node in range(n):
+        if node == i:
+            continue
+        if node in ancestorsSetList[i]:
+            ancestorsList[i].append(node)
+
+  return ancestorsList
+
+
 n = 8
 edgeList = [[0,3],[0,4],[1,3],[2,4],[2,7],[3,5],[3,6],[3,7],[4,6]]
 
-print("res:", getAncestorsII(n, edgeList))
+print("res:", getAncestorsIII(n, edgeList))
 """
 
 Build graph
