@@ -66,6 +66,39 @@ def mergeKListsII(lists):
 
   return dummy.next
 
+# Time Complexity: O(n * log k) where k is the number of linked lists.
+# Space Complexity: O(1)
+def mergeKListsIII(lists):
+  n = len(lists)
+
+  if not n:
+    return
+
+  # Merge two lists
+  def mergeTwoLists(l1, l2):
+    dummy = ListNode(0)
+    curr = dummy
+
+    while l1 and l2:
+      if l1.val > l2.val:
+        curr.next = l2
+        l2 = l2.next
+      else:
+        curr.next = l1
+        l1 = l1.next
+      curr = curr.next
+
+    curr.next = l1 if l1 else l2
+
+    return dummy.next
+  
+  for i in range(n):
+    if i + 1 < n:
+      lists[i + 1] = mergeTwoLists(lists[i], lists[i + 1])
+
+  return lists[n - 1]
+
+
 
 # NOTE First List
 fNode3 = ListNode(5)
@@ -83,7 +116,7 @@ tNode1 = ListNode(2, tNode2)
 
 lists = [fNode1, sNode1, tNode1]
 
-mergedNode = mergeKListsII(lists)
+mergedNode = mergeKListsIII(lists)
 
 while mergedNode:
   print("val:", mergedNode.val)
