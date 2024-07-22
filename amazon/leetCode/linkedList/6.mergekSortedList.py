@@ -4,35 +4,29 @@ class Node:
     self.next = next
 
 # Simple Naive solution
-# Time Complexity: O(n)
+# BRUTE FORCE
+# Time Complexity: O(n log n)
 # Space Complexity: O(n) n - total nodes
 def mergeKLists(lists):
+  head = point = Node(0)
 
   nodes = []
 
-  for lList in lists:
-    curr = lList
+  for l in lists:
+    while l:
+      nodes.append(l.val)
+      l = l.next
 
-    while curr:
-      nodes.append(curr)
-      curr = curr.next
+  for node in sorted(nodes):
+    point.next = Node(node)
+    point = point.next
 
-  def sortByVal(node):
-    return node.val
-
-  nodes.sort(key=sortByVal)
-
-  dummy = Node(0)
-  curr = dummy
-
-  for node in nodes:
-    curr.next = node
-    curr = curr.next
-
-  return dummy.next
+  return head.next
 
 
-
+# COMPARE ONE BY ONE
+# Time Complexity: O(nk)
+# Space Complexity: O(n) n - total nodes
 
 
 # NOTE First List
