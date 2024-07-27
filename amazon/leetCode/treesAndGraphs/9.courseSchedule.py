@@ -15,14 +15,17 @@ def courseSchedule(numCourses, prerequisites):
     if course in seen:
       return False
 
+    # NOTE add visited node on seen
     seen.add(course)
 
+    # NOTE take the prerequisites of current node
     for neighbor in graph[course]:
       res = dfs(neighbor, seen)
 
       if not res:
         return False
 
+    # Current courses prerequisites completed and remove the course from visited and remove all prerequisites
     seen.remove(course)
     graph[course] = []
 
