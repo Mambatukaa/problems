@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 
 # DFS 
 # Time Complexity: O(n)
@@ -37,13 +37,49 @@ def courseSchedule(numCourses, prerequisites):
 
   return True
 
+
+
+# Kahn's Algorithm
+# Topological Sort
+# Time Complexity: O(V + E)
+# Space Complexity: O(V + E)
+def courseScheduleII(numCourses, prerequisites):
+  indegree = [0] * numCourses
+  adj = [[] for i in range(numCourses)]
+
+  for prerequisite in prerequisites:
+    adj[prerequisite[1]].append(prerequisite[0])
+    indegree[prerequisite[0]] += 1
+
+  queue = deque()
+
+  for i in range(numCourses):
+    if indegree[i] == 0:
+      queue.append(i)
+
+  visitedNodes = 0
+
+  while queue:
+    node = queue.popleft()
+    visitedNodes += 1
+
+    # NOTE Reduce the children indegree
+    for neighbor in adj[node]:
+      indegree[neighbor] -= 1
+
+      if indegree[neighbor] == 0:
+        queue.append(neighbor)
+
+  return visitedNodes == numCourses
+
+
 numCourses = 4
 prerequisites = [[2, 1], [1, 0]]
 
 prerequisites = [[2,0],[1,0],[3,1],[3,2],[1,3]]
 
 
-print("Res:", courseSchedule(numCourses, prerequisites))
+print("Res:", courseScheduleII(numCourses, prerequisites))
 """
 [[1,0],[1,2],[0,1]]
 
