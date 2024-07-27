@@ -1,5 +1,8 @@
 from collections import defaultdict
 
+# DFS 
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 def courseSchedule(numCourses, prerequisites):
   graph = defaultdict(list)
 
@@ -9,21 +12,21 @@ def courseSchedule(numCourses, prerequisites):
     graph[child].append(parent)
 
   def dfs(course, seen):
-    print(course, seen)
     if course in seen:
       return False
-
-
-    if not graph[course]:
-      return True
 
     seen.add(course)
 
     for neighbor in graph[course]:
       res = dfs(neighbor, seen)
 
-      return False if not res else True
-    
+      if not res:
+        return False
+
+    seen.remove(course)
+    graph[course] = []
+
+    return True
 
   for course in range(numCourses):
     if not dfs(course, set()):
