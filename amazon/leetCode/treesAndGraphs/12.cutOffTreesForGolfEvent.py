@@ -11,8 +11,8 @@ tree's height.
 
 
 1 2 3
-9 7 8 ====> 12
-101112 
+4 5 6 ====> 12 to cut
+7 8 9 
 
 
 Cut the trees from shortest to tallest. Find the minimum path to cut all of trees.
