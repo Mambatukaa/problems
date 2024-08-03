@@ -39,8 +39,12 @@ def wordSearch(board, word):
         # Search the word
         if dfs(row, col, 0):
           return True
-
   return False
+
+# Iterative
+# Time Complexity: O(n * m)
+# Space Complexity: O(n * m)
+def wordSearchII(board, word):
 
 
 board = [["a","b"],["c","d"]]
@@ -48,13 +52,21 @@ word = "acdb"
 
 board = [
   ["A","B","C","E"],
-  ["S","F","C","S"],
-  ["A","D","E","E"]
+  ["B","B","C","S"],
+  ["C","D","E","E"]
 ]
 
-word = "ABCCED"
+word = "ABBB"
 
-print("res:", wordSearch(board, word))
+board = [
+    ["A","B","C","E"],
+    ["S","F","E","S"],
+    ["X","D","E","E"]
+]
+
+word = "ABCESEEEFS"
+
+print("res:", wordSearchII(board, word))
 
 
 """
@@ -119,6 +131,24 @@ board and word consists of only lowercase and uppercase English letters.
 
 a c 
 d b
+
+
+
+["A","B","C","E"],
+["S","F","E","S"],
+["A","D","E","E"]
+
+
+ABCESEEEFS
+
+
+
+
+
+
+
+
+
 
 
 
