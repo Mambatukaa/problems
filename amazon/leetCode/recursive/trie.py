@@ -2,7 +2,7 @@ from collections import defaultdict
 
 class TrieNode:
   def __init__(self):
-    self.children = defaultdict()
+    self.children = defaultdict(TrieNode)
     self.endOfString = False
 
 
@@ -12,32 +12,24 @@ class Trie:
     print("************************ The Trie has been created. ************************")
 
   def insert(self, word):
-    current = self.root
+    node = self.root
 
     for ch in word:
-      node = current.children.get(ch)
+      node = node.children[ch]
 
-      if not node:
-        node = TrieNode()
-        current.children[ch] = node
-
-      current = node
-
-    current.endOfString = True
+    node.endOfString = True
     print("The word %s is successfully inserted" % word)
 
   def search(self, word):
-    current = self.root
+    node = self.root
 
     for ch in word:
-      node = current.children.get(ch)
+      node = node.children[ch]
 
       if not node:
         return False
-      
-      current = node
 
-    return current.endOfString
+    return node.endOfString
 
   def delete(self, word):
     print(word)
@@ -54,4 +46,6 @@ print("Search API", trie.search("API"))
 print("Search APIS", trie.search("APIS"))
 print("Search APISS", trie.search("APISS"))
 
+
+print(trie.root.children.get("N"))
 """
