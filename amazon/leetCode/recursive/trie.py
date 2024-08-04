@@ -24,6 +24,7 @@ class Trie:
       current = node
 
     current.endOfString = True
+    print("The word %s is successfully inserted" % word)
 
   def search(self, word):
     current = self.root
@@ -41,6 +42,7 @@ class Trie:
   def delete(self, word):
     print(word)
 
+"""
 trie = Trie()
 
 trie.insert("APP")
@@ -52,4 +54,4 @@ print("Search API", trie.search("API"))
 print("Search APIS", trie.search("APIS"))
 print("Search APISS", trie.search("APISS"))
 
-
+"""
