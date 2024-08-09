@@ -3,7 +3,7 @@ from collections import defaultdict
 class TrieNode:
   def __init__(self):
     self.children = defaultdict(TrieNode)
-    self.endOfString = False
+    self.isWord = False
 
 
 class Trie:
@@ -17,7 +17,7 @@ class Trie:
     for ch in word:
       node = node.children[ch]
 
-    node.endOfString = True
+    node.isWord = True
     print("The word %s is successfully inserted" % word)
 
   def search(self, word):
@@ -29,7 +29,7 @@ class Trie:
       if not node:
         return False
 
-    return node.endOfString
+    return node.isWord
 
   def delete(self, word):
     print(word)
