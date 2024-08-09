@@ -50,13 +50,9 @@ def wordSearchII(board, words):
 def wordSearch(board, words):
   trie = Trie()
 
-  firstLetters = set()
-
   # add words in trie
   for word in words:
-    firstLetters.add(word[0])
     trie.insert(word)
-
 
   # row length
   m = len(board)
@@ -65,47 +61,44 @@ def wordSearch(board, words):
   n = len(board[0])
 
   # response
-  res = []
+  res = set() 
   seen = set()
 
   def dfs(row, col, node, curr):
-    if node.endOfString:
-      res.append(curr)
-      node.endOfString = False
-
-      
     if (row < 0 or 
         col < 0 or 
         row == m or 
         col == n or
-        (row, col) in seen
+        (row, col) in seen or
+        board[row][col] not in node.children
         ):
       return
 
     seen.add((row, col))
 
     tmp = board[row][col]
-    node = node.children.get(tmp)
 
-    if not node:
-      return
+    node = node.children[board[row][col]]
+    curr += board[row][col]
+
+    if node.endOfString:
+      res.add(curr)
     
-    dfs(row + 1, col, node, curr + tmp)
-    dfs(row - 1, col, node, curr + tmp)
-    dfs(row, col + 1, node, curr + tmp)
-    dfs(row, col - 1, node, curr + tmp)
+    dfs(row + 1, col, node, curr)
+    dfs(row - 1, col, node, curr)
+    dfs(row, col + 1, node, curr)
+    dfs(row, col - 1, node, curr)
+
+    seen.remove((row, col))
   
   node = trie.root
 
   for row in range(m):
     for col in range(n):
-      letter = board[row][col]
-      if letter in firstLetters:
-        seen = set()
-        dfs(row, col, node, "")
-      
+      seen = set()
+      dfs(row, col, node, "")
 
-  return res
+  return list(res)
 
 board = [["o","a","a","n"],
          ["e","t","a","e"],
@@ -152,4 +145,9 @@ Output: ["eat","oath"]
 # If word is found add to the result
 
 
+
+[
+["a","b","c","e"],
+["x","x","c","d"],
+["x","x","b","a"]]
 """
