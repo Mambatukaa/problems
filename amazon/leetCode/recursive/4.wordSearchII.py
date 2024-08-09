@@ -47,6 +47,7 @@ def wordSearchII(board, words):
 
 
 
+# NeetCode
 def wordSearch(board, words):
   trie = Trie()
 
@@ -64,7 +65,7 @@ def wordSearch(board, words):
   res = set() 
   seen = set()
 
-  def dfs(row, col, node, curr):
+  def dfs(row, col, node, word):
     if (row < 0 or 
         col < 0 or 
         row == m or 
@@ -76,18 +77,16 @@ def wordSearch(board, words):
 
     seen.add((row, col))
 
-    tmp = board[row][col]
-
     node = node.children[board[row][col]]
-    curr += board[row][col]
+    word += board[row][col]
 
-    if node.endOfString:
-      res.add(curr)
+    if node.isWord:
+      res.add(word)
     
-    dfs(row + 1, col, node, curr)
-    dfs(row - 1, col, node, curr)
-    dfs(row, col + 1, node, curr)
-    dfs(row, col - 1, node, curr)
+    dfs(row + 1, col, node, word)
+    dfs(row - 1, col, node, word)
+    dfs(row, col + 1, node, word)
+    dfs(row, col - 1, node, word)
 
     seen.remove((row, col))
   
@@ -95,7 +94,6 @@ def wordSearch(board, words):
 
   for row in range(m):
     for col in range(n):
-      seen = set()
       dfs(row, col, node, "")
 
   return list(res)
@@ -115,6 +113,12 @@ words = ["aa"]
 print("res:", wordSearch(board, words))
 
 """
+
+
+1. TRIE.
+2. Add words to trie.
+3. Start to search words from Trie using dfs.
+4. If word is found add to the res.
 
 
 Given an m x n board of characters and a list of strings words, return all words on the board.
