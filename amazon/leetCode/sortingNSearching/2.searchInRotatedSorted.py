@@ -77,17 +77,16 @@ def search(nums, target):
     # mid belongs to left portion
     if nums[l] <= nums[m]:
 
-      # go right
       if target > nums[m] or target < nums[l]:
+        # go right
         l = m + 1
-      # go left
       else:
         r = m - 1
 
     # mid belongs to right portion
     else:
-      # go left
       if target < nums[m] or target > nums[r]:
+        # go left
         r = m - 1
       else:
         l = m + 1
