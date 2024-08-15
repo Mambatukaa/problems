@@ -104,3 +104,16 @@ nums = [3, 0]
 
 
 print("res:", search(nums, 0))
+
+
+
+"""
+1. Check the middle element in the first portion or second portion
+
+2. If first compare the target is in left or right
+2. If second compare the target is in left or right
+
+
+
+
+"""
