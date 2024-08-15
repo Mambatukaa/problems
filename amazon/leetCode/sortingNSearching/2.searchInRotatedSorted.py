@@ -59,6 +59,9 @@ else
 
 """
 
+# Binary Search
+# Time Complexity: O(log n)
+# Space Complexity: O(1)
 def search(nums, target):
 
   l = 0
@@ -67,14 +70,37 @@ def search(nums, target):
   while l <= r:
     m = l + (r - l) // 2
 
-    print(m)
+    if nums[m] == target:
+      return m
+
+
+    # mid belongs to left portion
+    if nums[l] <= nums[m]:
+
+      # go right
+      if target > nums[m] or target < nums[l]:
+        l = m + 1
+      # go left
+      else:
+        r = m - 1
+
+    # mid belongs to right portion
+    else:
+      # go left
+      if target < nums[m] or target > nums[r]:
+        r = m - 1
+      else:
+        l = m + 1
 
   return -1
 
 
-#        T
-#        L           M        R
 #        0  1  2  3  4  5  6  7
+#        L        M           R
+#        T
 nums =  [4, 5, 6, 7, 0, 1, 2, 3]
+nums =  [7, 0, 1, 2, 3, 4, 5, 6]
+nums = [3, 0]
+
 
 print("res:", search(nums, 0))
