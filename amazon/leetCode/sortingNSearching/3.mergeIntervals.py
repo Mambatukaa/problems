@@ -26,12 +26,27 @@ def mergeIntervals(intervals):
 
 
   return res
-  
 
+# Time Complexity: O(n log n)
+# Space Complexity: O(n)
+def mergeIntervalsII(intervals):
+  intervals.sort(key = lambda interval: interval[0])
+  merged = [intervals[0]]
+
+  for i in range(1, len(intervals)):
+    # overlapped
+    if merged[-1][1] >= intervals[i][0]:
+      merged[-1][1] = max(merged[-1][1], intervals[i][1])
+    else:
+      merged.append(intervals[i])
+
+  return merged
 
 intervals = [[2,6],[8,10],[15,18],[1,3]]
 
 print("Res:", mergeIntervals(intervals))
+intervals = [[2,6],[8,10],[15,18],[1,3]]
+print("Res:", mergeIntervalsII(intervals))
 
 """
 
