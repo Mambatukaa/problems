@@ -1,17 +1,38 @@
+from heapq import heappush, heappop, heapify
 
 
 # Time Complexity: O(n log n)
 # Space Complexity: O(n)
 def meetingRoomsII(intervals):
+  intervals.sort(key = lambda val: val[0])
 
-  return len(intervals) - len(merged)
+  minHeap = []
+  heapify(minHeap)
+  res = 0
 
-intervals = [[0,30],[5,10],[15,20]]
+  for interval in intervals:
+
+    while minHeap and minHeap[0] <= interval[0]:
+      heappop(minHeap)
+
+    heappush(minHeap, interval[1])
+
+    res = max(res, len(minHeap))
+
+  return res
+
+intervals = [[1,2], [2,3]]
 
 print("res:", meetingRoomsII(intervals))
 
 """
 
+
+curr[1] <= new[0]:
+  pop
+else
+  add
+  update the answer
 
 
 Given an array of meeting time intervals intervals where intervals[i] = [starti, endi], return the minimum number of conference rooms required.
