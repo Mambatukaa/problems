@@ -21,9 +21,36 @@ def meetingRoomsII(intervals):
 
   return res
 
-intervals = [[1,2], [2,3]]
 
-print("res:", meetingRoomsII(intervals))
+# Time Complexity: O(n log n)
+# Space Complexity: O(n)
+# NEETCODE
+def minMeetingRoomsII(intervals):
+  start = sorted([interval[0] for interval in intervals])
+  end = sorted([interval[1] for interval in intervals])
+
+  s, e = 0, 0
+
+  res, counter = 0, 0
+
+  while s < len(intervals):
+    # if current meeting starts before the last meetng finish add room counts
+    if start[s] < end[e]:
+      s += 1
+      counter += 1
+    # if current meeting starts after the last meetng finish substract room counts
+    else:
+      e += 1
+      counter -= 1
+
+    res = max(res, counter)
+
+  return res
+
+
+intervals = [[0, 30], [5, 10], [10, 15]]
+
+print("res:", minMeetingRoomsII(intervals))
 
 """
 
