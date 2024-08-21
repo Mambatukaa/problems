@@ -1,6 +1,10 @@
 from heapq import heappush, heapify, heappop
 from collections import Counter
 
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+# HEAP
+# TODO
 def topKFrequent(nums, k):
   # count frequency
   count = Counter(nums)
@@ -8,19 +12,36 @@ def topKFrequent(nums, k):
   heap = []
   heapify(heap)
 
-  for k, v in count.items():
-
 
 
   return heap
 
 
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+# Bucket sort
+# NEETCODE
+def topKFrequentII(nums, k):
+  count = Counter(nums)
 
+  freq = [[] for i in range(len(nums) + 1)]
+
+  for n, c in count.items():
+    freq[c].append(n)
+
+  res = []
+
+  for i in range(len(freq) -1, 0, -1):
+    for n in freq[i]:
+      res.append(n)
+
+      if len(res) == k:
+        return res
 
 nums = [1,1,1,2,2,3]
 k = 2
 
-print("Res:", topKFrequent(nums, k))
+print("Res:", topKFrequentII(nums, k))
 
 """
 
