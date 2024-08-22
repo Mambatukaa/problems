@@ -22,29 +22,21 @@ def closestOrigin(points, k):
 
   return res
 
-# Min Heap 
-# Time Complexity: O(k)
-# Space Complexity: O(n)
+# Max Heap 
+# Time Complexity: O(n)
+# Space Complexity: O(k)
 def closestOriginII(points, k):
-  minHeap = []
+  maxHeap = []
 
   for [x, y] in points:
-    dist = x ** 2 + y ** 2
+    dist = -(x ** 2 + y ** 2)
 
-    minHeap.append([dist, x, y])
+    heappush(maxHeap, (dist, x, y))
 
-  heapify(minHeap)
+    if len(maxHeap) > k:
+      heappop(maxHeap)
 
-  res = []
-
-  while k > 0:
-    _, x, y = heappop(minHeap)
-
-    res.append([x, y])
-
-    k -= 1
-
-  return res
+  return [(x, y) for (_, x, y) in maxHeap]
 
 points = [[3,3],[5,-1],[-2,4]]
 k = 2
