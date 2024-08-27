@@ -22,30 +22,42 @@ class LRUCache:
 
     print("Successfully created cache with capacity:", capacity)
 
+  def removeOld(self):
+    # remove old node from tail
+    node = self.tail.prev
+
+    node.prev.next = self.tail
+    self.tail.prev = node.prev
+
+    del self.cache[node.key]
+
+  def shiftToHead(self, node):
+    # remove node from current location
+    node.prev.next = node.next
+    node.next.prev = node.prev
+
+    # add new connections to current node
+    node.prev = self.head
+    node.next = self.head.next
+
+    # update tail
+    node.next.prev = node
+    self.head.next = node
+
   # Time Complexity: O(1)
   def put(self, key, value):
-
-    # if key exists in cache remove the key
+    # if key exists in cache update the value and shift to tail
     if key in self.cache:
       node = self.cache[key]
+      node.val = value
 
-      node.next.prev = node.prev
-      node.prev.next = node.next
+      self.shiftToHead(node)
 
-      del self.cache[key]
-
-      self.size -= 1
+      return
 
     # if size reaches the limit
     if self.size == self.capacity:
-      # remove the least recently used key
-      oldNode = self.tail.prev
-
-      oldNode.prev.next = self.tail
-      self.tail.prev = oldNode.prev
-
-      del self.cache[oldNode.key]
-      
+      self.removeOld()
       self.size -= 1
 
     # if key doesn't exists add to the head
@@ -66,16 +78,7 @@ class LRUCache:
     if key in self.cache:
       node = self.cache[key]
 
-      # remove node from current position
-      node.prev.next = node.next
-      node.next.prev = node.prev
-      
-      # move node to the head
-      self.head.next.prev = node
-      node.next = self.head.next
-
-      self.head.next = node
-      node.prev = self.head
+      self.shiftToHead(node)
 
       return self.cache[key].val
     
@@ -86,7 +89,6 @@ lruCache = LRUCache(1)
 lruCache.put(2, 1)
 print("get:", lruCache.get(2))
 lruCache.put(2, 2)
-
 print("get:", lruCache.get(2))
 
 
