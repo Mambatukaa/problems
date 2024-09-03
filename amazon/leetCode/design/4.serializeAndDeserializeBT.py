@@ -37,7 +37,6 @@ class Codec:
     return ','.join(res)
 
   def deserialize(self, data):
-    print(data)
     data = data.split(",")
 
     # edge case
@@ -64,50 +63,20 @@ class Codec:
 
       idx += 1
 
-
-
     return root
 
-root = TreeNode(1)
 
-node2 = TreeNode(2)
-node3 = TreeNode(3)
-        
-node4 = TreeNode(4)
-node5 = TreeNode(5)
+# PRE ORDER
+class CodecII:
+  def serialize(self, root):
+    print(root)
 
 
-root.left = node2
-root.right = node3
+  def deserialize(self, data):
+    return data
 
 
-node3.left = node4
-node3.right = node5
 
-codec = Codec()
-
-data = codec.serialize(root)
-
-print("data:", data)
-
-
-print("----------------------------------------------------------------------------------------------------------------------------")
-
-root = codec.deserialize(data)
-
-print("root:", root.val)
-
-print("kkkkkk")
-
-def inOrder(root):
-  if not root:
-    return
-
-  inOrder(root.left)
-  print(root.val)
-  inOrder(root.right)
-
-inOrder(root)
 
 # Your Codec object will be instantiated and called as such:
 # ser = Codec()
@@ -207,6 +176,113 @@ x.right = 2 * x + 1 = 3
 x = 2
 x.left = 2 * x = 4
 x.right = 2 * x + 1 = 5
+
+
+
+
+
+"""
+
+
+# PRE ORDER
+# NEETCODE
+class CodecII:
+  def serialize(self, root):
+    res = []
+
+    # preOrder
+    def dfs(root):
+      if not root:
+        res.append("N")
+        return
+
+      res.append(str(root.val))
+      dfs(root.left)
+      dfs(root.right)
+
+    dfs(root)
+
+    return ",".join(res)
+
+  def deserialize(self, data):
+    vals = data.split(",")
+    self.i = 0
+
+    # 1 -> 2 -> n -> n -> 3 -> 4 -> n -> n -> 5 -> n -> n
+
+    def dfs():
+      if vals[self.i] == "N":
+        self.i += 1
+        return None
+
+      node = TreeNode(int(vals[self.i]))
+      self.i += 1
+
+      node.left = dfs()
+      node.right = dfs()
+
+      return node
+
+    return dfs()
+
+root = TreeNode(1)
+
+node2 = TreeNode(2)
+node3 = TreeNode(3)
+        
+node4 = TreeNode(4)
+node5 = TreeNode(5)
+
+
+root.left = node2
+root.right = node3
+
+
+node3.left = node4
+node3.right = node5
+
+codec = CodecII()
+
+data = codec.serialize(root)
+
+print("data:", data)
+
+
+print("----------------------------------------------------------------------------------------------------------------------------")
+
+root = codec.deserialize(data)
+
+print("root:", root.val)
+
+print("kkkkkk")
+
+def inOrder(root):
+  if not root:
+    return
+
+  inOrder(root.left)
+  print(root.val)
+  inOrder(root.right)
+
+inOrder(root)
+
+"""
+
+                      1
+                    /   \
+                 2         3
+                         /   \
+                        4    5
+
+
+PRE ORDER
+
+
+root -> left -> right
+
+
+
+1 -> 2 -> n -> n -> 3 -> 4 -> n -> 5 -> n -> n
 
 
 
