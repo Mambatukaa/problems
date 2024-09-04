@@ -1,6 +1,6 @@
 
 # Naive approach
-# Time Complexity: O(n^2)
+# Time Complexity: O(n) ---> O(4n) only checking row, col, diagonal and anti-diagonal
 # Space Complexity: O(n)
 class TicTacToe:
 
@@ -51,6 +51,7 @@ class TicTacToe:
         else:
           break
 
+    if self.n - 1 - row == col:
       counter = 0
       # check anti diagonal
 
@@ -85,16 +86,49 @@ class TicTacToe:
 
     print("---------------------------------------------")
 
-ticTacToe = TicTacToe(2)
 
-ticTacToe.printBoard()
+# OPTIMAL SOLUTION
+# Time Complexity: O(1)
+# Space Complexity: O(n)
+class TicTacToeII:
+  def __init__(self, n):
+    self._n = n
 
+    self.rows = [0] * n
+    self.cols = [0] * n
+
+    self.antiDiagonal = 0
+    self.diagonal = 0
+
+  def move(self, row, col, player):
+    currentScore = 1 if player == 1 else -1 
+
+    self.rows[row] += currentScore
+    self.cols[col] += currentScore
+
+    # check diagonal
+    if row == col:
+      self.diagonal += currentScore
+
+    # check anti-diagonal
+    if self._n - 1 - row == col:
+      self.antiDiagonal += currentScore
+
+    if (abs(self.rows[row]) == self._n or 
+        abs(self.cols[col]) == self._n or 
+        abs(self.diagonal) == self._n or 
+        abs(self.antiDiagonal) == self._n
+       ):
+        return player
+
+    return 0 
+
+
+ticTacToe = TicTacToeII(2)
 
 print(ticTacToe.move(0, 1, 2))
 print(ticTacToe.move(1, 0, 1))
 print(ticTacToe.move(1, 1, 2))
-
-ticTacToe.printBoard()
 
 """
 
