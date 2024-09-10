@@ -1,58 +1,87 @@
+from collections import defaultdict
+
 class TrieNode:
     def __init__(self):
-        self.children = {}
-        self.sentences = defaultdict(int)
+      self.children = {}
+      self.sentences = defaultdict(int) 
 
 class AutocompleteSystem:
-    def __init__(self, sentences: List[str], times: List[int]):
-        self.root = TrieNode()
-        for sentence, count in zip(sentences, times):
-            self.add_to_trie(sentence, count)
-            
-        self.curr_sentence = []
-        self.curr_node = self.root
-        self.dead = TrieNode()
-        
-    def input(self, c: str) -> List[str]:
-        if c == "#":
-            curr_sentence = "".join(self.curr_sentence)
-            self.add_to_trie(curr_sentence, 1)
-            self.curr_sentence = []
-            self.curr_node = self.root
-            return []
-        
-        self.curr_sentence.append(c)
-        if c not in self.curr_node.children:
-            self.curr_node = self.dead
-            return []
-        
-        self.curr_node = self.curr_node.children[c]
-        sentences = self.curr_node.sentences
-        sorted_sentences = sorted(sentences.items(), key = lambda x: (-x[1], x[0]))
-        
-        ans = []
-        for i in range(min(3, len(sorted_sentences))):
-            ans.append(sorted_sentences[i][0])
-        
-        return ans
+    def __init__(self, sentences, times):
+      self.root = TrieNode()
 
-    def add_to_trie(self, sentence, count):
-        node = self.root
-        for c in sentence:
-            if c not in node.children:
-                node.children[c] = TrieNode()
-            node = node.children[c]
-            node.sentences[sentence] += count        
+      for sentence, count in zip(sentences, times):
+        self.addToTrie(sentence, count)
 
+      self.currSentence = []
+      self.currNode = self.root
+
+      # dummy
+      self.deadNode = TrieNode()
+
+        
+    def input(self, c):
+      
+      # NOTE finish it and add currSentence to the trie and clear currentSentence
+      if c == "#":
+        currSentence = "".join(self.currSentence)
+
+        self.addToTrie(currSentence, 1)
+        self.currSentence = []
+        self.currNode = self.root
+
+        print("Input has finished")
+
+
+      # NOTE if currentNode has not c
+      if c not in self.currNode.children:
+        # The future input we can't find a word
+        self.currNode = self.deadNode
+
+        return []
+
+
+      # NOTE collect character to the currentSentence
+      self.currSentence.append(c)
+
+      # NOTE if trie has c
+      self.currNode = self.currNode.children[c]
+      sentences = self.currNode.sentences
+
+      sortedSentences = sorted(sentences.items(), key = lambda x: (-x[1], x[0]))
+
+      ans = []
+
+      for i in range(min(3, len(sortedSentences))):
+        ans.append(sortedSentences[i][0])
+
+      return ans
+
+    def addToTrie(self, sentence, count):
+      curr = self.root
+
+      for c in sentence:
+        if not c in curr.children:
+          curr.children[c] = TrieNode()
+        curr = curr.children[c]
+        curr.sentences[sentence] += count
+      
+      print(f"Successfully added {sentence} to the trie")
+
+autocompleteSystem = AutocompleteSystem(["i love you", "island", "iroman", "i love leetcode"], [5, 3, 2, 2])
+
+print(autocompleteSystem.input("i"))
+print(autocompleteSystem.input(" "))
+print(autocompleteSystem.input("a"))
+
+print(autocompleteSystem.input("#"))
+
+
+# STORED WORDS
+print(autocompleteSystem.root.children["i"].sentences)
 
 # Your AutocompleteSystem object will be instantiated and called as such:
 # obj = AutocompleteSystem(sentences, times)
 # param_1 = obj.input(c)
-
-
-
-
-
 
 """
 
