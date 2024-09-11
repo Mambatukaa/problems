@@ -5,7 +5,17 @@ class TrieNode:
       self.children = {}
       self.sentences = defaultdict(int) 
 
+
+#Given n as the length of sentences, k as the average 
+# length of all sentences, and m as the number of times 
+# input is called,
+
+# Time Complexity: O(n * k + m * (n + m/k) * log(n + m / k))
+# Space Complexity: O(k * (n * k + m))
 class AutocompleteSystem:
+
+    # Time Complexity: O(1)
+    # Space Complexity: O(n * k)  n == words
     def __init__(self, sentences, times):
       self.root = TrieNode()
 
@@ -18,9 +28,11 @@ class AutocompleteSystem:
       # dummy
       self.deadNode = TrieNode()
 
+    # Sorting
+    # Time Complexity: O(m * n + m/k * log(n + m / k))
+    # Space Complexity: O()
         
     def input(self, c):
-      
       # NOTE finish it and add currSentence to the trie and clear currentSentence
       if c == "#":
         currSentence = "".join(self.currSentence)
