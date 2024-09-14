@@ -1,3 +1,5 @@
+# Time Complexity: O(n)
+# Space Complexity: O(1)
 class FreqStack(object):
 
     def __init__(self):
