@@ -3,21 +3,43 @@
 class FreqStack(object):
 
     def __init__(self):
-        self.freq = collections.Counter()
-        self.group = collections.defaultdict(list)
-        self.maxfreq = 0
+      self.cnt = {}
+      self.maxCnt = 0
+      self.stacks = {}
 
-    def push(self, x):
-        f = self.freq[x] + 1
-        self.freq[x] = f
-        if f > self.maxfreq:
-            self.maxfreq = f
-        self.group[f].append(x)
+
+    def push(self, val):
+      valCnt = 1 + self.cnt.get(val, 0)
+
+      self.cnt[val] = valCnt
+
+      if valCnt > self.maxCnt:
+        self.maxCnt = valCnt
+        self.stacks[valCnt] = []
+
+      self.stacks[valCnt].append(val)
 
     def pop(self):
-        x = self.group[self.maxfreq].pop()
-        self.freq[x] -= 1
-        if not self.group[self.maxfreq]:
-            self.maxfreq -= 1
+      res = self.stacks[self.maxCnt].pop()
 
-        return x
+      self.cnt[res] -= 1
+
+      if not self.stacks[self.maxCnt]:
+        self.maxCont -= 1
+      return res
+
+
+
+freqStack = FreqStack()
+
+freqStack.push(5)
+freqStack.push(7)
+freqStack.push(5)
+freqStack.push(7)
+freqStack.push(4)
+freqStack.push(5)
+
+print(freqStack.cnt)
+print(freqStack.stacks)
+
+
