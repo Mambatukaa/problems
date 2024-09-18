@@ -25,7 +25,7 @@ class FreqStack(object):
       self.cnt[res] -= 1
 
       if not self.stacks[self.maxCnt]:
-        self.maxCont -= 1
+        self.maxCnt -= 1
       return res
 
 
@@ -39,7 +39,7 @@ freqStack.push(7)
 freqStack.push(4)
 freqStack.push(5)
 
-print(freqStack.cnt)
-print(freqStack.stacks)
+print(freqStack.pop())
+print(freqStack.pop())
 
 
