@@ -2,7 +2,6 @@
 # Space Complexity: O(1) # Only English lowercase letters
 # Greedy
 def partitionLabels(s):
-
   last = {c: i for i, c in enumerate(s)}
 
   size = end = 0
