@@ -1,5 +1,7 @@
 import heapq
 
+# Can't deal with negative cycle
+
 class WeightedNode:
 
   def __init__(self, name, index):
