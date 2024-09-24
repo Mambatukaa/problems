@@ -1,52 +1,69 @@
-def merge(nums, left, mid, right):
-  # left l: mid
-  # right mid:r
-  leftArr = []
-  rightArr = []
+# helper function
+def merge(nums, left, right):
+  # l = pointer for left arr, r = pointer for right arr, i = pointer for divided nums 
+  l = r = i = 0
 
-  print(left, right)
+  # compare left and right and update nums
+  while l < len(left) and r < len(right):
 
-  for i in range(left, mid):
-    leftArr.append(nums[i])
+    # update nums by left
+    if left[l] < right[r]:
+      nums[i] = left[l]
+      l += 1
+    else:
+      nums[i] = right[r]
+      r += 1
 
-  for j in range(mid, right):
-    rightArr.append(nums[j])
+    # update nums pointer
+    i += 1
 
-  l = 0
-  r = 0
+  # If the lengths of left and right are different, one side contains more items than the other.
 
+  while l < len(left):
+    nums[i] = left[l]
+
+    l += 1
+    i += 1
+
+  while r < len(right):
+    nums[i] = right[r]
+
+    r += 1
+    i += 1
+
+# Time Complexity: O(N log N)
+# Space Complexity: O(N) Sorting In Place: No Algorithm : Divide and Conquer
+"""
+Merge Sort is a recursive algorithm and time complexity can be expressed as following recurrence relation. 
+  T(n) = 2T(n/2) + O(n) The solution of the above recurrence is O(nLogn). 
+  The list of size N is divided into a max of Logn parts, and the merging of all sublists into a single list takes O(N) time, 
+    the worst-case run time of this algorithm is O(nLogn) 
+      Best Case Time Complexity: O(n*log n) 
+      Worst Case Time Complexity: O(n*log n) 
+      Average Time Complexity: O(n*log n) 
+        The time complexity of MergeSort is O(n*Log n) in all the 3 cases (worst, average and best) as the mergesort always divides the array into two halves and takes linear time to merge two halves.
+
+
+"""
 def mergeSort(nums):
-  # base case
+
+  # Divide if true
   if len(nums) > 1:
     mid = len(nums) // 2
+
     left = nums[:mid]
     right = nums[mid:]
 
-    # divide
+    # Divide until false
     mergeSort(left)
     mergeSort(right)
 
-    i = j = k = 0
+    # Divide is finished then merge left and right
 
-    while i < len(left) and j < len(right):
-      if left[i] < right[j]:
-        nums[k] = left[i]
-        i += 1
-      else:
-        nums[k] = right[j]
-        j += 1
+    merge(nums, left, right)
 
-      k += 1
 
-    while i < len(left):
-      nums[k] = left[i]
-      i += 1
-      k += 1
 
-    while j < len(right):
-      nums[k] = right[j]
-      j += 1
-      k += 1
 
 
 nums = [6, 4, 3, 7, 5, 1, 2]
@@ -59,18 +76,6 @@ print("res:", nums)
 """
 
 6, 4, 3, 7, 5, 1, 2
-
-[6, 4, 3, 7] [5, 1, 2]
-
-[6, 4] [3 7] [5, 1] [2]
-
-[6] [4] [3] [7] [5] [1] [2] ----------------- Start to merge
-
-[4, 6] [3, 7] [1, 5], [2]
-
-[3, 4, 6, 7] [1, 2, 5]
-
-[1, 2, 3, 4, 5, 6, 7]
 
 
 """
