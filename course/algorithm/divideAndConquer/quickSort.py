@@ -1,6 +1,6 @@
 
 # Time Complexity: O(N log N)... Worst: O(n^2)
-# Space Complexity: O(1) Unlike merge sort
+# Space Complexity: O(n) Unlike merge sort
 
 """
 Choose pivot number and locate smaller numbers at the left of the pivot and larger numbers at the right of the pivot.
@@ -20,7 +20,7 @@ def partition(nums, start, end):
   return i
 
 # Time Complexity: O(N log N)
-# Space Complexity: O(1)
+# Space Complexity: O(n)
 def quickSort(nums, start, end):
   if start < end:
     pivot = partition(nums, start, end)
