@@ -71,3 +71,26 @@ output: [["a","a","b"],["aa","b"]]
 
 """
 
+
+
+# Permutations
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+
+      res = []
+
+      def backtracking(curr):
+        if len(curr) == len(nums):
+          res.append(curr[:])
+          return
+        
+        for j in range(len(nums)):
+          if nums[j] not in curr:
+            curr.append(nums[j])
+            backtracking(curr)
+            curr.pop()
+        
+      backtracking([])
+
+      return res
+
