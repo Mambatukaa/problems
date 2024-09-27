@@ -94,3 +94,29 @@ class Solution:
 
       return res
 
+# Subsets
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+
+      res = []
+
+
+      def backtracking(idx, curr):
+        res.append(curr[:])
+
+        if idx == len(nums):
+          return
+
+        for j in range(idx, len(nums)):
+          curr.append(nums[j])
+          backtracking(j + 1, curr)
+          curr.pop()
+
+      
+      backtracking(0, [])
+
+      return res
+        
+    
+
+
