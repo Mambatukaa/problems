@@ -1,6 +1,3 @@
-
-
-
 # create a string with n length using english vowels
 # Time Complexity: O(5^n)
 # Space Complexity: O(5^n)
@@ -58,7 +55,7 @@ def partition(s):
   backtracking(0)
   return res
 
-print("res:", partition("aab"))
+#print("res:", partition("aab"))
 
 """
 
@@ -75,7 +72,7 @@ output: [["a","a","b"],["aa","b"]]
 
 # Permutations
 class Solution:
-    def permute(self, nums: List[int]) -> List[List[int]]:
+    def permute(self, nums):
 
       res = []
 
@@ -96,7 +93,7 @@ class Solution:
 
 # Subsets
 class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+    def subsets(self, nums):
 
       res = []
 
@@ -119,4 +116,40 @@ class Solution:
         
     
 
+"""
 
+Given two integers n and k, return all possible combinations of k numbers chosen from the range [1, n].
+
+You may return the answer in any order.
+
+
+1 to k combinations
+
+"""
+
+class Solution:
+  def combine(self, n: int, k: int):
+    curr = []
+    res = []
+    
+    def backtracking(idx):
+      if len(curr) == k:
+        res.append(curr.copy())
+        return
+
+
+      for j in range(idx, n + 1):
+        curr.append(j)
+        backtracking(j + 1)
+        curr.pop()
+
+    backtracking(1)
+
+    return res
+
+solution = Solution()
+
+n = 4
+k = 2
+
+print("res:", solution.combine(n, k))
