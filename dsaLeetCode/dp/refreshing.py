@@ -20,6 +20,7 @@ def fibonacci(n):
 
   memo = {0: 0, 1: 1}
 
+  # recursive
   def fib(n):
     if n in memo:
       return memo[n]
@@ -30,7 +31,38 @@ def fibonacci(n):
 
     return res
 
-  return fib(n)
+  # iterative
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
+  def fibII(n):
+    if n < 1:
+      return 0
+
+    dp = [0] * (n + 1)
+    dp[1] = 1
+
+    for i in range(2, n + 1):
+      dp[i] = dp[i - 1] + dp[i - 2]
+
+    return dp[n]
+
+  
+  # iterative II
+  # Time Complexity: O(n)
+  # Space Complexity: O(1)
+  def fibIII(n):
+    if n < 1:
+      return 0
+
+    #    [n - 1, n]
+    dp = [0, 1]
+
+    for i in range(2, n + 1):
+      dp[0], dp[1] = dp[1], dp[0] + dp[1]
+      
+    return dp[1]
+
+  return fibIII(n)
 
 
 print("res:", fibonacci(10))
