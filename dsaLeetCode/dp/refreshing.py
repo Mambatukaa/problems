@@ -174,6 +174,27 @@ def minCostClimbingStairs(cost):
   # Top-Down Recursive
   # Time Complexity: O(n)
   # Space Complexity: O(n)
+  def minCostIII():
+    # Formula = dp(100) = min(dp(99) + cost[99], dp(98) + cost[98])
+    memo = [-1] * (len(cost) + 1)
+
+    def helper(idx):
+      if idx <= 1:
+        return 0
+
+      if memo[idx] != -1:
+        return memo[idx]
+
+      memo[idx] = min(helper(idx - 1) + cost[idx - 1], helper(idx - 2) + cost[idx - 2])
+
+      return memo[idx]
+
+    return helper(len(cost))
+
+
+  # Top-Down Recursive
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
   def minCost():
     memo = [-1] * len(cost)
 
@@ -206,6 +227,7 @@ def minCostClimbingStairs(cost):
 
   print("Res 1:", minCost())
   print("Res 2:", minCostII())
+  print("Res 3:", minCostIII())
 
 cost = [10, 15, 20, 10, 15, 20]
 
