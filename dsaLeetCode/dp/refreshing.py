@@ -83,8 +83,85 @@ def houseRobber(nums):
 
     return currMax
 
-  print("Res 1:", rob(nums))
+  # recursive
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
+  def robII(nums):
 
-nums = [1, 3, 4, 7, 10]
+    memo = {}
+
+    def helper(idx):
+      if idx < 0:
+        return 0
+
+      if idx <= 1:
+        return nums[idx]
+
+      if idx in memo:
+        return memo[idx]
+
+      memo[idx] = nums[idx] + max(helper(idx - 2), helper(idx - 3))
+      
+      return memo[idx]
+    
+    return max(helper(len(nums) - 1), helper(len(nums) - 2))
+
+
+  # Recursive
+  # Top Down
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
+  def robIII(nums):
+    memo = {}
+
+    def helper(idx):
+      if idx < 0:
+        return 0
+
+      if idx == 0:
+        return nums[idx]
+
+      if idx in memo:
+        return memo[idx]
+
+      withCurrent = nums[idx] + helper(idx - 2)
+      skipped = helper(idx - 1)
+
+      memo[idx] = max(withCurrent, skipped)
+
+      return max(withCurrent, skipped)
+
+    return max(helper(len(nums) - 1), helper(len(nums) - 2))
+
+  # Recursive
+  # Top Down
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
+  def robIV(nums):
+    memo = {}
+
+    def helper(idx):
+      if idx < 0:
+        return 0
+
+      if idx <= 1:
+        return nums[idx]
+
+      if idx in memo:
+        return memo[idx]
+
+      memo[idx] = nums[idx] + max(helper(idx - 2), helper(idx - 3))
+
+      return memo[idx]
+
+    return max(helper(len(nums) - 1), helper(len(nums) - 2))
+
+  print("Res 1:", rob(nums))
+  print("Res 2:", robII(nums))
+  print("----------------------------")
+  print("Res 3:", robIII(nums))
+  print("Res 4:", robIV(nums))
+
+nums = [2, 1, 1, 2]
 houseRobber(nums)
 
