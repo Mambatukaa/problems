@@ -65,4 +65,26 @@ def fibonacci(n):
   return fibIII(n)
 
 
-print("res:", fibonacci(10))
+# print("res:", fibonacci(10))
+
+
+def houseRobber(nums):
+
+
+  # iterative
+  # Time Complexity: O(n)
+  # Space Complexity: O(1)
+  def rob(nums):
+    skipped = 0
+    currMax = 0
+
+    for num in nums:
+      currMax, skipped = max(currMax, skipped + num), currMax
+
+    return currMax
+
+  print("Res 1:", rob(nums))
+
+nums = [1, 3, 4, 7, 10]
+houseRobber(nums)
+
