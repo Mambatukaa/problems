@@ -163,5 +163,52 @@ def houseRobber(nums):
   print("Res 4:", robIV(nums))
 
 nums = [2, 1, 1, 2]
-houseRobber(nums)
+#houseRobber(nums)
+
+
+
+# MINIMUM COST CLIMBING STAIRS
+
+def minCostClimbingStairs(cost):
+
+  # Top-Down Recursive
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
+  def minCost():
+    memo = [-1] * len(cost)
+
+    def helper(idx):
+      if idx >= len(cost):
+        return 0
+
+      if memo[idx] != -1:
+        return memo[idx]
+      
+      # make two decisions
+      memo[idx] = cost[idx] + min(helper(idx + 1), helper(idx + 2))
+
+      return memo[idx]
+    
+    return min(helper(0), helper(1))
+
+   # add solution using iterative
+   # Bottom-UP solution
+   # Time Complexity: O(n)
+   # Space Complexity: O(1)
+  def minCostII():
+    step = 0
+    jump = 0
+
+    for c in cost:
+      step, jump = min(step + c, jump + c), step
+
+    return min(step, jump)
+
+  print("Res 1:", minCost())
+  print("Res 2:", minCostII())
+
+cost = [10, 15, 20, 10, 15, 20]
+
+minCostClimbingStairs(cost)
+
 
