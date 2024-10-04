@@ -225,9 +225,25 @@ def minCostClimbingStairs(cost):
 
     return min(step, jump)
 
+
+   # add solution using iterative
+   # Bottom-UP solution
+   # Time Complexity: O(n)
+   # Space Complexity: O(n)
+  def minCostIV():
+    n = len(cost)
+
+    dp = [0] * (n + 1)
+
+    for i in range(2, n + 1):
+      dp[i] = min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2])
+
+    return dp[n]
+
   print("Res 1:", minCost())
   print("Res 2:", minCostII())
   print("Res 3:", minCostIII())
+  print("Res 4:", minCostIV())
 
 cost = [10, 15, 20, 10, 15, 20]
 
