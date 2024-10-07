@@ -171,6 +171,8 @@ nums = [2, 1, 1, 2]
 
 def minCostClimbingStairs(cost):
 
+  # FORMULA dp[100] = min(dp[99] + cost[99], dp[98] + cost[98])
+
   # Top-Down Recursive
   # Time Complexity: O(n)
   # Space Complexity: O(n)
