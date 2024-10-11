@@ -29,11 +29,37 @@ def longestIncreasingSubsequence(nums):
 
     return max(dp)
     
-  bottomUpII(nums)
-  return bottomUp(nums)
+
+  # Time Complexity: O(n^2)
+  # Space Complexity: O(n)
+  def topDown(nums):
+    memo = [0] * len(nums)
+
+    def dp(i):
+      if memo[i]:
+        return memo[i]
+
+      res = 1
+
+      for j in range(i):
+        if nums[i] > nums[j]:
+          res = max(res, dp(j) + 1)
+
+      memo[i] = res
+      return memo[i]
+    
+    res = 0
+
+    for i in range(len(nums)):
+      res = max(res, dp(i))
+
+    return res
+
+  return topDown(nums)
 
 
-nums = [10,9,2,5,3,7,101,18 ]
+
+nums = [1, 2, 4, 3]
 print("res:", longestIncreasingSubsequence(nums))
 
 
