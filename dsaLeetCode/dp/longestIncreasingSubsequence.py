@@ -1,3 +1,44 @@
+
+def longestIncreasingSubsequence(nums):
+
+  # Bottom UP real dp solution
+
+  # Time Complexity: O(n^2)
+  # Space Complexity: O(n)
+  # From backward
+  def bottomUp(nums):
+    dp = [1] * len(nums)
+
+    for i in range(len(nums) - 1, -1, -1):
+
+      for j in range(i, len(nums)):
+        if nums[i] < nums[j]:
+          dp[i] = max(dp[i], 1 + dp[j])
+
+    return max(dp)
+
+  # Time Complexity: O(n^2)
+  # Space Complexity: O(n)
+  def bottomUpII(nums):
+    dp = [1] * len(nums)
+
+    for i in range(len(nums)):
+      for j in range(i):
+        if nums[i] > nums[j]:
+          dp[i] = max(dp[i], dp[j] + 1)
+
+    return max(dp)
+    
+  bottomUpII(nums)
+  return bottomUp(nums)
+
+
+nums = [10,9,2,5,3,7,101,18 ]
+print("res:", longestIncreasingSubsequence(nums))
+
+
+
+
 """
 
 
