@@ -2,6 +2,7 @@
 
 
   What exactly is DP?
+
     In short, dynamic programming is just optimized recursion. Let's say you had some recursive function that
     returned the answer to the original problem treating whatever you call the function with as the input. We saw
     this idea extensively in the tree section. For example, we would frequently define a function dfs • that took a
@@ -250,5 +251,4 @@ def minCostClimbingStairs(cost):
 cost = [10, 15, 20, 10, 15, 20]
 
 minCostClimbingStairs(cost)
-
 
