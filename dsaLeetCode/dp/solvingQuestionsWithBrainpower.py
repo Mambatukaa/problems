@@ -1,5 +1,30 @@
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+# Iterative Bottom Up solution
 def solvingQuestions(questions):
-  print(111)
+  n = len(questions)
+  dp = [0] * n
+
+  dp[n - 1] = questions[n - 1][0]
+
+  for i in range(n - 2, -1, -1):
+
+    point, brainPower = questions[i]
+    
+    idxAfterSkip = i + brainPower + 1 
+
+    if idxAfterSkip < n:
+      # possible to answer more questions
+      point += dp[idxAfterSkip]
+
+    dp[i] = max(point, dp[i + 1])
+  
+  return max(dp)
+
+
+questions = [[3, 2], [4, 0], [4, 4], [10, 5]]
+
+print("res:", solvingQuestions(questions))
 """
 
 
