@@ -21,10 +21,35 @@ def solvingQuestions(questions):
   
   return max(dp)
 
+# Recursive Top Down approach
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+def solvingQuestionsII(questions):
+  n = len(questions)
+  memo = { n - 1: questions[n - 1][0] }
 
-questions = [[3, 2], [4, 0], [4, 4], [10, 5]]
+  def dp(idx):
+    if idx in memo:
+      return memo[idx]
 
-print("res:", solvingQuestions(questions))
+    if idx >= n:
+      return 0
+
+    point, brainPower = questions[idx]
+    idxAfterSkip = idx + brainPower + 1
+
+    memo[idx] = max(dp(idx + 1), point + dp(idxAfterSkip))
+
+    return memo[idx]
+  
+  dp(0)
+
+  return memo[0] 
+  
+
+questions = [[3, 2], [4, 3], [4, 4], [2, 5]]
+
+print("res:", solvingQuestionsII(questions))
 """
 
 
