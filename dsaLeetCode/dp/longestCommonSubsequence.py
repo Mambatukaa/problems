@@ -10,8 +10,8 @@ from collections import deque
 
 
 # TOP down approach
-# Time Complexity: O(n + k)
-# Space Complexity: O(n + k)
+# Time Complexity: O(n + m) n = text1.length m = text2.length
+# Space Complexity: O(n + m)
 def longestCommonSubsequence(text1, text2):
   memo = {}
 
@@ -33,8 +33,8 @@ def longestCommonSubsequence(text1, text2):
 
 
 # Bottom Up solution
-# Time Complexity: O(n * k)
-# Space Complexity: O(n * k)
+# Time Complexity: O(n * m)
+# Space Complexity: O(n * m)
 def longestCommonSubsequence(text1, text2):
   ROWS = len(text1)
   COLS = len(text2)
