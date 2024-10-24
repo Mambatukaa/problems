@@ -7,6 +7,8 @@ from collections import deque
 
 """
 
+text1 = "abcde"
+text2 = "ace"
 
 
 # TOP down approach
@@ -31,6 +33,30 @@ def longestCommonSubsequence(text1, text2):
 
   return dp(0, 0)
 
+# TOP down approach
+# Time Complexity: O(n + m) n = text1.length m = text2.length
+# Space Complexity: O(n + m)
+def longestCommonSubsequence(text1, text2):
+  memo = {}
+
+  def dp(i, j):
+    if (i,j) in memo:
+      return memo[(i,j)]
+
+    if i == -1 or j == -1:
+      return 0
+
+    if text1[i] == text2[j]:
+      return 1 + dp(i - 1, j - 1)
+
+    memo[(i,j)] = max(dp(i - 1, j), dp(i, j - 1))
+
+    return memo[(i,j)]
+
+  return dp(len(text1) - 1, len(text2) - 1)
+
+
+print("res:", longestCommonSubsequence(text1, text2))
 
 # Bottom Up solution
 # Time Complexity: O(n * m)
@@ -53,8 +79,6 @@ def longestCommonSubsequence(text1, text2):
   return dp[0][0]
 
 
-text1 = "abcde"
-text2 = "ace"
 
 print("res:", longestCommonSubsequence(text1, text2))
 
