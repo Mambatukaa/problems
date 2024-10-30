@@ -11,8 +11,6 @@ class Solution:
         l += 1
         r -= 1
 
-
-
 solution = Solution()
 
 s = ["h","e","l","l","o"]
