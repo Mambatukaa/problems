@@ -26,6 +26,10 @@ def setMatrixZeroes(matrix):
       matrix[row][col] = 0
 
 
+
+# OPTIMAL SOLUTION
+# Time Complexity: O(n)
+# Space Complexity: O(1)
   
 matrix = [[1, 1, 1], [1, 0, 1], [1, 1, 1]]
 matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
