@@ -30,12 +30,42 @@ def setMatrixZeroes(matrix):
 # OPTIMAL SOLUTION
 # Time Complexity: O(n)
 # Space Complexity: O(1)
+
+def setMatrixZeroesIII(matrix):
+  ROWS = len(matrix)
+  COLS = len(matrix[0])
+
+  colZero = False
+
+  for r in range(ROWS):
+    if matrix[r][0] == 0:
+      colZero = True
+
+    for c in range(1, COLS):
+      if matrix[r][c] == 0:
+        matrix[0][c] = 0
+        matrix[r][0] = 0
+
+
+  for r in range(1, ROWS):
+    for c in range(1, COLS):
+      if not matrix[r][0] or not matrix[0][c]:
+        matrix[r][c] = 0
+
+  if matrix[0][0] == 0:
+    for c in range(COLS):
+      matrix[0][c] = 0
+
+  if colZero:
+    for r in range(ROWS):
+      matrix[r][0] = 0
+
   
-matrix = [[1, 1, 1], [1, 0, 1], [1, 1, 1]]
 matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+matrix = [[1, 0, 1], [1, 0, 1], [0, 1, 1]]
 
 
-setMatrixZeroes(matrix)
+setMatrixZeroesIII(matrix)
 
 print(matrix)
 
