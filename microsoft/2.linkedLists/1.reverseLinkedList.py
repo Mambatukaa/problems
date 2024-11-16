@@ -8,6 +8,7 @@ class ListNode:
 # Time Complexity: O(n)
 # Space Complexity: O(n)
 # RECURSIVE
+# Make the connection before the recursive call and return the newHead when connection finished
 def reverseII(head):
   def rec(prev, head):
     if not head:
