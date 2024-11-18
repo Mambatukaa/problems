@@ -11,7 +11,7 @@ def addTwoNumbers(l1, l2):
   carry = 0
 
 
-  while l1 or l2:
+  while l1 or l2 or carry:
     l1 = l1 or ListNode(0)
     l2 = l2 or ListNode(0)
 
@@ -24,9 +24,6 @@ def addTwoNumbers(l1, l2):
 
     l1 = l1.next
     l2 = l2.next
-
-  if carry != 0:
-    res.next = ListNode(carry)
 
   return dummy.next
 
