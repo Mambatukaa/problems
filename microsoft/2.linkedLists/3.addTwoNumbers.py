@@ -3,6 +3,8 @@ class ListNode:
     self.val = val
     self.next = None
 
+# Time Complexity: O(n)
+# Space Complexity: O(1)
 def addTwoNumbers(l1, l2):
   res = ListNode(0)
   dummy = res
