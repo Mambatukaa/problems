@@ -19,6 +19,7 @@ def mergeTwoLists(l1, l2):
 
     dummy = dummy.next
 
+  print(l1, l2)
   if not l1:
     dummy.next = l2
   if not l2:
@@ -42,6 +43,25 @@ def mergeKSortedLists(lists):
 
   return lists[n - 1]
 
+# NEETCode approach 
+# Time Complexity: O(log k * n)
+# Space Complexity: O(k)
+def mergeKSortedListsII(lists):
+  if not len(lists):
+    return None
+
+  while len(lists) > 1:
+    mergedLists = []
+
+    for i in range(0, len(lists), 2):
+      l1 = lists[i]
+      l2 = lists[i + 1] if i + 1 < len(lists) else None
+
+      mergedLists.append(mergeTwoLists(l1, l2))
+
+    lists = mergedLists
+
+  return lists[0]
 
 # 1st list
 l1 = ListNode(1)
@@ -64,9 +84,9 @@ l3 = ListNode(2)
 l3Node2 = ListNode(6)
 l3.next = l3Node2
 
-lists = [None, ListNode(1)]
+lists = [l1, l2]
 
-res = mergeKSortedLists(lists)
+res = mergeKSortedListsII(lists)
 
 while res:
   print(res.val)
