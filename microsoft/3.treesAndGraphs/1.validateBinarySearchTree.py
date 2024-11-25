@@ -29,8 +29,29 @@ class Solution:
 
     return inOrder(root)
 
+  # Iterative in order
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
+  def isValidBSTII(self, root):
+    stack = []
+    curr = root
+    self.prev = float('-inf')
 
-root = TreeNode(8)
+    while curr or stack:
+      while curr:
+        stack.append(curr)
+        curr = curr.left
+
+      curr = stack.pop()
+      if self.prev >= curr.val:
+        return False
+      self.prev = curr.val
+      curr = curr.right
+
+    return True
+
+
+root = TreeNode(2)
 node2 = TreeNode(1)
 node3 = TreeNode(3)
 
@@ -39,4 +60,4 @@ root.left = node2
 root.right = node3
 
 solution = Solution()
-print("Res:", solution.isValidBST(root))
+print("Res:", solution.isValidBSTII(root))
