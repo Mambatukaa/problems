@@ -49,6 +49,32 @@ class Solution:
 
     return self.res
         
+  # Recursive BFS
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
+  def zigzagLevelOrderII(self, root):
+    def dfs(root, level):
+      if not root:
+        return []
+
+      if len(self.res) <= level:
+        self.res.append([])
+
+      self.res[level].append(root.val)
+
+      dfs(root.left, level + 1)
+      dfs(root.right, level + 1)
+
+
+
+    dfs(root, 0)
+
+    for i in range(len(self.res)):
+      if i % 2 == 1:
+        self.res[i].reverse()
+
+
+    return self.res
 
     
 
@@ -73,7 +99,7 @@ node3.right = node5
 
 solution = Solution()
 
-print("res:", solution.zigzagLevelOrder(root))
+print("res:", solution.zigzagLevelOrderII(root))
 
 """
 
