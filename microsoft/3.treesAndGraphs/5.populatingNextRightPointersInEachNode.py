@@ -31,6 +31,9 @@ node3.right = node7
 
 
 class Solution:
+  def __init__(self):
+    self.data = []
+
   # Iterative BFS
   # Time Complexity: O(n)
   # Space Complexity: O(n)
@@ -59,7 +62,33 @@ class Solution:
 
     return root
 
+  # Iterative BFS
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
+  # Let's do the level order traversal and start to collect nodes in the array. When appending the next node of the level to the array update the current last node's next node by current node.
+  def connectII(self, root):
+    def dfs(root, level):
+      if not root:
+        return None
+
+      if len(self.data) <= level:
+        self.data.append([])
+
+      # if current level has nodes update the last nodes next by current node
+      if self.data[level]:
+        self.data[level][-1].next = root
+
+      self.data[level].append(root)
+
+      dfs(root.left, level + 1)
+      dfs(root.right, level + 1)
+    
+    dfs(root, 0)
+
+    return root
 
 solution = Solution()
 
-res = solution.connect(root)
+res = solution.connectII(root)
+
+print(res.val)
