@@ -87,8 +87,43 @@ class Solution:
 
     return root
 
+
+  # Iterative OPTIMAL solution
+  # Time Complexity: O(n)
+  # Space Complexity: O(1)
+
+  # IMPORTANT TWO CONNECTIONS
+  # node.left.next = node.right
+  # node.right.next = node.next.left
+  def connectIII(self, root):
+    if not root:
+      return None
+    
+    leftMost = root
+
+    # If the leftMost is not leaf node continue
+    while leftMost.left:
+      # current head
+      head = leftMost
+
+      while head:
+        # CONNECTION 1
+        head.left.next = head.right
+
+        # CONNECTION 2
+        if head.next:
+          head.right.next = head.next.left
+
+        # Progress along the list (nodes on the current level)
+        head = head.next
+
+      # Move onto the next level
+      leftMost = leftMost.left
+
+    return root
+
 solution = Solution()
 
-res = solution.connectII(root)
+res = solution.connectIII(root)
 
 print(res.val)
