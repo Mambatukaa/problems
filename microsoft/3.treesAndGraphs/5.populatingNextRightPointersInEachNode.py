@@ -121,9 +121,28 @@ class Solution:
       leftMost = leftMost.left
 
     return root
+  
+
+  # NeetCode
+  def connectIV(self, node):
+    cur, nxt = node, node.left if node else None
+
+    while cur and nxt:
+      cur.left.next = cur.right
+
+      if cur.next:
+        cur.right.next = cur.next.left
+
+      cur = cur.next
+
+      if not cur:
+        cur = nxt
+        nxt = cur.left
+
+    return node
 
 solution = Solution()
 
-res = solution.connectIII(root)
+res = solution.connectIV(root)
 
 print(res.val)
