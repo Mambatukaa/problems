@@ -1,3 +1,4 @@
+from collections import deque
 
 class TreeNode:
   def __init__(self, val):
@@ -44,9 +45,30 @@ class Solution:
       # go left
       return self.lowestCommonAncestor(root.left, p, q)
 
+    
+  # Iterative solution
+  # Time Complexity: O(n)
+  # Space Complexity: O(1)
+  def lowestCommonAncestorII(self, root, p, q):
+    while root:
+      if ((root.val >= p.val and root.val <= q.val) or
+         (root.val <= p.val and root.val >= q.val)):
+           return root
+
+    if root.val < p.val:
+      # go right
+      root = root.right
+    else:
+      # go left
+      root = root.left
+
+    return None
+    
+
+
 solution = Solution()
 
-print("Res:", solution.lowestCommonAncestor(root, node5, node7).val)
+print("Res:", solution.lowestCommonAncestorII(root, node5, node7).val)
 
 
 """
