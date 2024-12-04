@@ -31,19 +31,14 @@ class Solution:
   # Time Complexity: O(n)
   # Space Complexity: O(n)
   def lowestCommonAncestor(self, root, p, q):
-    if not root:
-      return None
-
-    if ((root.val >= p.val and root.val <= q.val) or
-       (root.val <= p.val and root.val >= q.val)):
-         return root
-
-    if root.val < p.val:
+    if root.val < p.val and root.val < q.val:
       # go right
       return self.lowestCommonAncestor(root.right, p, q)
-    else:
+    elif root.val > p.val and root.val > q.val:
       # go left
       return self.lowestCommonAncestor(root.left, p, q)
+    else:
+      return root
 
     
   # Iterative solution
@@ -51,16 +46,14 @@ class Solution:
   # Space Complexity: O(1)
   def lowestCommonAncestorII(self, root, p, q):
     while root:
-      if ((root.val >= p.val and root.val <= q.val) or
-         (root.val <= p.val and root.val >= q.val)):
-           return root
-
-    if root.val < p.val:
+    if root.val < p.val and root.val < q.val:
       # go right
       root = root.right
-    else:
+    elif root.val > p.val and root.val > q.val:
       # go left
       root = root.left
+    else:
+      return root
 
     return None
     
