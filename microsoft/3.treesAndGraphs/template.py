@@ -7,3 +7,6 @@ class TreeNode:
 class Solution:
   def func(self, root):
     print(root)
+
+
+root = TreeNode(1)
