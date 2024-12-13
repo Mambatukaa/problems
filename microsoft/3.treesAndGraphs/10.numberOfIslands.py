@@ -3,6 +3,9 @@
 
 
 class Solution:
+    # Iterative
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def numIslands(self, grid):
         self.res = 0
         ROWS = len(grid)
@@ -25,8 +28,34 @@ class Solution:
 
                     stack.append([newRow, newCol])
 
+        for r in range(ROWS):
+            for c in range(COLS):
+                if grid[r][c] == "1":
+                    self.res += 1
+                    
+                    dfs(r, c)
+        
+        return self.res
 
-                
+    # Recursive
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+    def numIslandsII(self, grid):
+        self. res = 0
+        ROWS = len(grid)
+        COLS = len(grid[0])
+        
+
+        def dfs(row, col):
+            if row < 0 or col < 0 or row >= ROWS or col >= COLS or grid[row][col] == "0":
+                return
+
+            grid[row][col] = "0"
+
+            dfs(row + 1, col)
+            dfs(row - 1, col)
+            dfs(row, col + 1)
+            dfs(row, col - 1)
 
 
         for r in range(ROWS):
@@ -39,15 +68,14 @@ class Solution:
         return self.res
 
 
-
-
 grid = [
   ["1","1","1","1","0"],
   ["1","1","0","1","0"],
   ["1","1","0","0","0"],
-  ["0","0","1","0","1"]
+  ["0","0","0","0","1"]
 ]
 
 solution = Solution()
-print("Res:", solution.numIslands(grid))
+#print("Res:", solution.numIslands(grid))
+print("Res:", solution.numIslandsII(grid))
         
