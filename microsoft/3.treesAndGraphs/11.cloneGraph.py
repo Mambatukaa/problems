@@ -30,6 +30,37 @@ class Solution:
         
         return visited[node]
 
+    # Recursive approach
+    # DFS
+    # Time Complexity: O(N + M) N = number of nodes, M = number of vertices
+    # Space Complexity: O(N)
+    def cloneGraphII(self, node):
+        visited = defaultdict()
+
+        def dfs(root):
+            # base case 1
+            if not root:
+                return
+
+            if root in visited:
+                return visited[root]
+
+            visited[root] = Node(root.val)
+
+            neighbors = root.neighbors
+
+            for neighbor in neighbors:
+                dfs(neighbor)
+
+                visited[root].neighbors.append(visited[neighbor])
+        
+
+        dfs(node)
+
+
+        return visited[node]
+
+
 
 node1 = Node(1)
 node2 = Node(2)
@@ -37,15 +68,15 @@ node3 = Node(3)
 node4 = Node(4)
 
 node1.neighbors.append(node2)
-node1.neighbors.append(node4)
+node1.neighbors.append(node3)
 
 node2.neighbors.append(node1)
-node2.neighbors.append(node3)
+node2.neighbors.append(node4)
 
-node3.neighbors.append(node2)
+node3.neighbors.append(node1)
 node3.neighbors.append(node4)
 
-node4.neighbors.append(node1)
+node4.neighbors.append(node2)
 node4.neighbors.append(node3)
 
 # adjList = [[2,4],[1,3],[2,4],[1,3]]
@@ -53,25 +84,21 @@ node4.neighbors.append(node3)
 
 solution = Solution()
 
-newRoot = solution.cloneGraph(node1)
+newRoot = solution.cloneGraphII(node1)
 
 stack = [newRoot]
 visited = set()
 
-
 while stack:
-    newRoot = stack.pop()
-    print("root:", newRoot.val)
+    newRoot = stack.pop(0)
+    print(newRoot.val)
     visited.add(newRoot)
     neighbors = newRoot.neighbors
 
     for neighbor in neighbors:
+        print("-----:", neighbor.val)
         if neighbor in visited:
             continue
-        print("neighbor:", neighbor.val)
         stack.append(neighbor)
-
-
-
         
 # Create deep copy of each node and start dfs to create deep copy graph
