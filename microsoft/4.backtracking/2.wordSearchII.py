@@ -1,8 +1,83 @@
+from collections import defaultdict
+
+class TrieNode:
+    def __init__(self):
+        self.children = defaultdict(TrieNode)
+        self.endOfWord = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        node = self.root
+
+        for ch in word:
+            node = node.children[ch]
+
+        node.endOfWord = True
+
+        print("Word Successfully added", word)
+
+    def search(self, word):
+        node = self.root
+
+        for ch in word:
+            if not node:
+                return False
+
+            node = node.children[ch]
+
+        print(word, "found:", node.endOfWord);
+
+        return node.endOfWord
 
 
 # DFS and BFS
 
 class Solution:
+    # Time Complexity: Time complexity: O(M(4*3^L−1 )), where M is the number of cells in the board and L is the maximum length of words.)
+    # Space Complexity: O(n) n = total numbers of letters in the dictionary
+    # SEARCH FROM TRIE
+    def wordSearchII(self, board, words):
+        trie = Trie()
+
+        for word in words:
+            trie.insert(word)
+
+        ROWS = len(board)
+        COLS = len(board[0])
+
+        res = set()
+        seen = set()
+
+        def dfs(r, c, node, curr):
+            if r < 0 or c < 0 or r >= ROWS or c >= COLS or (r,c) in seen or board[r][c] not in node.children:
+                return 
+
+
+            node = node.children[board[r][c]]
+            curr += board[r][c]
+
+            if node.endOfWord:
+                res.add(curr)
+
+            seen.add((r,c))
+
+            dfs(r + 1, c, node, curr)
+            dfs(r - 1, c, node, curr)
+            dfs(r, c + 1, node, curr)
+            dfs(r, c - 1, node, curr)
+
+            seen.remove((r,c))
+
+        for row in range(ROWS):
+            for col in range(COLS):
+                dfs(row, col, trie.root, "")
+
+        return list(res)
+
+
     # DFS backtracking
     # Time Complexity: O(k * m * n) k is the words length
     # Space Complexity: O(m * n) 
@@ -63,12 +138,13 @@ words = ["aaa"]
 
 board = [
  ["a","b","c"],
- ["a","e","d"],
- ["a","f","g"]]
+ ]
 
-words = ["abcdefg","gfedcbaaa","eaabcdgfa","befa","dgc","ade"]
+words = ["abc"]
 
 
 solution = Solution()
 
 print("res:", solution.wordSearch(board, words))
+print("------------------------------------------")
+print("res II:", solution.wordSearchII(board, words))
