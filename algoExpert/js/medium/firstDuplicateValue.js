@@ -1,3 +1,4 @@
+// initial
 // Time Complexity: O(n^2)
 // Space Complexity: O(1)
 const firstDuplicateValue = (array) => {
