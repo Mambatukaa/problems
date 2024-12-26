@@ -1,12 +1,12 @@
 """
 Remove duplicates from sorted array
 
-    c = 1
+    idx = 4
 
-                         1
+                                 1
                                    2
-    Input: nums = [0,1,2,3,1,2,2,3,3,4]
-    Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
+    Input: nums = [0,1,2,3,2,2,3,3]
+    Output: 5, nums = [0,1,2,3,_,_,_,_]
 
 
 
@@ -35,6 +35,21 @@ class Solution:
             p2 += 1
 
         return res
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    def removeDuplicates(self, nums):
+        insertIndex = 1
+        size = len(nums)
+
+        for i in range(1, size):
+            if nums[i - 1] != nums[i]:
+                nums[insertIndex] = nums[i]
+
+                insertIndex += 1
+
+        return insertIndex 
+
 
 
 
