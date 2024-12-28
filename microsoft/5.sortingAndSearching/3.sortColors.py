@@ -51,7 +51,34 @@ def sortColors(nums):
 
         idx += 1
 
+# One pass solution PARTITION
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+def sortColorsII(nums):
+    n = len(nums)
+    l = 0
+    r = n - 1
+    i = 0
 
-nums = [0]
-sortColors(nums)
+    while i <= r:
+
+        if nums[i] == 0:
+            nums[i], nums[l] = nums[l], nums[i]
+
+            l += 1
+        elif nums[i] == 2:
+            nums[i], nums[r] = nums[r], nums[i]
+
+            r -= 1
+            i -= 1
+
+        i += 1
+
+
+#                  i
+#            l
+#                  r
+# nums = [0, 0, 1, 1, 2, 2]
+nums = [1, 1, 2, 2, 0, 0]
+sortColorsII(nums)
 print(nums)
