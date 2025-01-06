@@ -52,23 +52,10 @@ set 0 1
 def minOperations(boxes):
     res = [0] * len(boxes)
 
-    ballIdx = set()
-
-    for i in range(len(boxes)):
-        box = boxes[i]
-        if box == "1":
-            ballIdx.add(i)
-
-    for i in range(len(res)):
-        counter = 0
-        for ball in ballIdx:
-            if i == ball:
-                continue
-
-            counter += abs(ball - i)
-
-        res[i] = counter
-
+    for currentBox in range(len(boxes)):
+        if boxes[currentBox] == "1":
+            for newPosition in range(len(boxes)):
+                res[newPosition] += abs(newPosition - currentBox)
 
     return res
 
