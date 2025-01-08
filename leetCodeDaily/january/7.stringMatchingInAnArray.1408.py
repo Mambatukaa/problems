@@ -17,8 +17,8 @@ Example 1:
 
 # Naive approach
 # Brute force
-# Time Complexity: O(n^2)
-# Space Complexity: O(1)
+# Time Complexity: O(n^2 * m^2)
+# Space Complexity: O(n * m)
 def stringMatching(words):
     res = []
 
