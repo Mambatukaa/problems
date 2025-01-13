@@ -47,8 +47,9 @@ set 0 1
 
 
 # Naive approach
-# Time Complexity: O(n * m)
-# Space Complexity: O(n * m)
+# Time Complexity: O(n^2)
+# Space Complexity: O(1)
+# We use an answer array to store the result. However, since this array is part of the output defined by the problem, it is not considered in the space complexity analysis. Therefore, the overall space complexity remains O(1).
 def minOperations(boxes):
     res = [0] * len(boxes)
 
@@ -59,4 +60,29 @@ def minOperations(boxes):
 
     return res
 
-print("res:", minOperations("110"))
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+def minOperationsII(boxes):
+    n = len(boxes)
+    answer = [0] * n
+
+    ballsToLeft = 0
+    movesToLeft = 0
+    ballsToRight = 0
+    movesToRight = 0
+
+    for i in range(n):
+        movesToLeft += ballsToLeft
+        ballsToLeft += int(boxes[i])
+        answer[i] += movesToLeft
+
+        j = n - i - 1
+
+        movesToRight += ballsToRight
+        ballsToRight += int(boxes[j])
+        answer[j] += movesToRight
+
+
+    return answer
+
+print("res:", minOperationsII("001011"))
