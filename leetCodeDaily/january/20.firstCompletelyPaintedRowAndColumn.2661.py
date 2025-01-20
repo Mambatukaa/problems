@@ -64,6 +64,43 @@ class Solution:
             if ROWS[currRow] == n or COLS[currCol] == m:
                 return i
 
+    # Reverse mapping
+    # Reduced space complexity O(k)≡O(m⋅n)
+    # Time Complexity: O(n * m)
+    # Track the max idx of each row and each columns
+    # And return the min idx that can complete the painting
+    def firstCompleteIndexII(self, arr, mat):
+        ROWS = len(mat)
+        COLS = len(mat[0])
+        # save array values in the map with idx
+        numToIdx = {}
+
+        for i in range(len(arr)):
+            numToIdx[arr[i]] = i
+
+        res = float('inf')
+
+        # iterate through rows and track the possible min index to complete the rows
+        for r in range(ROWS):
+            lastElementIdx = -1
+
+            for c in range(COLS):
+                lastElementIdx = max(lastElementIdx, numToIdx[mat[r][c]])
+
+            res = min(lastElementIdx, res)
+
+        # iterate through cols
+        for c in range(COLS):
+            lastElementIdx = -1
+
+            for r in range(ROWS):
+                lastElementIdx = max(lastElementIdx, numToIdx[mat[r][c]])
+
+            res = min(lastElementIdx, res)
+
+        return res
+
+
 solution = Solution()
 
 arr = [2,8,7,4,1,3,5,6,9]
@@ -74,4 +111,5 @@ mat = [[4,3,5],[1,2,6]]
 
 
 print("res:", solution.firstCompleteIndex(arr, mat))
+print("res:", solution.firstCompleteIndexII(arr, mat))
 
