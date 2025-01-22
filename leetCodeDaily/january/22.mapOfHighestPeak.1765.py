@@ -10,10 +10,10 @@ class Solution:
     def highestPeak(self, isWater):
         # find water and update the land neighbors
         queue = deque()
-        visited = set()
 
         ROWS = len(isWater)
         COLS = len(isWater[0])
+        visited = [[0] * COLS for _ in range(ROWS) ]
 
         #             DOWN     UP       RIGHT   LEFT
         DIRECTIONS = [[1, 0], [-1, 0], [0, 1], [0, -1]]
@@ -24,7 +24,7 @@ class Solution:
                 # water cell
                 if isWater[r][c] == 1:
                     isWater[r][c] = 0
-                    visited.add((r, c))
+                    visited[r][c] = 1
                     queue.append([r, c])
 
         # add neighbor to the visited and queue
@@ -37,11 +37,11 @@ class Solution:
                 newRow = currRow + dy
                 newCol = currCol + dx
 
-                if newRow < 0 or newCol < 0 or newCol >= COLS or newRow >= ROWS or (newRow, newCol) in visited:
+                if newRow < 0 or newCol < 0 or newCol >= COLS or newRow >= ROWS or visited[newRow][newCol] == 1:
                     continue
 
                 isWater[newRow][newCol] = value + 1
-                visited.add((newRow, newCol))
+                visited[newRow][newCol] = 1
                 queue.append([newRow, newCol])
 
         return isWater
