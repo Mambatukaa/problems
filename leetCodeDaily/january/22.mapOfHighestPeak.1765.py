@@ -5,6 +5,7 @@ from collections import deque
 # BFS solution
 # Time Complexity: O(n * m)
 # Space Complexity: O(n * m)
+# 45 minutes
 class Solution:
     def highestPeak(self, isWater):
         # find water and update the land neighbors
@@ -21,21 +22,10 @@ class Solution:
             for c in range(COLS):
 
                 # water cell
-                if isWater[r][c] == 1 and (r, c) not in visited:
+                if isWater[r][c] == 1:
                     isWater[r][c] = 0
-                    visited.add((r,c))
-
-                    for dy, dx in DIRECTIONS:
-                        newRow = r + dy
-                        newCol = c + dx
-
-                        if newRow < 0 or newCol < 0 or newCol >= COLS or newRow >= ROWS or isWater[newRow][newCol] == 1 or (newRow,newCol) in visited:
-                            continue
-
-                        # update the land cells
-                        isWater[newRow][newCol] = 1
-                        queue.append([newRow, newCol])
-                        visited.add((newRow, newCol))
+                    visited.add((r, c))
+                    queue.append([r, c])
 
         # add neighbor to the visited and queue
         # Do BFS through queue and update the unvisited nodes and add to the visited and also add to the queue
