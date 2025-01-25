@@ -40,17 +40,15 @@ class Solution:
         numsGroupIdx = {}
 
         for num in sorted(nums):
-            n = len(groups)
+            if not groups or abs(num - groups[-1][-1]) > limit:
+                groups.append(deque())
 
-            if num not in numsGroupIdx:
-                if len(groups) and num - groups[-1][-1] <= limit:
-                    numsGroupIdx[num] = numsGroupIdx[groups[-1][-1]]
-                else:
-                    # new group
-                    numsGroupIdx[num] = n
-                    groups.append(deque())
+            groups[-1].append(num)
+            numsGroupIdx[num] = len(groups) - 1
 
-            groups[numsGroupIdx[num]].append(num)
+
+        print(groups)
+        print(numsGroupIdx)
 
         for i in range(len(nums)):
             num = nums[i]
@@ -74,8 +72,6 @@ class Solution:
 nums = [1,5,3,9,8]
 limit = 2
 
-nums = [1,7,6,18,2,1]
-limit = 3
 
 solution = Solution()
 
