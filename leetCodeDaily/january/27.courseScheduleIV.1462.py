@@ -51,7 +51,7 @@ class Solution:
                 prereqMap[crs] = set()
 
                 for prereq in graph[crs]:
-                    prereqMap[crs] |= dfs(prereq) # union
+                    prereqMap[crs].update(dfs(prereq))
                 prereqMap[crs].add(crs)
 
             return prereqMap[crs]
@@ -74,7 +74,7 @@ class Solution:
 
 # 0 --> 1 --> 2
 
-numCourses = 3
+numCourses = 2
 prerequisites = [[1,0],[2,1]]
 queries = [[1,0],[2,0]]
 
