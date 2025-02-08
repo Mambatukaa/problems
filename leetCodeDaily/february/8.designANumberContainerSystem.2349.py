@@ -30,14 +30,14 @@ Constraints:
 
 
 from collections import defaultdict
-# Time Complexity: O(n log n)
-# Space Complexity: O(n)
 # Sorted Set
+# Space Complexity: O(n)
 class NumberContainers:
     def __init__(self):
         self.indexMap = {}
         self.numbersMap = defaultdict(SortedSet)
         
+# Time Complexity: O(log n)
     def change(self, index: int, number: int) -> None:
         if index in self.indexMap:
             prev = self.indexMap[index]
@@ -48,25 +48,28 @@ class NumberContainers:
 
         self.indexMap[index] = number
         self.numbersMap[number].add(index)
-        
 
+# Time Complexity: O(1)
     def find(self, number: int) -> int:
         if number not in self.numbersMap:
             return -1
 
-        return min(self.numbersMap[number])
+        return self.numbersMap[number][0]
         
 from heapq import heappush, heappop
+# Space Complexity: O(n)
 class NumberContainersII:
     def __init__(self):
         self.indexMap = {}
         self.numbersMap = defaultdict(list)
         
+    # Time Complexity: O(log n)
     def change(self, index: int, number: int) -> None:
         self.indexMap[index] = number
         heappush(self.numbersMap[number], index)
         
 
+    # Time Complexity: O(k log n)
     def find(self, number: int) -> int:
         # keep checking top element until find the valid index
         while self.numbersMap[number]:
