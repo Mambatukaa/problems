@@ -29,19 +29,52 @@ Constraints:
 
 class Solution:
     # Time Complexity: O(n)
-    # Space Complexity: O(n)
+    # Space Complexity: O(1) 26 letters
     def areAlmostEqual(self, s1: str, s2: str) -> bool:
-        s1Count = Counter(s1)
-        s2Count = Counter(s2)
+        if s1 == s2:
+            return True
 
-        if s1Count != s2Count:
-            return False
+        s1Count = [0] * 26
+        s2Count = [0] * 26
 
         diff = 0
 
         for i in range(len(s1)):
-            if s1[i] != s2[i]:
+            s1Char = s1[i]
+            s2Char = s2[i]
+
+            if s1Char != s2Char:
                 diff += 1
-            if diff > 2:
-                return False
-        return True
+
+                if diff > 2:
+                    return False
+
+            s1Count[ord("a") - ord(s1Char)] += 1
+            s2Count[ord("a") - ord(s2Char)] += 1
+
+        return s1Count == s2Count
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(1) NO MAP
+    def areAlmostEqualII(self, s1: str, s2: str) -> bool:
+        firstIdxDiff = 0
+        secondIdxDiff = 0
+
+        numDiffs = 0
+
+        for i in range(len(s1)):
+            s1Char = s1[i]
+            s2Char = s2[i]
+
+            if s1Char != s2Char:
+                numDiffs += 1
+
+                if numDiffs > 2:
+                    return False
+                
+                if numDiffs == 1:
+                    firstIdxDiff = i
+                else:
+                    secondIdxDiff = i
+
+        return s1[firstIdxDiff] == s2[secondIdxDiff] and fs1[secondIdxDiff] == s2[firstIdxDiff]
