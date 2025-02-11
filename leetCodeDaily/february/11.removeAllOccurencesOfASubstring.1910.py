@@ -36,14 +36,20 @@ class Solution:
         while part in s:
             part_start_index = s.find(part)
 
-
             s = s[:part_start_index] + s[part_start_index + len(part):]
 
         return s
 
 
 
+    def _check_match(self, stack: list, part: str) -> bool:
+        # Compare the top 'part_length' elements of the stack with 'part'
+        part_length = len(part)
 
+        return "".join(stack[-part_length:]) == part
+
+    # Time Complexity: O(n * m)
+    # Space Complexity: O(n + m)
     def removeOccurrences(self, s: str, part: str) -> str:
         stack = []
         m = len(part) - 1
@@ -51,20 +57,10 @@ class Solution:
         for ch in s:
             stack.append(ch)
 
-            idx = m
-            store = []
 
-            while stack and stack[-1] == part[idx]:
-                store.append(stack.pop())
-
-                idx -= 1
-
-                if idx < 0:
-                    break
-
-            if idx >= 0:
-                while store:
-                    stack.append(store.pop())
+            if len(stack) >= len(part) and self._check_match(stack, part):
+                for _ in range(len(part)):
+                    stack.pop()
 
         return "".join(stack)
 
@@ -86,4 +82,4 @@ part = "abc"
 
 solution = Solution()
 
-print("res:", solution.removeOccurrencesII(s, part))
+print("res:", solution.removeOccurrences(s, part))
