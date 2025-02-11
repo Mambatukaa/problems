@@ -71,6 +71,45 @@ class Solution:
 
         return res
 
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    #
+    def calculateII(self, s: str) -> int:
+        n = len(s)
+
+        res = 0
+        last_num = 0
+        curr_num = 0
+        operation = "+"
+
+        for i in range(n):
+            char = s[i]
+
+            if char.isnumeric():
+                curr_num = curr_num * 10 + int(char)
+
+
+            if ((char != " " and not char.isnumeric()) or i == n - 1):
+                if operation in ["+", "-"]:
+                    if operation == "-":
+                        curr_num = -curr_num
+
+                    res += last_num
+                    last_num = curr_num
+
+                elif operation in ["*", "/"]:
+
+                    if operation == "/":
+                        last_num = int(last_num / curr_num) 
+                    else:
+                        last_num *= curr_num
+
+                curr_num = 0
+                operation = char
+
+        res += last_num
+        return res
+
 
 solution = Solution()
 s = " 3+5 / 2 "
@@ -78,4 +117,4 @@ s = "12-2147483647"
 s = "14-3/2"
 
 
-print("res:", solution.calculate(s))
+print("res:", solution.calculateII(s))
