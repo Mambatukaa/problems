@@ -26,34 +26,25 @@ class ProductOfNumbers:
 # Space Complexity: O(n)
 # PrefixProduct
 class ProductOfNumbers:
-
     def __init__(self):
-        self.nums = []
-        self.zeroIndex = -1
+        self.nums = [1]
+        self.size = 0
 
     def add(self, num: int) -> None:
         if num == 0:
-            self.zeroIndex = len(self.nums)
-            self.nums.append(1)
-            return
-        
-
-        if not len(self.nums):
-            self.nums.append(num)
+            self.nums = [1]
+            self.size = 0
         else:
-            self.nums.append(num * self.nums[-1])
+            self.nums.append(num * self.nums[self.size])
+            self.size += 1
         
 
     def getProduct(self, k: int) -> int:
-        idx = len(self.nums) - k
-
-        if self.zeroIndex >= idx:
+        # 0 found
+        if k > self.size:
             return 0
 
-        if idx == 0:
-            return self.nums[-1]
-
-        return int(self.nums[-1] / self.nums[idx-1])
+        return self.nums[self.size] // self.nums[self.size - k]
 
 
 # Your ProductOfNumbers object will be instantiated and called as such:
