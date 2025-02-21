@@ -30,3 +30,92 @@ Example 3:
 
 
 """
+
+
+class Solution:
+    # Backtracking
+    # Time Complexity: O(n * 2^n)
+    # Space Complexity: O(2^n)
+    def getHappyString(self, n: int, k: int) -> str:
+
+        res = []
+
+
+        def backtracking(curr):
+            if len(curr) == n:
+                res.append("".join(curr))
+                return
+            
+            for letter in "abc":
+                if curr and curr[-1] == letter:
+                    continue
+                curr.append(letter)
+                backtracking(curr)
+                curr.pop()
+        
+        backtracking([])
+
+        if len(res) < k:
+            return ""
+
+        return res[k-1]
+
+
+    # Optimized recursive
+    # Time Complexity: O(k * n) or O(n * n^2)
+    # Space Complexity: O(n)
+    def getHappyStringII(self, n: int, k: int) -> str:
+        self.res = None
+        self.count = 0
+
+        def backtracking(curr):
+            if len(curr) == n:
+                self.count += 1
+
+                if self.count == k:
+                    self.res = "".join(curr)
+                return
+            
+            for letter in "abc":
+                if curr and curr[-1] == letter:
+                    continue
+                curr.append(letter)
+                backtracking(curr)
+
+                if self.res:
+                    return
+
+                curr.pop()
+        
+        backtracking([])
+
+        if not self.res:
+            return ""
+
+        return self.res
+
+    # Time Complexity: O(k * n) or O(n * n^2)
+    # Space Complexity: O(n^2)
+    def getHappyStringIII(self, n: int, k: int) -> str:
+        stack = [""]
+        count = 0
+
+        while stack:
+            curr_string = stack.pop()
+
+            if len(curr_string) == n:
+                count += 1
+
+                if count == k:
+                    return curr_string
+                continue
+            
+            for letter in reversed(["a", "b", "c"]):
+                if curr_string and curr_string[-1] == letter:
+                    continue
+
+                stack.append(curr_string + letter)
+
+solution = Solution()
+
+print("res:", solution.getHappyStringIII(3, 9))
