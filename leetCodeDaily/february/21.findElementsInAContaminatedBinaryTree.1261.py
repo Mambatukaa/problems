@@ -59,6 +59,24 @@ class FindElements:
             if node.right:
                 q.append([currVal * 2 + 2, node.right])
 
+
+    # DFS
+    def __init__(self, root: Optional[TreeNode]):
+        self.seen = set()
+
+        def dfs(root, value):
+            if not root:
+                return
+            
+            self.seen.add(value)
+
+            dfs(root.left, value * 2 + 1)
+            dfs(root.right, value * 2 + 2)
+        
+
+        dfs(root, 0)
+
+
     def find(self, target: int) -> bool:
         if target in self.seen:
             return True
