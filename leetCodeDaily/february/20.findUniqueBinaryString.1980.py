@@ -32,7 +32,8 @@ Constraints:
 """
 
 # Backtracking
-# Time Complexity: O()
+# Time Complexity: O(n^2)
+# Space Complexity: O(n)
 class Solution:
     def findDifferentBinaryString(self, nums):
         seen = set(nums)
@@ -57,6 +58,18 @@ class Solution:
 
 
         return "".join(backtracking([]))
+
+    # Cantor's diagonal argument
+    #  n == len(nums)
+    #  nums[i].length == n
+    def findDifferentBinaryStringII(self, nums):
+        ans = []
+        for i in range(len(nums)):
+            curr = nums[i][i]
+            ans.append("1" if curr == "0" else "0")
+        
+        return "".join(ans)
+
 
 
 
