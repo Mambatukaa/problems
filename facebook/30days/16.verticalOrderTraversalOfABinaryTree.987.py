@@ -72,6 +72,37 @@ class Solution:
         return res
 
 
+    # Time Complexity: O(n log n/k)
+    # Space Complexity: O(n)
+    # DFS
+    def verticalTraversal(self, root):
+        nodesMap = defaultdict(list)
+
+        min_column = 0
+        max_column = 0
+
+        def dfs(root, column, row):
+            if not root:
+                return 
+
+            nonlocal min_column, max_column
+            min_column = min(min_column, column)
+            max_column = max(max_column, column)
+
+            nodesMap[column].append((row, root.val))
+
+            dfs(root.left, column - 1, row + 1)
+            dfs(root.right, column + 1, row + 1)
+
+
+        dfs(root, 0, 0)
+        res = []
+
+        for i in range(min_column, max_column + 1):
+            res.append([val[1] for val in sorted(nodesMap[i])])
+
+        return res
+
  
 root = TreeNode(3)
 
