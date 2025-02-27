@@ -26,14 +26,12 @@ Output: [[7,null], [13,0], [11,4], [10,21, [1,0]]
 """
 
 
-"""
 # Definition for a Node.
 class Node:
     def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
         self.val = int(x)
         self.next = next
         self.random = random
-"""
 
 class Solution:
     # Time Complexity: O(n)
@@ -57,3 +55,88 @@ class Solution:
             curr = curr.next
 
         return nodesMap[head]
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    def copyRandomListII(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        if not head:
+            return head
+
+        curr = head
+
+        while curr:
+            newNode = Node(curr.val, curr.next)
+            curr.next = newNode
+
+            curr = curr.next.next
+
+        curr = head
+
+        while curr and curr.next:
+            next = curr.next.next if curr.next else None
+
+            curr.next.next = next.next if next else None
+            curr.next.random = curr.random.next if curr.random else None
+
+            curr = next
+
+        return head.next
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    # Clean code but 3 iterations
+    def copyRandomListIII(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        if not head:
+            return head
+        curr = head
+
+        # next connection
+        while curr:
+            newNode = Node(curr.val, curr.next)
+            curr.next = newNode
+
+            curr = curr.next.next
+
+        curr = head
+
+        # random connection
+        while curr:
+            curr.next.random = curr.random.next if curr.random else None
+            curr = curr.next.next
+
+        # remove old list
+        curr = head.next
+
+        while curr:
+            next = curr.next.next if curr.next else None
+
+            curr.next = next
+            curr = next
+
+        return head.next
+
+
+head = Node(7)
+
+node2 = Node(13)
+node3 = Node(11)
+
+node4 = Node(10)
+node5 = Node(1)
+
+head.next = node2
+
+node2.next = node3
+node2.random = head
+
+node3.next = node4
+node3.random = node5
+
+node4.next = node5
+node4.random = node3
+
+node5.random = head
+
+
+solution = Solution()
+print("res:", solution.copyRandomListIII(head))
