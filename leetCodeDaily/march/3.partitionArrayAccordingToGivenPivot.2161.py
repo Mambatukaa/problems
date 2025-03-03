@@ -53,4 +53,60 @@ class Solution:
             else:
                 mid.append(num)
         return left + mid + right
-        
+
+    # Fixed array
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    def pivotArray(self, nums: List[int], pivot: int) -> List[int]:
+        less = 0
+        equal = 0
+
+        for num in nums:
+            if num < pivot:
+                less += 1
+            elif num == pivot:
+                equal += 1
+            
+        lessIdx = 0
+        equalIdx = less
+        greaterIdx = less + equal
+
+        res = [0] * len(nums)
+
+        for num in nums:
+            if num < pivot:
+                res[lessIdx] = num
+                lessIdx += 1
+            elif num == pivot:
+                res[equalIdx] = num
+                equalIdx += 1
+            else:
+                res[greaterIdx] = num
+                greaterIdx += 1
+
+        return res
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    def pivotArrayIII(self, nums: List[int], pivot: int) -> List[int]:
+        res = [0] * len(nums)
+        l = 0
+        r = len(nums) - 1
+
+        for i, j in zip(range(len(nums)), range(len(nums) - 1, -1, -1)):
+            if nums[i] < pivot:
+                res[l] = nums[i]
+                l += 1
+                
+            if nums[j] > pivot:
+                res[r] = nums[j]
+                r -= 1
+
+        while l <= r:
+            res[l] = pivot
+            res[r] = pivot
+            l += 1
+            r -= 1
+
+        return res
+
