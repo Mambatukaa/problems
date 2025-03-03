@@ -41,7 +41,7 @@ Constraints:
 
 
 class Solution:
-    def applyOperations(self, nums: List[int]) -> List[int]:
+    def applyOperations(self, nums):
         n = len(nums)
 
         for i in range(n - 1):
@@ -61,3 +61,28 @@ class Solution:
             non_zero_index += 1
         
         return nums
+
+    # shift non zeros to the write_index
+    def applyOperationsII(self, nums):
+        write_index = 0
+        n = len(nums)
+
+        for i in range(n):
+            if i < n - 1 and nums[i] == nums[i + 1]:
+                nums[i] *= 2
+                nums[i + 1] = 0
+
+            if nums[i] != 0:
+                if i != write_index:
+                    nums[write_index], nums[i] = nums[i], nums[write_index]
+                    print(nums)
+                write_index += 1
+
+        return nums
+
+
+nums = [1, 2, 2, 1, 1, 0]
+
+solution = Solution()
+
+print("res:", solution.applyOperationsII(nums))
