@@ -87,20 +87,22 @@ class Solution:
 
     # BFS
     def sumNumbersII(self, root) -> int:
-        q = deque([[root, str(root.val)]])
+        q = deque([[root, 0]])
         res = 0
 
         while q:
             node, currSum = q.popleft()
 
+            currSum = currSum * 10 + node.val
+
             if not node.left and not node.right:
-                res += int(currSum)
+                res += currSum
 
             if node.left:
-                q.append([node.left, currSum + str(node.left.val)])
+                q.append([node.left, currSum])
 
             if node.right:
-                q.append([node.right, currSum + str(node.right.val)])
+                q.append([node.right, currSum])
 
 
         return res
