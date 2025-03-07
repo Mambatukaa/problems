@@ -28,8 +28,8 @@ Constraints:
 """
 
 class Solution:
-    # Time Complexity: O(n)
-    # Space Complexity: O(k)
+    # Time Complexity: O(n + m)
+    # Space Complexity: O(n + m) max size
     # 2 pointers
     def intervalIntersection(self, firstList, secondList):
         n = len(firstList)
