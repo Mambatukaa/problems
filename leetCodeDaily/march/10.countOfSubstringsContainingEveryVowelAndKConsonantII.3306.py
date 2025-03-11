@@ -110,10 +110,60 @@ class Solution:
 
         return res
 
+class SolutionII:
+    def isVowel(self, letter):
+        return letter in "aeiou"
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    # exactK = atLeastK(k) - atLeastK(k + 1)
+    def countOfSubstrings(self, word: str, k: int) -> int:
+        def atLeastK(k):
+            n = len(word)
+
+            left = right = 0
+
+            vowel_count = {}
+            consonant_count = 0
+            res = 0
+
+            while right < n:
+                new_letter = word[right]
+
+                # increase vowel or consonant count
+                if self.isVowel(new_letter):
+                    vowel_count[new_letter] = vowel_count.get(new_letter, 0) + 1
+                else:
+                    consonant_count += 1
+
+                # update the answer
+                while left < n and len(vowel_count) == 5 and consonant_count >= k:
+                    res += n - right
+
+                    start_letter = word[left]
+
+                    if self.isVowel(start_letter):
+                        vowel_count[start_letter] -= 1
+
+                        if vowel_count[start_letter] == 0:
+                            del vowel_count[start_letter]
+                    else:
+                        consonant_count -= 1
+
+                    left += 1
+
+                right += 1
+
+
+            return res
+
+        return atLeastK(k) - atLeastK(k + 1)
+
+
 
         
 
-solution = Solution()
+solution = SolutionII()
 
 word = "aeioutaeit"
 k = 1
