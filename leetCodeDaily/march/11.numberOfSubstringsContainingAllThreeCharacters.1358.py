@@ -57,3 +57,20 @@ class Solution:
 
         return res
 
+    # last position tracking
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    def numberOfSubstringsII(self, s: str) -> int:
+            last_pos = [-1, -1, -1]
+
+            res = 0
+
+            for i in range(len(s)):
+                letter = s[i]
+
+                last_pos[ord(letter) - ord("a")] = i
+
+                res += min(last_pos) + 1
+
+            return res
+
