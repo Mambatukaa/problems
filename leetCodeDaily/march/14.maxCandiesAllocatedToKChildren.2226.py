@@ -30,7 +30,7 @@ Constraints:
 
 """
 
-# Time Complexity: O(n * log(n))
+# Time Complexity: O(n * log(m))
 # Space Complexity: O(1)
 class Solution:
     def maximumCandies(self, candies, k: int) -> int:
