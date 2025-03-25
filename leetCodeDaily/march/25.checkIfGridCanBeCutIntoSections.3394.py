@@ -55,6 +55,18 @@ Constraints:
 
 """
 
+""""
+Space complexity: O(S)
+
+The space taken by the sorting algorithm (S) depends on the language of implementation:
+
+In Java, Arrays.sort() is implemented using a variant of the Quick Sort algorithm which has a space complexity of O(logn).
+In C++, the sort() function is implemented as a hybrid of Quick Sort, Heap Sort, and Insertion Sort, with a worst-case space complexity of O(logn).
+In Python, the sort() method sorts a list using the Timsort algorithm which is a combination of Merge Sort and Insertion Sort and has a space complexity of O(n) .
+Other than this, we're only using a few variables (gapCount, furthestEnd, loop indices) that don't scale with the input size. Therefore, the overall space complexity remains O(S).
+
+
+"""
 class Solution:
     def splitArray(self, arr):
         ctr = 0
@@ -91,6 +103,7 @@ class Solution:
         yData.sort()
 
         return self.splitArray(xData) or self.splitArray(yData)
+
 
     def checkValidCutsII(self, n: int, rectangles) -> bool:
         def _check_cuts(dim):
