@@ -65,10 +65,13 @@ class Solution:
 
             if first[1] <= second[0]:
                 ctr += 1
+
+                if ctr == 2:
+                    return True
             else:
                 arr[i + 1][1] = max(first[1], second[1])
 
-        return ctr
+        return ctr >= 2
 
     # Time Complexity: O(n log n)
     # Space Complexity: O(log n)
@@ -87,15 +90,35 @@ class Solution:
         xData.sort()
         yData.sort()
 
-        if self.splitArray(xData) >= 2 or self.splitArray(yData) >= 2:
-            return True
+        return self.splitArray(xData) or self.splitArray(yData)
 
-        return False
+    def checkValidCutsII(self, n: int, rectangles) -> bool:
+        def _check_cuts(dim):
+            gap_count = 0
 
+            rectangles.sort(key = lambda item: item[dim])
+
+            farthest_end = rectangles[0][dim + 2]
+
+            for i in range(1, len(rectangles)):
+                rect = rectangles[i]
+
+                if rect[dim] >= farthest_end:
+                    gap_count += 1
+
+                    if gap_count == 2:
+                        return True
+                
+                farthest_end = max(farthest_end, rect[dim + 2])
+
+            return False
+            
+
+        return _check_cuts(0) or _check_cuts(1)
 
         
 solution = Solution()
 
 n = 5
 rectangles = [[1,0,5,2],[0,2,2,4],[3,2,5,3],[0,4,4,5]]
-print("res:", solution.checkValidCuts(n, rectangles))
+print("res:", solution.checkValidCutsII(n, rectangles))
