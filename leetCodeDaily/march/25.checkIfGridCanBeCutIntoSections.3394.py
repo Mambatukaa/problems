@@ -55,8 +55,23 @@ Constraints:
 
 """
 
-
 class Solution:
+    def splitArray(self, arr):
+        ctr = 0
+
+        for i in range(len(arr) - 1):
+            first = arr[i]
+            second = arr[i + 1]
+
+            if first[1] <= second[0]:
+                ctr += 1
+            else:
+                arr[i + 1][1] = max(first[1], second[1])
+
+        return ctr
+
+    # Time Complexity: O(n log n)
+    # Space Complexity: O(log n)
     def checkValidCuts(self, n: int, rectangles) -> bool:
         # [startx, starty, endx, endy]
         # x = rectanbles[i][0,2]
@@ -72,35 +87,7 @@ class Solution:
         xData.sort()
         yData.sort()
 
-        ctr = 0
-
-        for i in range(len(xData) - 1):
-            first = xData[i]
-            second = xData[i + 1]
-
-            if first[1] <= second[0]:
-                ctr += 1
-            else:
-                xData[i + 1][1] = max(first[1], second[1])
-                
-
-        if ctr >= 2:
-            return True
-
-        ctr = 0
-
-
-        for i in range(len(xData) - 1):
-            first = yData[i]
-            second = yData[i + 1]
-
-            if first[1] <= second[0]:
-                ctr += 1
-            else:
-                yData[i + 1][1] = max(first[1], second[1])
-
-
-        if ctr >= 2:
+        if self.splitArray(xData) >= 2 or self.splitArray(yData) >= 2:
             return True
 
         return False
