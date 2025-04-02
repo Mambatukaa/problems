@@ -38,6 +38,11 @@ Constraints:
 
 
 
+1, 3, 5, 1 ==> split to 3 ==> k = 2 only one split needed ==> i = k - 1 = 1
+
+4, 6, 8 :
+
+
 
 """
 
