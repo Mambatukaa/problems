@@ -40,11 +40,42 @@ Note: This question is the same as 865: https://leetcode.com/problems/smallest-s
 """
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def lcaDeepestLeaves(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+class Solution:
+    def lcaDeepestLeaves(self, root):
+        def dfs(root):
+            if not root:
+                return None, 0
+
+            left, lHeight = dfs(root.left)
+            right, rHeight = dfs(root.right)
+
+            if lHeight == rHeight:
+                return root, lHeight + 1
+            elif lHeight > rHeight:
+                return left, lHeight + 1
+            else:
+                return right, rHeight + 1
+
+        return dfs(root)[0]
+
+
+root = TreeNode(1)
+node2 = TreeNode(2)
+node3 = TreeNode(2)
+
+
+root.left = node2
+root.right = node3
+
+
+solution = Solution()
+
+print("res:", solution.lcaDeepestLeaves(root).val)
