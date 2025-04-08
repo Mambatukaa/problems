@@ -48,6 +48,7 @@ class TreeNode:
 
 # Time Complexity: O(n)
 # Space Complexity: O(n)
+# Bottom up
 class Solution:
     def lcaDeepestLeaves(self, root):
         def dfs(root):
