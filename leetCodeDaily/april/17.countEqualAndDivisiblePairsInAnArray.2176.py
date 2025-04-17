@@ -31,7 +31,7 @@ class Solution:
     # Brute force
     # Time Complexity: O(n^2)
     # Space Complexity: O(n)
-    def countPairs(self, nums: List[int], k: int) -> int:
+    def countPairs(self, nums, k: int) -> int:
         n = len(nums)
         res = 0
 
@@ -41,3 +41,46 @@ class Solution:
                     res += 1
         
         return res
+
+
+from collections import defaultdict
+class Solution:
+    def countPairs(self, nums, k: int) -> int:
+        pairs = defaultdict(list)
+
+        for i, v in enumerate(nums):
+            pairs[v].append(i)
+
+
+        res = 0
+
+        for value in pairs.values():
+            n = len(value)
+            if n >= 2:
+                for i in range(n):
+                    for j in range(i + 1, n):
+                        if value[i] * value[j] % k == 0:
+                            res += 1
+        return res
+
+
+
+nums = [3,1,2,2,2,1,3]
+k = 2
+
+solution = Solution()
+
+print("res:", solution.countPairs(nums, k))
+
+# count pairs
+"""
+        0 1 2 3 4 5 6
+nums = [3,1,2,2,2,1,3], k = 2
+
+pair = {
+    1: [1, 5]
+    2: [2, 3, 4]
+    3: [0, 6]
+}            
+
+"""
