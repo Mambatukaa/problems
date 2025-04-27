@@ -34,20 +34,17 @@ Constraints:
 
 class Solution:
     def countSubarrays(self, nums: List[int]) -> int:
-        l = 0
         n = len(nums)
 
         res = 0
 
-        for r in range(2, n):
-            left = nums[l]
-            mid = nums[l + 1]
-            right = nums[r]
+        for i in range(2, n):
+            left = nums[i - 2]
+            mid = nums[i - 1]
+            right = nums[i]
 
             if mid / 2 == left + right:
                 res += 1
-
-            l += 1
 
         return res
 
