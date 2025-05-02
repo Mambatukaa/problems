@@ -76,6 +76,18 @@ class Solution:
             print(cnt)
         return res
 
+    def countInterestingSubarraysII(self, nums, modulo: int, k: int) -> int:
+            count = 0
+            prefix_sum = 0
+            prefix_count = {0: 1}
+
+            for num in nums:
+                if num % modulo == k:
+                    prefix_sum = (prefix_sum + 1) % modulo
+                count += prefix_count.get((prefix_sum - k) % modulo, 0)
+                prefix_count[prefix_sum] = prefix_count.get(prefix_sum, 0) + 1
+
+            return count
         
 
 nums = [3, 1, 9, 6]
@@ -84,4 +96,4 @@ k = 0
 
 solution = Solution()
 
-print("Res:", solution.countInterestingSubarrays(nums, modulo, k))
+print("Res:", solution.countInterestingSubarraysII(nums, modulo, k))
