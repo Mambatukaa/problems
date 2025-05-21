@@ -145,9 +145,38 @@ class Solution:
 
         return dp[-1]
 
+    def numDecodingsIV(self, s: str) -> int:
+        if s[0] == "0":
+            return 0
+
+        n = len(s)
+
+        first = 1
+        second = 1
+
+        for i in range(2, n + 1):
+            temp = 0
+            one_digit = int(s[i - 1])
+
+            if 0 < one_digit <= 9:
+                temp = second
+
+            two_digit = int(s[i - 2: i])
+
+            if 10 <= two_digit <= 26:
+                temp += first
+
+            first = second
+            second = temp
+
+        return second
+
+
+
 
 solution = Solution()
 
 print("res:", solution.numDecodings("2207"))
 print("res:", solution.numDecodingsIII("2207"))
+print("res:", solution.numDecodingsIV("2207"))
 
