@@ -38,6 +38,9 @@ Constraints:
 from collections import Counter
 
 class Solution:
+    # E - english alphabet size 26
+    # Time Complexity: O(n + min(N, E^2))
+    # Space Complexity: O(min(N, E^2))
     def longestPalindrome(self, words) -> int:
         # a count variable contains the number of occurrences of each word
         count = Counter(words)
@@ -56,6 +59,31 @@ class Solution:
             # word[1] + word[0] is the reversed word
             elif word[0] < word[1]:
                 answer += 2 * min(count_of_the_word, count[word[1] + word[0]])
+        if central:
+            answer += 1
+        return 2 * answer
+
+
+
+
+# Time complexity: O(N+∣Σ∣^2)
+# Space complexity: O(∣Σ∣^2)
+class Solution:
+    def longestPalindrome(self, words: List[str]) -> int:
+        alphabet_size = 26
+        count = [[0 for j in range(alphabet_size)] for i in range(alphabet_size)]
+        for word in words:
+            count[ord(word[0]) - ord('a')][ord(word[1]) - ord('a')] += 1
+        answer = 0
+        central = False
+        for i in range(alphabet_size):
+            if count[i][i] % 2 == 0:
+                answer += count[i][i]
+            else:
+                answer += count[i][i] - 1
+                central = True
+            for j in range(i + 1, alphabet_size):
+                answer += 2 * min(count[i][j], count[j][i])
         if central:
             answer += 1
         return 2 * answer
