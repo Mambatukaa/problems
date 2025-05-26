@@ -57,3 +57,17 @@ class Solution:
                 curr_min = price
 
         return res
+
+
+class Solution:
+    # Greedy approach
+    def maxProfit(self, prices: List[int]) -> int:
+        curr_min = float('inf')
+
+        res = 0
+
+        for i in range(1, len(prices)):
+            if prices[i-1] < prices[i]:
+                res += prices[i] - prices[i - 1]
+
+        return res
