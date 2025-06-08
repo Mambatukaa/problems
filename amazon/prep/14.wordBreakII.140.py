@@ -48,7 +48,7 @@ Input is generated in a way that the length of the answer doesn't exceed 105.
 
 
 class Solution:
-    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+    def wordBreak(self, s: str, wordDict):
 
         # iterate through words and create every possible to paths to build S
         # if S has built successfully add current path to the answer
@@ -117,8 +117,24 @@ class Solution:
 
 s = "catsanddog"
 
-wordDict = ["cat","cats","and","sand","dog"]
+wordDict = ["cat","sand","dog"]
 
 solution = Solution()
 
 print("res:", solution.wordBreak(s, wordDict))
+
+
+""""
+
+dog + []
+
+sand + dog
+
+
+
+
+
+
+
+
+"""
