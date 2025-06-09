@@ -56,8 +56,6 @@ class Solution:
 
         return odd_max - even_min
 
-
-
 # Time Complexity: O(n)
 # Time Complexity: O(k)
 class Solution:
