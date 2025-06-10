@@ -36,11 +36,10 @@ def word_count_engine(document: str) -> List[List[str]]:
 
     for word in word_list:
         clean_word = ''.join(ch.lower() for ch in word if 'a' <= ch.lower() <= 'z')
-        
-        if clean_word:
-            word_map[clean_word] = word_map.get(clean_word, 0) + 1
 
-            largest_count = max(largest_count, word_map[clean_word])
+        word_map[clean_word] = word_map.get(clean_word, 0) + 1
+
+        largest_count = max(largest_count, word_map[clean_word])
 
 
 
@@ -72,6 +71,6 @@ def word_count_engine(document: str) -> List[List[str]]:
 
 
 
-document = "Practice makes perfect. you'll only get Perfect by practice. just practice!"
+document = "Practice makes         perfect. you'll only get Perfect by practice. just practice!"
 
 print("res:", word_count_engine(document))
