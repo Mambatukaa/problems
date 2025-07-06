@@ -9,3 +9,68 @@ When we need to return a specific set of the Target Object implementations, we i
 
 
 
+# play and stop button
+
+from abc import ABC, abstractmethod
+
+
+
+class WindowsPlayerUtility:
+    def Start(self):
+        print("starting")
+
+
+class LinuxPlayerUtility:
+    def Start(self):
+        print("starting")
+
+class PlayButton(ABC):
+    @abstractmethod
+    def play(self):
+        pass
+
+class StopButton(ABC):
+    @abstractmethod
+    def stop(self):
+        pass
+
+
+class WindowsPlayButton(PlayButton):
+    def play(self):
+        print("Windows playing")
+
+class LinuxPlayButton(PlayButton):
+    def play(self):
+        print("Linux playing")
+
+class WindowsStopButton(StopButton):
+    def stop(self):
+        print("Windows stopping")
+
+class LinuxStopButton(StopButton):
+    def stop(self):
+        print("Linux stopping")
+
+class PlayerCreator(ABC):
+    @abstractmethod
+    def createPlayButton(self) -> PlayButton:
+        pass
+
+    @abstractmethod
+    def createStopButton(self) -> StopButton:
+        pass
+
+
+class WindowsPlayerCreator(PlayerCreator):
+    def createPlayButton(self):
+        return WindowsPlayButton()
+
+    def createStopButton(self):
+        return WindowsStopButton()
+
+class LinuxPlayerCreator(PlayerCreator):
+    def createPlayButton(self):
+        return LinuxPlayButton()
+
+    def createStopButton(self):
+        return LinuxStopButton()
