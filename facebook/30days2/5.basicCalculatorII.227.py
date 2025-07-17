@@ -70,6 +70,90 @@ class Solution:
             res += num
 
         return res
+num = 2
+
+operation *:
+    last_num = last_num * curr_num
+
+
+"""_num
+                    else:
+                        last_num = int(last_num / curr_num)
+
+                operation = ch
+                curr_num = 0
+        
+        res += last_num
+        return res
+
+"""
+
+track curr_num and last_num
+
+if the curr_char is + or -:
+    update the res and update the last_num
+
+if the curr_Char is * or /:
+    update the last num not response
+
+
+
+3 + 2 * 2
+
+curr_num = 0
+last_num = 0
+operation = +
+
+-----------------------------------------------
+
+curr_num = 3
+
+ch = +
+
+operation == +
+    res += last_num = 0
+    last_num = 3
+    operation = +
+-------------------------------------------------------
+
+curr_num = 2
+
+ch = *
+
+res += 3
+last_num = 2
+
+operation = *
+
+
+-------------------------------------------------------
+curr_num = 2
+last_class Solution:
+    def calculate(self, s: str) -> int:
+        # add on the stack on addition and substraction
+        operation = "+"
+        last_num = 0
+        curr_num = 0
+        res = 0
+
+        n = len(s)
+        for i in range(n):
+            ch = s[i]
+
+            if ch.isdigit():
+                curr_num = curr_num * 10 + int(ch)
+
+            if ((ch != " " and not ch.isdigit()) or i == n - 1) :
+                if operation in "+-":
+                    # update the res
+                    if operation == "-":
+                        curr_num = -curr_num
+
+                    res += last_num
+                    last_num = curr_num
+                else:
+                    if operation == "*":
+                        last_num = last_num * curr
 
 """
 
@@ -112,3 +196,88 @@ else:
 
 """
 
+
+    class Solution:
+    def calculate(self, s: str) -> int:
+        # add on the stack on addition and substraction
+        operation = "+"
+        last_num = 0
+        curr_num = 0
+        res = 0
+
+        n = len(s)
+        for i in range(n):
+            ch = s[i]
+
+            if ch.isdigit():
+                curr_num = curr_num * 10 + int(ch)
+
+            if ((ch != " " and not ch.isdigit()) or i == n - 1) :
+                if operation in "+-":
+                    # update the res
+                    if operation == "-":
+                        curr_num = -curr_num
+
+                    res += last_num
+                    last_num = curr_num
+                else:
+                    if operation == "*":
+                        last_num = last_num * curr_num
+                    else:
+                        last_num = int(last_num / curr_num)
+
+                operation = ch
+                curr_num = 0
+        
+        res += last_num
+        return res
+
+"""
+
+track curr_num and last_num
+
+if the curr_char is + or -:
+    update the res and update the last_num
+
+if the curr_Char is * or /:
+    update the last num not response
+
+
+
+3 + 2 * 2
+
+curr_num = 0
+last_num = 0
+operation = +
+
+-----------------------------------------------
+
+curr_num = 3
+
+ch = +
+
+operation == +
+    res += last_num = 0
+    last_num = 3
+    operation = +
+-------------------------------------------------------
+
+curr_num = 2
+
+ch = *
+
+res += 3
+last_num = 2
+
+operation = *
+
+
+-------------------------------------------------------
+curr_num = 2
+last_num = 2
+
+operation *:
+    last_num = last_num * curr_num
+
+
+"""
