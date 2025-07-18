@@ -39,6 +39,16 @@ n == nums1.length == nums2.length
 
 from typing import List
 
+"""
+Let n be the length of the input array and L and L 
+2 be the number of non-zero elements for the two vectors.
+
+Time complexity: O(n) for creating the <index, value> pair for non-zero values; O(L+L 
+2) for calculating the dot product.
+
+Space complexity: O(L) for creating the <index, value> pairs for non-zero values. O(1) for calculating the dot product.
+
+"""
 class SparseVector:
   def __init__(self, nums: List[int]):
     # store non-zero elements with their indices
