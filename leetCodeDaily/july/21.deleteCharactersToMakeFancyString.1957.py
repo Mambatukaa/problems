@@ -89,3 +89,39 @@ leeetcode
 
 """
         
+
+
+
+class Solution:
+    def makeFancyString(self, s: str) -> str:
+        res = [s[0]]
+        frequency = 1
+        prev = s[0]
+
+        for i in range(1, len(s)):
+
+            if s[i] == prev:
+                frequency += 1
+            else:
+                prev = s[i]
+                frequency = 1
+            
+            if frequency < 3:
+                res.append(s[i])
+
+        return "".join(res)
+# No space
+class Solution:
+
+    def makeFancyString(self, s: str) -> str:
+        j = 2
+
+        s = list(s)
+
+        for i in range(2, len(s)):
+            if s[i] != s[j - 1] or s[i] != s[j - 2]:
+                s[j] = s[i]
+                j += 1
+            
+        return "".join(s[:j])
+
