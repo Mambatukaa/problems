@@ -117,54 +117,52 @@ get ~ O(1).
 """
 
 class TrieNode:
-    def __init__(self, name):
+    def __init__(self):
         self.map = defaultdict(TrieNode)
         self.value = -1
-        self.name = name
 
 class FileSystem:
 
     def __init__(self):
-        self.root = TrieNode("")
+        self.root = TrieNode()
 
     def createPath(self, path: str, value: int) -> bool:
-        components = path.split("/")
+        components = path.split("/")[1:]
 
         cur = self.root
 
-        for i in range(1, len(components)):
-            name = components[i]
-
-            if name not in cur.map:
-                # If it doesn't and it is the last node, add it to the Trie.
+        for i, component in enumerate(components):
+            if component not in cur.map:
                 if i == len(components) - 1:
-                    cur.map[name] = TrieNode(name)
+                    cur.map[component] = TrieNode()
                 else:
                     return False
-
-            cur = cur.map[name]
+            
+            cur = cur.map[component]
 
         if cur.value != -1:
             return False
 
         cur.value = value
+
         return True
 
 
     def get(self, path: str) -> int:
+
+        components = path.split("/")[1]
+
         cur = self.root
 
-        components = path.split("/")
+        for component in components:
+            if component not in cur.map:
+                return False
 
-        for i in range(1, len(components)):
-            name = components[i]
+            cur = cur.map[component]
 
-            if name not in cur.map:
-                return -1
-
-            cur = cur.map[name]
 
         return cur.value
+
                 
 
 
