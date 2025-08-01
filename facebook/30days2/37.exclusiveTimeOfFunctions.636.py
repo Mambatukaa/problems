@@ -123,6 +123,66 @@ class Solution:
                 if stack:
                     stack[-1][1] = time + 1
         return ans
+
+
+   2 sec           4 seconds      1 second
+0 -------> 1 ------------------> 0 ------->
+
+
+prev_time = 0
+
+"""class Solution:
+    def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
+
+        ans = [0] * n
+        stack = []
+        prev_time = 0
+
+        for log in logs:
+            f_id, event, time = log.split(":")
+
+            f_id = int(f_id)
+            time = int(time)
+
+            if event == "start":
+                # add new log to the stack
+
+                if stack:
+                    ans[stack[-1]] += time - prev_time
+
+                stack.append(f_id)
+                prev_time = time
+
+            else:
+                # update the answer
+                ans[stack.pop()] += time - prev_time + 1
+                prev_time = time + 1
+
+        return ans
+
+
+        
+
+
+
+
+
+
+"""
+
+track prev_time initially 0
+
+
+update the answer
+
+
+stack = []
+
+
+
+
+
+
 """
 
 
