@@ -89,3 +89,17 @@ class BSTIterator:
         @return whether we have a next smallest number
         """
         return len(self.stack) > 0
+
+
+
+
+
+
+
+
+""""
+
+
+
+
+"""
