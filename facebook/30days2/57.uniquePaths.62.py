@@ -48,7 +48,6 @@ class Solution:
             for col in range(1, m):
                 new_row[col] = row[col] + new_row[col - 1]
     
-    
             row = new_row
     
     
