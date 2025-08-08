@@ -1,5 +1,10 @@
+from typing import List
+
+import random
+
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
+
 
         # quick sort
 
@@ -7,7 +12,8 @@ class Solution:
         # Space Complexity: O(n)
         def quickSort(nums):
             if len(nums) <= 1:
-                return nums 
+                return nums
+
 
             pivot = random.choice(nums)
 
@@ -16,53 +22,58 @@ class Solution:
             right = []
 
             for num in nums:
-                if num > pivot:
-                    right.append(num)
-                elif num < pivot:
+                if num < pivot:
                     left.append(num)
-                else:
+                elif num == pivot:
                     mid.append(num)
-                    
+                else:
+                    right.append(num)
+
             return quickSort(left) + mid + quickSort(right)
         
         # Time complexity: O(n log n)
         # Space complexity: O(n)
         def merge_sort(arr):
-            # Base case: if the list has 0 or 1 element, it's already sorted
             if len(arr) <= 1:
                 return arr
-        
-            # Divide the list into two halves
+
             mid = len(arr) // 2
-            left_half = arr[:mid]
-            right_half = arr[mid:]
-        
-            # Recursively sort the two halves
-            sorted_left = merge_sort(left_half)
-            sorted_right = merge_sort(right_half)
-        
-            # Merge the sorted halves
+
+            left = arr[:mid]
+            right = arr[mid:]
+
+            sorted_left = merge_sort(left)
+            sorted_right = merge_sort(right)
+
             return merge(sorted_left, sorted_right)
         
         def merge(left, right):
-            sorted_nums = []
+            sorted_list = []
 
-            l = 0
-            r = 0
+            p1 = 0
+            p2 = 0
 
-            while l < len(left) and r < len(right):
-                if left[l] < right[r]:
-                    sorted_nums.append(left[l])
-                    l += 1
+            while p1 < len(left) and p2 < len(right):
+                if left[p1] < right[p2]:
+                    sorted_list.append(left[p1])
+                    p1 += 1
                 else:
-                    sorted_nums.append(right[r])
-                    r += 1
-            
-            sorted_nums += left[l:]
-            sorted_nums += right[r:]
+                    sorted_list.append(right[p2])
+                    p2 += 1
 
-            return sorted_nums
+
+            sorted_list += left[p1:]
+            sorted_list += right[p2:]
+
+            return sorted_list
+
 
         return merge_sort(nums)
+        return quickSort(nums)
 
         
+solution = Solution()
+
+nums = [5, 3, 2, 4,6, 10]
+
+print(solution.sortArray(nums))
