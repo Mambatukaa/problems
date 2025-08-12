@@ -41,3 +41,42 @@ each rows and columns sorted
 
 
 """
+
+
+
+from heapq import heappush, heappop
+
+from typing import List
+
+
+"""
+Time Complexity: let X=min(K,N);X+Klog(X)
+
+Well the heap construction takes O(X) time.
+After that, we perform K iterations and each iteration has two operations. We extract the minimum element from a heap containing X elements. Then we add a new element to this heap. Both the operations will take O(log(X)) time.
+Thus, the total time complexity for this algorithm comes down to be O(X+Klog(X)) where X is min(K,N).
+Space Complexity: O(X) which is occupied by the heap.
+
+
+"""
+
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+        min_heap = []
+
+        ROWS = len(matrix)
+        COLS = len(matrix[0])
+
+        for r in range(min(k, ROWS)):
+            # value, row, col
+            heappush(min_heap, (matrix[r][0], r, 0))
+
+        while k != 0:
+            element, row, col = heappop(min_heap)
+
+            if col + 1 < COLS:
+                heappush(min_heap, (matrix[row][col + 1], row, col + 1))
+
+            k -= 1
+
+        return element
