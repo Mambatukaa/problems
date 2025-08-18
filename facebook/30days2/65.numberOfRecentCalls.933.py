@@ -89,3 +89,23 @@ class RecentCounter:
 
         return len(self.requests[left:])
 
+# Time Complexity: O(1) # Maximum 3000 elements
+# Space Complexity: O(1) # Max 3000 elements
+class RecentCounter:
+
+    def __init__(self):
+        self.requests = []
+
+    def ping(self, t: int) -> int:
+        self.requests.append(t)
+
+        # requests = [1, 100, 3001, 3002]
+        # target = 2
+
+        target = t - 3000
+
+        lower_bound = bisect.bisect_left(self.requests, target)
+
+
+        return len(self.requests[lower_bound:])
+
