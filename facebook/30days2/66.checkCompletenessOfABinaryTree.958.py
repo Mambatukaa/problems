@@ -92,3 +92,29 @@ class Solution:
         return True
 
 
+# DFS
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+class Solution:
+    def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
+        def countNodes(root):
+
+            if not root:
+                return 0
+
+            return 1 + countNodes(root.left) + countNodes(root.right)
+
+
+        def dfs(node, index, n):
+            print(index)
+            if not node:
+                return True
+
+
+            if index >= n:
+                return False
+
+            return dfs(node.left, 2 * index + 1, n) and dfs(node.right, 2 * index + 2, n)
+        
+        return dfs(root, 0, countNodes(root))
+
