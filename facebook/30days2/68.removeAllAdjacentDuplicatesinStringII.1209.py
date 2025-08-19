@@ -43,11 +43,12 @@ class Solution:
             if stack and stack[-1][0] == letter:
                 stack[-1][1] += 1
 
-                if stack[-1][1] == k:
-                    # remove last elements from stack
-                    stack.pop()
             else:
                 stack.append([letter, 1])
+
+            if stack[-1][1] == k:
+                # remove last elements from stack
+                stack.pop()
 
         return "".join([ch * count for ch, count in stack])
 
