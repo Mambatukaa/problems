@@ -30,6 +30,19 @@ Follow up:
 Could you solve this problem in less than O(n) complexity?
 
 """
+
+
+class Solution:
+    def findKthPositive(self, arr: List[int], k: int) -> int:
+        for num in arr:
+            if num <= k:
+                k += 1
+            else:
+                break
+        return k
+
+
+
 class Solution:
     def findKthPositive(self, arr: List[int], k: int) -> int:
         left = 0
