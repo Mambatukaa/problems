@@ -106,3 +106,57 @@ keep = 0
 
 
 """
+class Solution:
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+    def minRemoveToMakeValid(self, s: str) -> str:
+        # (), [], {}
+        """
+        opening = {
+            "(": 0,
+            "[": 0,
+            "{": 0
+        }
+
+        total = {
+
+        }
+        
+        """
+        pair = {
+            "}": "{",
+            ")": "(",
+            "]": "[",
+        }
+
+        opening = defaultdict(int)
+        total = defaultdict(int)
+
+        temp = []
+
+        for ch in s:
+            if ch in pair:
+                # pair[ch]
+                if opening[pair[ch]] == 0:
+                    continue
+                opening[pair[ch]] -= 1
+            elif ch in "({[": #opening
+                opening[ch] += 1
+                total[ch] += 1
+
+            temp.append(ch)
+
+        keep = {}
+
+        for key in "{([":
+            keep[key] = total[key] - opening[key]
+
+        ans = []
+        for ch in temp:
+            if ch in keep:
+                if keep[ch] == 0:
+                    continue
+                keep[ch] -= 1
+            ans.append(ch)
+        return "".join(ans)
+
