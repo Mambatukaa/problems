@@ -32,6 +32,7 @@ s[i] is either '(' or ')'.
 
 
 """
+# in place
 class Solution:
     def minAddToMakeValid(self, s: str) -> int:
         
