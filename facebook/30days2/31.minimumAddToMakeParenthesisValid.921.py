@@ -53,3 +53,56 @@ class Solution:
         return res + opening_brackets
                 
 
+class Solution:
+    # in place
+    def minRemoveToMakeValid(self, s: str) -> str:
+        s = list(s)
+
+        l = 0
+        opens = 0
+        total_opening = 0
+
+        for r in range(len(s)):
+            curr = s[r] 
+
+            # swap current valid with left
+            if curr == "(":
+                total_opening += 1
+                opens += 1
+            elif curr == ")":
+                if opens == 0:
+                    continue
+                opens -= 1
+
+            s[l] = s[r]
+            l += 1
+
+        keep = total_opening - opens
+
+        n = l
+        l = 0
+
+        for i in range(n):
+            curr = s[i]
+
+            if curr == "(":
+                if keep == 0:
+                    continue
+                keep -= 1
+            s[l] = s[i]
+            l += 1
+
+
+        return "".join(s[:l])
+
+        
+"""
+
+keep = 0
+
+    l      
+()xa(a
+     i
+
+
+"""
