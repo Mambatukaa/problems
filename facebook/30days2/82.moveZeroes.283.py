@@ -46,3 +46,22 @@ class Solution:
                 nums[last_zero], nums[i] = nums[i], nums[last_zero]
                 last_zero += 1
 
+
+
+
+
+
+# Variant
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        j = len(nums) - 1
+
+        for i in range(len(nums) - 1, -1, -1):
+            if nums[i] != 0:
+                nums[j], nums[i] = nums[i], nums[j]
+                j -= 1
+        
+        
