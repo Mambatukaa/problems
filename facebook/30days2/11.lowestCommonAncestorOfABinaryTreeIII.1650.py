@@ -60,12 +60,63 @@ class Node:
 class Solution:
   # Time Complexity: O(h) where h is the height of the tree
   # Space Complexity: O(1)
-  def lowestCommonAncestor(self, p: Optional[Node], q: Optional[Node]) -> Optional[Node]:
-    p = p.parent
-    q = q.parent
-    while p and q:
-        if p == q:
-            return p
-        p = p.parent
-        q = q.parent
+    def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
+        p1 = p
+        p2 = q
+
+        while p1 and p2:
+            if p1 == p2:
+                return p1
+            p1 = p1.parent if p1.parent else q
+            p2 = p2.parent if p2.parent else p
+
+
+class Node:
+    def __init__(self, val=0, left=None, right=None, parent=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+from collections import defaultdict
+
+class Solution:
+  # Time Complexity: O(h) where h is the height of the tree
+  # Space Complexity: O(1)
+  def lowestCommonAncestor(self, nodes, p: Optional[Node], q: Optional[Node]) -> Optional[Node]:
+    # adjacency list
+    child_to_parent = defaultdict()
+
+    for node in nodes:
+            if node.left:
+                child_to_parent[node.left] = node
+            if node.right:
+                child_to_parent[node.right] = node
+
+    p1 = p
+    p2 = q
+
+    while p1 and p2:
+        if p1 == p2:
+            return p1
+
+        p1 = child_to_parent[p1] if p1 in child_to_parent else q
+        p2 = child_to_parent[p2] if p2 in child_to_parent else p
+
     return None
+
+
+solution = Solution()
+
+root = Node(1)
+node2 = Node(2)
+p = Node(3)
+q = Node(4)
+
+root.left = node2
+node2.left = p
+root.right = q
+
+nodes = [root, node2, p, q]
+
+
+print("res:", solution.lowestCommonAncestor(nodes, p, q).val)
