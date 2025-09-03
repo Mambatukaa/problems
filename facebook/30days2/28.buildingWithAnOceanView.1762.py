@@ -77,4 +77,43 @@ heights = [1,3,2,4]
 print("res:", solution.findBuildings(heights))
             
 
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+# BOTH VIEW
 
+class Solution:
+    def findBuildings(self, heights: List[int]) -> List[int]:
+        if len(heights) == 1:
+            return heights
+
+
+        l = 0
+        r = len(heights) - 1
+
+        left_max = heights[l]
+        right_max = heights[r]
+
+        left_view = [left_max]
+        right_view = [right_max]
+        
+        res = []
+
+        while l < r:
+            if left_max < right_max:
+                l += 1
+
+                if left_max < heights[l] and l < r:
+                    left_max = heights[l] 
+                    left_view.append(left_max)
+            else:
+                r -= 1
+                if right_max < heights[r] and l < r:
+                    res.append(r)
+                    right_max = heights[r] 
+                    right_view.append(right_max)
+
+        right_view.reverse()
+
+        return left_view + right_view
+
+        
