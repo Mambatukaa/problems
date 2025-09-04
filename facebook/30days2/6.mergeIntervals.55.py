@@ -22,7 +22,7 @@ intervals[i].length == 2
 0 <= starti <= endi <= 104
 """
 class Solution:
-    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+    def merge(self, intervals):
         intervals.sort()
         res = [intervals[0]]
 
@@ -39,7 +39,7 @@ class Solution:
 # Time Complexity: O(n log n) due to sorting
 # Space Complexity: O(n) for the result list
 class Solution:
-    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+    def merge(self, intervals):
 
         intervals.sort(key=lambda x: x[0])
 
@@ -72,3 +72,69 @@ to know overlap compare two intervals
 
 
 """ 
+
+
+
+
+# Time Complexity: O(A + B)
+# Space Complexity: O(A + B)
+class Solution:
+    def merge(self, A, B):
+        # 2 pointers
+        res = []
+
+        p1 = 0
+        p2 = 0
+
+        def merge(res, interval):
+            if not res or interval[0] > res[-1][1]:
+                res.append(interval)
+            # overlapped
+            else:
+                res[-1][1] = max(res[-1][1], interval[1])
+
+        while p1 < len(A) and p2 < len(B):
+            interval = None
+
+            # A started first
+            if A[p1][0] < B[p2][0]:
+                interval = A[p1]
+                p1 += 1
+
+            # B started first
+            else:
+                interval = B[p2]
+                p2 += 1
+
+            merge(res, interval)
+
+
+        while p1 < len(A):
+            merge(res, A[p1])
+            p1 += 1
+
+        while p2 < len(B):
+            merge(res, B[p2])
+            p2 += 1
+
+
+        return res
+
+#                         p1
+A = [[3, 4], [5, 10], [11, 25]]
+#               p2
+B = [[2, 8], [10, 20]]
+
+
+
+# res = [2, 20]
+
+solution = Solution()
+
+print("res:", solution.merge(A, B))
+"""
+
+A = [[3, 11], [14, 15], [18, 22]]
+B = [[2, 8], [13, 20]]
+
+"""
