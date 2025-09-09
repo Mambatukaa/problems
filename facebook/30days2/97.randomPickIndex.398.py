@@ -39,7 +39,7 @@ At most 104 calls will be made to pick.
 # Time Complexity: O(n)
 # Space Complexity: O(n)
 class Solution:
-    def __init__(self, nums: List[int]):
+    def __init__(self, nums):
         self.dic = defaultdict(list)
 
         for i, num in enumerate(nums):
@@ -123,3 +123,74 @@ dic = {
 
 
 """
+
+
+
+
+
+# return random k elements from the nums
+# you cannot a pick number twice
+# Resorvoir sampling
+
+
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+import random
+class Solution:
+    def pickNums(self, nums, k):
+        res = [0] * k
+
+        for i in range(k):
+            res[i] = nums[i]
+
+
+        for j in range(k, len(nums)):
+            rand_idx = random.randint(0, j)
+
+            if rand_idx < k:
+                res[rand_idx] = nums[j]
+
+        return res
+
+
+#       0  1  2  3  4  5
+nums = [1, 2, 3, 4, 5, 6]
+k = 3
+
+solution = Solution()
+
+
+
+# randomly output maximum elements index
+# You cannot pick the same number twice
+#
+import random
+class Solution:
+    def pickMaxIdx(self, nums):
+        count = 0
+        max_so_far = float('-inf')
+        res = -1
+
+        for i, num in enumerate(nums):
+            if num < max_so_far:
+                continue
+
+            if num > max_so_far:
+                max_so_far = num
+                res = i
+                count = 1
+            else:
+                count += 1
+                if random.randint(0, count) == 0:
+                    res = i
+                
+
+        return res
+
+#       0  1  2  3  4  5  6
+nums = [1, 2, 3, 4, 5, 6, 6]
+nums = [1, 1, 1, 1, 1, 1, 1]
+# output 5 or 6
+#
+solution = Solution()
+print("res:", solution.pickMaxIdx(nums))
