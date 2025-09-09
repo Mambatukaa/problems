@@ -43,8 +43,10 @@ class Solution:
             res.append([lower, nums[0] - 1])
 
         for i in range(len(nums) - 1):
-            if nums[i] + 1 < nums[i + 1]:
-                res.append([nums[i] + 1, nums[i + 1] - 1])
+            if nums[i] + 1 == nums[i + 1]:
+                continue
+
+            res.append([nums[i] + 1, nums[i + 1] - 1])
         
         if nums[-1] < upper:
             res.append([nums[-1] + 1, upper])
@@ -62,6 +64,24 @@ class Solution:
 
         
         return res
+
+
+class Solution:
+    def findMissingRanges(self, nums, lower: int, upper: int):
+        res = []
+        for num in nums + [upper + 1]:
+            diff = num - lower
+            if diff > 2:
+                res.append(f"{lower}-{num - 1}")
+            elif diff == 2:
+                res.append(str(lower))
+                res.append(str(lower + 1))
+            else:
+                res.append(str(lower))
+
+            lower = num + 1
+        return res
+
 
 solution = Solution()
 
