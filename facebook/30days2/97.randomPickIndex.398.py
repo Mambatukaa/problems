@@ -87,7 +87,6 @@ class Solution:
         self.nums = nums
 
     def pick(self, target: int) -> int:
-        print("----------------------------------------")
         count = 0
         idx = -1
         for i, num in enumerate(self.nums):
