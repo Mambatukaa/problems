@@ -106,3 +106,35 @@ a
 
 
 """
+class Solution:
+    def decodeString(self, s: str) -> str:
+        def helper(i: int) -> tuple[str, int]:
+            res = ""
+            num = 0
+
+            while i < len(s):
+                ch = s[i]
+
+                if ch.isdigit():
+                    num = num * 10 + int(ch)
+
+                elif ch == "[":
+                    # Recurse for the substring inside brackets
+                    sub_str, i = helper(i + 1)
+                    res += num * sub_str
+                    num = 0  # reset after using
+
+                elif ch == "]":
+                    # Return current result and position
+                    return res, i
+
+                else:  # normal character
+                    res += ch
+
+                i += 1
+
+            return res, i
+
+        decoded, _ = helper(0)
+        return decoded
+
