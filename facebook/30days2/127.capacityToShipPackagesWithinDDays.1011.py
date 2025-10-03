@@ -84,3 +84,33 @@ class Solution:
         return res
 
 
+
+
+class Solution:
+    def shipWithinDays(self, weights: List[int], ships: int) -> int:
+        left = max(weights)
+        right = sum(weights)
+
+        def canShip(cap):
+            curr_ships, curr_cap = 1, 0
+
+            for w in weights:
+                curr_cap += w
+
+                if curr_cap > cap:
+                    curr_ships += 1
+                    curr_cap = w
+            
+            return curr_ships <= ships
+
+        while left <= right:
+            cap = left + (right - left) // 2
+
+            if canShip(cap):
+                right = cap - 1
+            else:
+                left = cap + 1
+
+        return left
+
+
