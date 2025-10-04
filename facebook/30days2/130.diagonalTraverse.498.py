@@ -25,6 +25,8 @@ n == mat[i].length
 -105 <= mat[i][j] <= 105
 
 """
+# Time Complexity: O(n * m)
+# Space Complexity: O(n * m)
 class Solution:
     def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
         # up row - 1 col + 1
