@@ -72,3 +72,21 @@ class Solution:
         
 
 
+class Solution:
+    def customSortString(self, order: str, s: str) -> str:
+        count = Counter(s)
+
+        res = []
+
+
+        for ch in order:
+            if ch in count:
+                res.append(ch * count[ch])
+                del count[ch]
+        
+        for el in count:
+            res.append(el * count[el])
+        
+        return "".join(res)
+
+        
