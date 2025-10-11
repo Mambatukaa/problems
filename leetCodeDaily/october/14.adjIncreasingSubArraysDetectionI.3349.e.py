@@ -38,6 +38,8 @@ Constraints:
 
 
 """
+# Time Complexity: O(n)
+# Space Complexity: O(1)
 class Solution:
     def hasIncreasingSubarrays(self, nums: List[int], k: int) -> bool:
         n = len(nums)
