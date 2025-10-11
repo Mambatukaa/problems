@@ -125,13 +125,15 @@ class Solution:
         return ans
 
 
+"""
    2 sec           4 seconds      1 second
 0 -------> 1 ------------------> 0 ------->
 
 
 prev_time = 0
+"""
 
-"""class Solution:
+class Solution:
     def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
 
         ans = [0] * n
@@ -178,6 +180,7 @@ update the answer
 
 stack = []
 
+"""
 
 
 

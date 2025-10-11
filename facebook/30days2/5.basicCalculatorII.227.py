@@ -70,13 +70,15 @@ class Solution:
             res += num
 
         return res
+
+"""
 num = 2
 
 operation *:
     last_num = last_num * curr_num
 
 
-"""_num
+_num
                     else:
                         last_num = int(last_num / curr_num)
 
@@ -86,7 +88,6 @@ operation *:
         res += last_num
         return res
 
-"""
 
 track curr_num and last_num
 
@@ -157,12 +158,14 @@ last_class Solution:
 
 """
 
+
+"""
+
 35 + 2 * 2
 
 
 +
 35
-
 
 current_number
 current_char
@@ -197,7 +200,7 @@ else:
 """
 
 
-    class Solution:
+class Solution:
     def calculate(self, s: str) -> int:
         # add on the stack on addition and substraction
         operation = "+"
