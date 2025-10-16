@@ -33,7 +33,6 @@ class Solution:
         dfs(first_row, first_col)
 
         while bfs_queue:
-            new_bfs = []
             size = len(bfs_queue)
 
             for _ in range(size):
