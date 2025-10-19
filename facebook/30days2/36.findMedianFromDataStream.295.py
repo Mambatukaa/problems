@@ -136,7 +136,6 @@ class MedianFinder:
             heappush(self.smaller_heap, -num)
             return
 
-        
         # add num to the smaller_heap and adjust
         if -self.smaller_heap[0] > num:
             heappush(self.smaller_heap, -num)
