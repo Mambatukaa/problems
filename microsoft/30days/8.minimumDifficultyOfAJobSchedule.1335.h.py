@@ -35,7 +35,6 @@ Constraints:
 0 <= jobDifficulty[i] <= 1000
 1 <= d <= 10
 
-
 """
 
 
