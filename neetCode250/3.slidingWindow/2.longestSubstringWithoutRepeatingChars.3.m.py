@@ -33,7 +33,7 @@ s consists of English letters, digits, symbols and spaces.
 
 
 # TC: O(n)
-# SC: O(1)
+# SC: O(k)
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         n = len(s)
@@ -51,6 +51,31 @@ class Solution:
                 l += 1
 
             seen.add(s[r])
+            res = max(res, r - l + 1)
+        
+        return res
+
+
+
+# Optimized
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        n = len(s)
+        
+
+        l = 0
+
+        seen = {}
+
+        res = 0
+
+        for r in range(n):
+            if s[r] in seen:
+                del seen[s[r]]
+                l = r + 1
+
+            seen[s[r]] = r
+
             res = max(res, r - l + 1)
         
         return res
