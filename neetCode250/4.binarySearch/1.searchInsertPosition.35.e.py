@@ -27,7 +27,7 @@ nums contains distinct values sorted in ascending order.
 -104 <= target <= 104
 """
 
-# Time Complexity: O(N log N)
+# Time Complexity: O(log N)
 # Space Complexity: O(1)
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
