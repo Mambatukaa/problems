@@ -46,6 +46,8 @@ merge with the first half
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+#         TC: O(n)
+#         SC: O(1)
 class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
         """
