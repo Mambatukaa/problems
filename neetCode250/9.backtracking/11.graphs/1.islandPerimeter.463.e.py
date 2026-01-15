@@ -68,6 +68,8 @@ class Solution:
                 
         return result
 
+# TC: O(n)
+# SC: O(1)
 class Solution:
     def islandPerimeter(self, grid: List[List[int]]) -> int:
         rows = len(grid)
