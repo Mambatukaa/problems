@@ -21,6 +21,7 @@ Constraints:
 
 # TC: O(n)
 # SC: O(1)
+# 2 pointers
 class Solution:
     def reverseString(self, s: List[str]) -> None:
         """
