@@ -25,10 +25,11 @@ Constraints:
 s consists of only uppercase English letters.
 0<= k <= s.length 
 
-
 """
 
 
+# TC: O(n)
+# SC: O(1)
 
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
