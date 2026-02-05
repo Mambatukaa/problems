@@ -36,6 +36,7 @@ strs[i] consists of lowercase English letters.
 
 """
 
+
 # Time Complexity: O(NK)
 # Space Complexity: O(NK)
 class Solution:
