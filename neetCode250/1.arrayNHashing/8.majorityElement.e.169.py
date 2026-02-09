@@ -32,6 +32,7 @@ Follow-up: Could you solve the problem in linear time and in O(1) space?
 
 # TC: O(n)
 # SC: O(1)
+#
 class Solution:
     def majorityElement(self, nums):
         count = 0
