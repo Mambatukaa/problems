@@ -62,3 +62,21 @@ class Solution:
 
 
 
+# TC: O(n + n log k) if k < n  O(N log N)
+# SC: O(n)
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = Counter(nums)
+
+        max_heap = []
+
+        for num, v in count.items():
+            heappush(max_heap, (-v, num))
+
+        res = []
+
+        while k > 0:
+            res.append(heappop(max_heap)[1])
+            k -= 1
+        
+        return res
