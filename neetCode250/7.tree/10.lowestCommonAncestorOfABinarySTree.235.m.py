@@ -56,3 +56,26 @@ class Solution:
         return dfs(root)
 
 
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        stack = [root]
+
+        while stack:
+            root = stack.pop()
+
+            if root.val > q.val and root.val > p.val:
+                stack.append(root.left)
+            elif root.val < q.val and root.val < p.val:
+                stack.append(root.right)
+            else:
+                return root
+
+        
