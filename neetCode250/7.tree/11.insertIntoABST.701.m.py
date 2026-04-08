@@ -38,7 +38,7 @@ It's guaranteed that val does not exist in the original BST.
 #         self.left = left
 #         self.right = right
 #
-#         TC: O(log n)
+#         TC: O(h) worst case
 #         SC: O(1)
 class Solution:
     def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
