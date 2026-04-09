@@ -87,8 +87,10 @@ class Solution:
 
             res[level].append(root.val)
 
-            dfs(root.left, level + 1)
-            dfs(root.right, level + 1)
+            if root.left:
+                dfs(root.left, level + 1)
+            if root.right:
+                dfs(root.right, level + 1)
 
         
 
