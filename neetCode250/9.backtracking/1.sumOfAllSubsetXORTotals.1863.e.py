@@ -46,10 +46,4 @@ Constraints:
 1 <= nums.length <= 12
 1 <= nums[i] <= 20
 
-
-
-
-
-
-
 """
