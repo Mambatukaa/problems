@@ -49,8 +49,50 @@ class Node:
         self.random = random
 """
 
-# TC: O(n)
-# Sc: O(1)
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        if not head:
+            return None
 
+        curr = head
+
+        while curr:
+            next = curr.next
+
+            curr.next = Node(curr.val)
+
+            curr.next.next = next
+            curr.next.random = curr.random
+
+            curr = next
+
+        copy = head.next
+
+        while copy:
+            next = copy.next
+            copy.next = next.next if next else None
+            copy.random = copy.random.next if copy.random else None
+
+            copy = copy.next
+
+        return head.next
+
+
+        
+"""
+
+1 -> 2 -> 3 -> 4
+
+1 -> 1c -> 2 -> 2c -> 3 -> 3c
+
+
+"""
