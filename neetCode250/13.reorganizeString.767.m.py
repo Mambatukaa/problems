@@ -57,3 +57,36 @@ class Solution:
                 heappush(max_heap, (first_val, first_key))
 
         return res
+
+
+
+# TC: O(N log k)
+# SC: O(k)
+class Solution:
+    def reorganizeString(self, s: str) -> str:
+        count = Counter(s)
+
+        max_heap = [(-cnt, char) for char, cnt in count.items()]
+
+        heapify(max_heap)
+        prev = None
+
+        res = ""
+
+        while max_heap or prev:
+            if prev and not max_heap:
+                return ""
+                
+            cnt, char = heappop(max_heap)
+
+            res += char
+            cnt += 1
+
+            if prev:
+                heappush(max_heap, prev)
+                prev = None
+
+            if cnt != 0:
+                prev = (cnt, char)
+
+        return res
