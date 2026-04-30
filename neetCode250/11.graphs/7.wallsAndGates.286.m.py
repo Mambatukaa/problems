@@ -34,6 +34,7 @@ class Solution:
     def wallsAndGates(self, rooms: List[List[int]]) -> None:
 
         ROWS,COLS = len(rooms),len(rooms[0])
+
         visit = set()
         q = deque()
 
@@ -51,6 +52,7 @@ class Solution:
                     visit.add((r,c))
         
         dist = 0
+
         while q:
             for i in range(len(q)):
                 r,c = q.popleft()
