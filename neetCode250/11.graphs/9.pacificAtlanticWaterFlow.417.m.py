@@ -52,3 +52,46 @@ class Solution:
 
 
 
+class Solution:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        DIRECTIONS = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        ROWS = len(heights)
+        COLS = len(heights[0])
+
+        pacific_reachable = set()
+        atlantic_reachable = set()
+
+        def bfs(row, col, reachable):
+            q = deque([[row, col]])
+
+            while q:
+                row, col = q.popleft()
+                reachable.add((row, col))
+
+                for dr, dy in DIRECTIONS:
+                    new_row = row + dr
+                    new_col = col + dy
+    
+                    if new_row < 0 or new_row >= ROWS or new_col < 0 or new_col >= COLS or (new_row, new_col) in reachable:
+                        continue
+                    
+                    if heights[new_row][new_col] < heights[row][col]:
+                        continue
+    
+                    reachable.add((new_row, new_col))
+                    q.append([new_row, new_col])
+            
+        for r in range(ROWS):
+            bfs(r, 0, pacific_reachable)
+            bfs(r, COLS - 1, atlantic_reachable)
+        
+        for c in range(COLS):
+            bfs(0, c, pacific_reachable)
+            bfs(ROWS - 1, c, atlantic_reachable)
+        
+
+        return list(atlantic_reachable.intersection(pacific_reachable))
+
+
+
+    
