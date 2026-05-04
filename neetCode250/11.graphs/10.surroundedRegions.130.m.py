@@ -76,3 +76,45 @@ class Solution:
             for col in range(COLS):
                 if board[row][col] == "T":
                     board[row][col] = "O"
+class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+
+        ROWS = len(board)
+        COLS = len(board[0])
+        DIRECTIONS = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        
+        # CAPTURE unsurrounded regions to O --> T
+        def capture(row, col):
+            q = deque([[row, col]])
+
+            while q:
+                row, col = q.popleft()
+                board[row][col] = "T"
+
+                for dr, dc in DIRECTIONS:
+                    new_row = row + dr
+                    new_col = col + dc
+
+                    if new_row < 0 or new_col < 0 or new_row >= ROWS or new_col >= COLS or board[new_row][new_col] != "O":
+                        continue
+    
+                    board[new_row][new_col] = "T"
+                    q.append([new_row, new_col])
+        
+        for row in range(ROWS):
+            for col in range(COLS):
+                if board[row][col] == "O" and (row in [0, ROWS - 1] or col in [0, COLS - 1]):
+                    capture(row, col)
+            
+        for row in range(ROWS):
+            for col in range(COLS):
+                if board[row][col] == "O":
+                    board[row][col] = "X"
+
+        for row in range(ROWS):
+            for col in range(COLS):
+                if board[row][col] == "T":
+                    board[row][col] = "O"
