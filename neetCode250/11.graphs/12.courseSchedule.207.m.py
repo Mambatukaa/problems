@@ -63,3 +63,42 @@ class Solution:
                     q.append(neighbor)
 
         return node_visited == numCourses
+
+
+# Time Complexity: O(n + m) n - edges building a graph, dfs --> m
+# Space Complexity: O(n + m) n - graph, dfs --> m
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+
+        graph = defaultdict(list)
+
+        for second, first in prerequisites:
+            graph[first].append(second)
+
+        stack = [False] * numCourses
+        visited = [False] * numCourses
+
+        def dfs(node):
+            if stack[node]:
+                return True
+            if visited[node]:
+                return False
+            
+            stack[node] = True
+            visited[node] = True
+
+            for neighbor in graph[node]:
+                if dfs(neighbor):
+                    return True
+            
+            stack[node] = False
+            
+            return False
+        
+        for node in range(numCourses):
+            if dfs(node):
+                return False
+        
+        return True
+
+        
