@@ -72,4 +72,46 @@ class Solution:
 
         
 
+# Time Complexity: O(n + m)
+# Space Complexity: O(n + m)
+# cycle detection dfs 
+        
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        graph = defaultdict(list)
+
+        for second, first in prerequisites:
+            graph[second].append(first)
+
+        stack = set()
+        visited = set()
+
+        def dfs(node):
+            # circle detected
+            if node in stack:
+                return True
+            if node in visited:
+                return False
+
+            stack.add(node)
+            visited.add(node)
+
+
+            for neighbor in graph[node]:
+                if dfs(neighbor):
+                    return True
+
+            stack.remove(node)
+            res.append(node)
+
+            return False
+
+        
+        res = []
+
+        for course in range(numCourses):
+            if dfs(course):
+                return []
+        
+        return res
         
