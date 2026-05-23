@@ -30,10 +30,13 @@ Constraints:
 2 <= nums.length <= 500
 0 <= nums[i] <= 100
 
+
 """
 
 
 
+# TC: O(n log n)
+# SC: O(n log n) O(1)
 class Solution:
     def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
         temp = sorted(nums)
@@ -54,6 +57,8 @@ class Solution:
     
             
             
+# TC: O(n^2)
+# SC: O(1)
 class Solution:
     def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
 
