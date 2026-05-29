@@ -37,29 +37,45 @@ bills[i] is either 5, 10, or 20.
 # Space Complexity: O(1)
 class Solution:
     def lemonadeChange(self, bills: List[int]) -> bool:
-        five_dollar_bills = 0
-        ten_dollar_bills = 0
+        five = 0
+        ten = 0
 
         for bill in bills:
             if bill == 5:
-                five_dollar_bills += 1
+                five += 1
             elif bill == 10:
-                if five_dollar_bills > 0:
-                    five_dollar_bills -= 1
-                    ten_dollar_bills += 1
+                if five > 0:
+                    five -= 1
+                    ten += 1
                 else:
                     return False
             else:
-                if ten_dollar_bills > 0 and five_dollar_bills > 0:
-                    five_dollar_bills -= 1
-                    ten_dollar_bills -= 1
-                elif five_dollar_bills >= 3:
-                    five_dollar_bills -= 3
+                if ten > 0 and five > 0:
+                    five -= 1
+                    ten -= 1
+                elif five >= 3:
+                    five -= 3
                 else:
                     return False
 
         return True
 
+
+class Solution:
+    def lemonadeChange(self, bills: List[int]) -> bool:
+        five, ten = 0, 0
+        for b in bills:
+            if b == 5:
+                five += 1
+            elif b == 10:
+                five, ten = five - 1, ten + 1
+            elif ten > 0:
+                five, ten = five - 1, ten - 1
+            else:
+                five -= 3
+            if five < 0:
+                return False
+        return True
 
 
             
